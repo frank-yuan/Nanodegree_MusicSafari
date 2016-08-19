@@ -10,7 +10,7 @@ import Foundation
 
 
 enum NetworkError : Int {
-    case NoError = 0,
+    case Succeed = 0,
     RequestError,
     ResponseWrongStatus,
     NoData,
@@ -109,9 +109,7 @@ class HttpService : NSObject {
                 return
             }
             
-            performUIUpdatesOnMain {
-                completeHandler(data, NetworkError.NoError)
-            }
+            completeHandler(data, NetworkError.Succeed)
         }
         task.resume()
     }

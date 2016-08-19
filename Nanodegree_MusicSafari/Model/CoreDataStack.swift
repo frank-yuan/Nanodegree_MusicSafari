@@ -21,7 +21,7 @@ struct CoreDataStack {
     
     
     // MARK:  - Initializers
-    init?(modelName: String){
+    init?(modelName: String, persistingDirectory:NSSearchPathDirectory = .DocumentDirectory){
         
         // Assumes the model is in the main bundle
         guard let modelURL = NSBundle.mainBundle().URLForResource(modelName, withExtension: "momd") else {
@@ -58,12 +58,12 @@ struct CoreDataStack {
         // Add a SQLite store located in the documents folder
         let fm = NSFileManager.defaultManager()
         
-        guard let  docUrl = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first else{
+        guard let  docUrl = fm.URLsForDirectory(persistingDirectory, inDomains: .UserDomainMask).first else{
             print("Unable to reach the documents folder")
             return nil
         }
         
-        self.dbURL = docUrl.URLByAppendingPathComponent("model.sqlite")
+        self.dbURL = docUrl.URLByAppendingPathComponent("/(modelName).sqlite")
         
         
         do{

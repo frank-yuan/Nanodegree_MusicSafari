@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ServiceConfig {
+protocol APIConfig {
     var ApiScheme: String { get }
     var ApiHost: String { get }
     var ApiPath: String { get }
@@ -16,7 +16,7 @@ protocol ServiceConfig {
 
 struct HttpServiceHelper {
     
-    static func buildURL(config:ServiceConfig,  withPathExtension: String, queryItems:[String:AnyObject]?) -> NSURL? {
+    static func buildURL(config:APIConfig,  withPathExtension: String, queryItems:[String:AnyObject]?) -> NSURL? {
         
         let components = NSURLComponents()
         // Setup by config
@@ -44,7 +44,7 @@ struct HttpServiceHelper {
     
     static func parseJSONResponse(data:NSData?, error:NetworkError, completeHandler:(AnyObject?, NetworkError) -> Void) -> Void {
         
-        if (error == NetworkError.NoError) {
+        if (error == NetworkError.Succeed) {
             /* Parse the data */
             let parsedResult: AnyObject!
             do {
@@ -52,20 +52,14 @@ struct HttpServiceHelper {
             } catch {
                 print("Could not parse the data as JSON: '\(data)'")
                 
-                performUIUpdatesOnMain {
-                    completeHandler(nil, NetworkError.ParseJSONError)
-                }
+                completeHandler(nil, NetworkError.ParseJSONError)
                 return
             }
             
-            performUIUpdatesOnMain {
-                completeHandler(parsedResult, error)
-            }
+            completeHandler(parsedResult, error)
             
         } else {
-            performUIUpdatesOnMain {
-                completeHandler(data, error)
-            }
+            completeHandler(data, error)
         }
     }
 }
