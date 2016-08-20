@@ -15,10 +15,12 @@ class AnyObjectHelper{
         var node = object
         let keys = name.componentsSeparatedByCharactersInSet(Constants.JSONPathDelimiter)
         for key in keys {
-            if node == nil {
-                break;
+            if let dic = node as? Dictionary<String, AnyObject>
+                where dic.indexForKey(key) != nil {
+                node = dic[key]
+                continue;
             }
-            node = node![key]
+            break;
         }
         return node
     }

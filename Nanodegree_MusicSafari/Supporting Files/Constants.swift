@@ -16,7 +16,7 @@ struct Constants {
     struct Lastfm {
         static let APIScheme = "https"
         static let APIHost = "ws.audioscrobbler.com"
-        static let APIPath = "/2.0"
+        static let APIPath = "/2.0/"
     }
     
     struct LastfmParameterKeys {

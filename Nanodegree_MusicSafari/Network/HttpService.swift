@@ -85,27 +85,21 @@ class HttpService : NSObject {
             /* GUARD: Was there an error? */
             guard (error == nil) else {
                 print("There was an error with your request: \(error)")
-                performUIUpdatesOnMain {
-                    completeHandler(nil, NetworkError.RequestError)
-                }
+                completeHandler(nil, NetworkError.RequestError)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 print("Your request returned a status code other than 2xx!")
-                performUIUpdatesOnMain {
-                    completeHandler(data, NetworkError.ResponseWrongStatus)
-                }
+                completeHandler(data, NetworkError.ResponseWrongStatus)
                 return
             }
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
                 print("No data was returned by the request!")
-                performUIUpdatesOnMain {
-                    completeHandler(nil, NetworkError.NoData)
-                }
+                completeHandler(nil, NetworkError.NoData)
                 return
             }
             

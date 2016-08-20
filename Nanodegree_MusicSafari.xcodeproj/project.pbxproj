@@ -41,6 +41,14 @@
 		94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */; };
 		9478A9EB1D65FE9300098CBA /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */; };
 		94A9B2F91D67494400F4A38F /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
+		94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
+		94DE4E351D689099005F11F4 /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B661D64B7B000EC0742 /* Track+CoreDataProperties.swift */; };
+		94DE4E361D689099005F11F4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B671D64B7B000EC0742 /* Track.swift */; };
+		94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */; };
+		94DE4E381D689099005F11F4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B691D64B7B000EC0742 /* Album.swift */; };
+		94DE4E391D689099005F11F4 /* Artist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B6A1D64B7B000EC0742 /* Artist+CoreDataProperties.swift */; };
+		94DE4E3A1D689099005F11F4 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B6B1D64B7B000EC0742 /* Artist.swift */; };
+		94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +101,7 @@
 		94559B731D654F5200EC0742 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		94A9B2F81D67494400F4A38F /* ArtistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistManager.swift; sourceTree = "<group>"; };
+		94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +242,7 @@
 		94559B451D64527900EC0742 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */,
 				94559B0C1D6450A900EC0742 /* FirstViewController.swift */,
 				9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */,
 			);
@@ -389,6 +399,7 @@
 				94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */,
 				94559B4B1D64527900EC0742 /* Utils.swift in Sources */,
 				94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */,
+				94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */,
 				94559B0D1D6450A900EC0742 /* FirstViewController.swift in Sources */,
 				94559B6E1D64B7B000EC0742 /* Album+CoreDataProperties.swift in Sources */,
 				94559B6C1D64B7B000EC0742 /* Track+CoreDataProperties.swift in Sources */,
@@ -412,6 +423,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */,
+				94DE4E351D689099005F11F4 /* Track+CoreDataProperties.swift in Sources */,
+				94DE4E361D689099005F11F4 /* Track.swift in Sources */,
+				94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */,
+				94DE4E381D689099005F11F4 /* Album.swift in Sources */,
+				94DE4E391D689099005F11F4 /* Artist+CoreDataProperties.swift in Sources */,
+				94DE4E3A1D689099005F11F4 /* Artist.swift in Sources */,
 				94559B651D647D9400EC0742 /* CoreDataStack.swift in Sources */,
 				94559B641D647AE500EC0742 /* AppDelegate.swift in Sources */,
 				94559B5F1D647AD600EC0742 /* HttpService.swift in Sources */,

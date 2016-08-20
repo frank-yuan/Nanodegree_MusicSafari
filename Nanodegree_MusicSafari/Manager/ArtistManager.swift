@@ -11,15 +11,17 @@ import CoreData
 
 class ArtistManager: NSObject {
 
-    static func searchArtist(name:String, context:NSManagedObjectContext, completionHandler: (()->Void)? ) {
+    static func searchArtist(name:String, context:NSManagedObjectContext, completionHandler: (([String : AnyObject?])->Void)?) {
         
-        LastfmAPI.searchArtists("John") { (result, error) in
+        LastfmAPI.searchArtists(name) { (result, error) in
             let result = AnyObjectHelper.parseWithDefault(result, name: Constants.LastfmParameterArtist.ResultKey, defaultValue: NSArray())
             
             context.performBlock{
-                CoreDataHelper.syncCoreData(String(Artist.self), indexNameOfManagedObject: "id", responseArray: result, indexNameOfResponse: Constants.LastfmResponseKeys.ID, context: context, completionHandler: { keyvalue in
-                    
-                })
+                CoreDataHelper.syncCoreData(String(Artist.self), indexNameOfManagedObject: "id", responseArray: result, indexNameOfResponse: Constants.LastfmResponseKeys.ID, context: context) { keyvalue in
+                    if let completionHandler = completionHandler {
+                        completionHandler(keyvalue)
+                    }
+                }
             }
         }
         
