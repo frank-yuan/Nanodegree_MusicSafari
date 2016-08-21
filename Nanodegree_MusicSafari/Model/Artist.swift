@@ -11,6 +11,10 @@ import CoreData
 
 
 class Artist: NSManagedObject {
+    enum ImageSize{
+        case Small,
+        Medium
+    }
 
 // Insert code here to add functionality to your managed object subclass
     convenience init(dictionary:AnyObject?, context: NSManagedObjectContext) {
@@ -30,12 +34,44 @@ class Artist: NSManagedObject {
         for image in images {
             let size = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.Size, defaultValue: "")
             if size == Constants.LastfmResponseValues.Medium {
-                self.imageMedium = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
-            } else if size == Constants.LastfmResponseValues.Large {
-                self.imageLarge = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
+                self.imageURLMedium = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
+            } else if size == Constants.LastfmResponseValues.Small {
+                self.imageURLSmall = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
             }
         }
     }
     
+    func getImageURLBySize(size:ImageSize) -> String? {
+        switch size{
+        case .Medium:
+            return imageURLMedium
+        case .Small:
+            return imageURLSmall
+        }
+    }
+    
+    func setImageBySize(data:NSData, size:ImageSize) {
+        switch size{
+        case .Medium:
+            imageMedium = data
+        case .Small:
+            imageSmall = data
+        }
+    }
+    
+    func downloadImage(size:ImageSize, completionHandler:(()->Void)? = nil) {
+        if let imageURL = getImageURLBySize(size) {
+            performUpdatesUserInteractive{
+                if let data = NSData(contentsOfURL: NSURL(string: imageURL)!) {
+                    self.managedObjectContext?.performBlock{
+                        self.setImageBySize(data, size: size)
+                        if let handler = completionHandler {
+                            handler()
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }

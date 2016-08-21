@@ -20,7 +20,11 @@ class FirstViewController: CoreDataTableViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        ArtistManager.searchArtist("Mayer", context: (fetchedResultsController?.managedObjectContext)!, completionHandler: nil)
+        let busyView = BusyView(parent: view)
+        view.addSubview(busyView)
+        ArtistManager.searchArtist("Mayer", context: (fetchedResultsController?.managedObjectContext)!){ result -> Void in
+            busyView.removeFromSuperview()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,11 +33,37 @@ class FirstViewController: CoreDataTableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let item = tableView.dequeueReusableCellWithIdentifier("artistTableCell")
-        item?.textLabel!.text = (fetchedResultsController?.objectAtIndexPath(indexPath) as! Artist).name
+        let item = tableView.dequeueReusableCellWithIdentifier("artistTableCell") as? ArtistTableViewCell
+        if let artist = fetchedResultsController?.objectAtIndexPath(indexPath) as? Artist {
+            item!.artist = artist
+            item!.textLabel!.text = item!.artist!.name
+            if let image = artist.imageSmall {
+                item!.imageView?.image = UIImage(data: image)
+            } else {
+                item!.imageView?.image = UIImage(named: "question")
+                artist.downloadImage(Artist.ImageSize.Small)
+            }
+        }
         return item!
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let vc = storyboard?.instantiateViewControllerWithIdentifier("ArtistDetailViewController") as? ArtistDetailViewController {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as? ArtistTableViewCell
+            vc.artist = cell?.artist
+            if vc.artist?.imageMedium == nil {
+                vc.artist?.downloadImage(Artist.ImageSize.Medium) {
+                    performUIUpdatesOnMain{
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+            } else {
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
+        
+    }
 
 }
 

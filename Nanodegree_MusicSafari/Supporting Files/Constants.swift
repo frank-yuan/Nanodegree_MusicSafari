@@ -47,8 +47,8 @@ struct Constants {
     }
     
     struct LastfmResponseValues {
-        static let Medium = "medium"
-        static let Large = "large"
+        static let Medium = "large"
+        static let Small  = "medium"
     }
 
     
