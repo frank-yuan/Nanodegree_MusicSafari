@@ -78,42 +78,4 @@ class CoreDataHelper : NSObject {
         return appDelegate.userStack
     }
     
-    static func syncCoreData(entityName:String, indexNameOfManagedObject:String, responseArray:NSArray, indexNameOfResponse:String, context:NSManagedObjectContext, completionHandler:(([String : AnyObject?])->Void)?) {
-        
-        var keys = [String]()
-        for item in responseArray {
-            let key = AnyObjectHelper.parseWithDefault(item, name: indexNameOfResponse, defaultValue: "")
-            if key.characters.count > 0{
-                keys.append(key)
-            }
-        }
-        
-        let fetchRequest = NSFetchRequest(entityName: String(Artist.self))
-        fetchRequest.predicate = NSPredicate(format: "\(indexNameOfManagedObject) IN %@", argumentArray: [keys])
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: indexNameOfManagedObject, ascending: true)]
-        
-        let manageredObject = try! context.executeFetchRequest(fetchRequest)
-        var dic = [String : AnyObject?]()
-        
-        for obj in manageredObject  {
-            if let artist = obj as? Artist {
-                dic[artist.id!] = artist
-            }
-        }
-        
-        for item in responseArray {
-            let key = AnyObjectHelper.parseWithDefault(item, name: indexNameOfResponse, defaultValue: "")
-            if key.characters.count > 0{
-                if let artist = dic[key] as? Artist {
-                    artist.update(item)
-                } else {
-                    dic[key] = Artist(dictionary: item, context: context)
-                }
-            }
-        }
-        
-        if let completionHandler = completionHandler{
-            completionHandler(dic)
-        }
-    }
 }

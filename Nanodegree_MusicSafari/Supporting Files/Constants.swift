@@ -28,11 +28,17 @@ struct Constants {
     }
     
     struct LastfmParameterArtist {
+        static let ID = "mbid"
         static let Artist = "artist"
         static let Search = "artist.search"
-        static let ResultKey = "results.artistmatches.artist"
+        static let GetTopAlbums = "artist.gettopalbums"
+        static let SearchResultKey = "results.artistmatches.artist"
+        static let GetTopAlbumsResultKey = "topalbums.album"
     }
     
+    struct LastfmParameterAlbum {
+        
+    }
     struct LastfmParameterValues {
         static let APIKey = "212b2d18bb908061a3f0d5281f2fd561"
         static let ResponseFormat = "json"
@@ -44,6 +50,7 @@ struct Constants {
         static let Image = "image"
         static let Size = "size"
         static let URLText = "#text"
+        static let AlbumArtistKey = "artist"
     }
     
     struct LastfmResponseValues {

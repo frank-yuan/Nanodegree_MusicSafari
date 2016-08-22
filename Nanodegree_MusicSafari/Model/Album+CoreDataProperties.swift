@@ -15,11 +15,12 @@ import CoreData
 extension Album {
 
     @NSManaged var id: String?
-    @NSManaged var imageLarge: NSData?
+    @NSManaged var imageSmall: NSData?
     @NSManaged var imageMedium: NSData?
     @NSManaged var releasedDate: NSDate?
     @NSManaged var imageURLMedium: String?
     @NSManaged var imageURLSmall: String?
+    @NSManaged var name: String?
     @NSManaged var rArtist: Artist?
     @NSManaged var rTracks: NSSet?
 

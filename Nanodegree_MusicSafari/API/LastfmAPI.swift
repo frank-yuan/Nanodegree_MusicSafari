@@ -45,4 +45,31 @@ class LastfmAPI: NSObject {
             }
         }
     }
+    
+    static func getAlbumsOfTheArtist(artistId:String, page:Int = 1, limit:Int = 50, completionHandler:(result:AnyObject?, error:NetworkError)-> Void ) {
+        
+        let methodParameters = [
+            Constants.LastfmParameterKeys.Method: Constants.LastfmParameterArtist.GetTopAlbums,
+            Constants.LastfmParameterKeys.APIKey: Constants.LastfmParameterValues.APIKey,
+            Constants.LastfmParameterKeys.Format: Constants.LastfmParameterValues.ResponseFormat,
+            Constants.LastfmParameterKeys.Page: "\(page)",
+            Constants.LastfmParameterKeys.Limit: "\(limit)",
+            Constants.LastfmParameterArtist.ID: artistId
+        ]
+        
+        if let url = HttpServiceHelper.buildURL(config, withPathExtension: "", queryItems: methodParameters)
+        {
+            
+            let request = HttpRequest(url: url)
+            HttpService.service(request) { (data, error) in
+                if let data = data where error == NetworkError.Succeed {
+                    HttpServiceHelper.parseJSONResponse(data, error: error) { (result, error) in
+                        completionHandler(result:result, error:error)
+                    }
+                }else {
+                    completionHandler(result:data, error:error)
+                }
+            }
+        }
+    }
 }

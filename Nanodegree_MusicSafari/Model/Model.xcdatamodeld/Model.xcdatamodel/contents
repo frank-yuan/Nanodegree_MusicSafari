@@ -2,10 +2,11 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="Album" representedClassName=".Album" syncable="YES">
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="imageLarge" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageMedium" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="imageSmall" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageURLMedium" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURLSmall" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="releasedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="rArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="rAlbums" inverseEntity="Artist" syncable="YES"/>
         <relationship name="rTracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="rAlbum" inverseEntity="Track" syncable="YES"/>
@@ -29,7 +30,7 @@
         <relationship name="rArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="rTracks" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Album" positionX="-54" positionY="18" width="128" height="165"/>
+        <element name="Album" positionX="-54" positionY="18" width="128" height="180"/>
         <element name="Artist" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Track" positionX="-36" positionY="63" width="128" height="120"/>
     </elements>
