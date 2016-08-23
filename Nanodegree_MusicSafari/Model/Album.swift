@@ -12,6 +12,42 @@ import CoreData
 
 class Album: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
 
+    convenience init(dictionary:AnyObject?, context: NSManagedObjectContext) {
+        if let entity = NSEntityDescription.entityForName(String(Album.self), inManagedObjectContext: context) {
+            self.init(entity: entity, insertIntoManagedObjectContext: context)
+            update(dictionary)
+        } else {
+            fatalError("Unable to find entity Album")
+        }
+    }
+    
+    func update(dictionary:AnyObject?) {
+        
+        self.id = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.ID, defaultValue: "Invalid")
+        self.name = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Name, defaultValue: "")
+        let images = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Image, defaultValue: NSArray())
+        for image in images {
+            let size = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.Size, defaultValue: "")
+            if size == Constants.LastfmResponseValues.Medium {
+                self.imageURLMedium = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
+            } else if size == Constants.LastfmResponseValues.Small {
+                self.imageURLSmall = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
+            }
+        }
+        let artist = AnyObjectHelper.parse(dictionary, name: Constants.LastfmResponseKeys.AlbumArtistKey)
+        let artistId = AnyObjectHelper.parseWithDefault(artist, name: Constants.LastfmResponseKeys.ID, defaultValue: "")
+        if artistId.characters.count > 0 {
+            let fr = NSFetchRequest(entityName: String(Artist.self))
+            fr.predicate = NSPredicate(format: "id = @%", argumentArray: [artistId])
+            fr.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+            let artistResult = try! self.managedObjectContext?.executeFetchRequest(fr)
+            if artistResult?.count > 0 {
+                self.rArtist = artistResult!.first as? Artist
+            } else {
+                let artist = Artist(dictionary: artist, context: self.managedObjectContext!)
+                self.rArtist = artist
+            }
+        }
+    }
 }

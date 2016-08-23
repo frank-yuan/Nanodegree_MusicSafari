@@ -33,6 +33,16 @@ class testLastfmAPI: XCTestCase {
         }
         dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(60 * NSEC_PER_SEC)));
     }
+    func testGetAlbumsAPI() {
+        let semaphore = dispatch_semaphore_create(0);
+        LastfmAPI.getAlbumsOfTheArtist("bfcc6d75-a6a5-4bc6-8282-47aec8531818"){ (result, error) in
+            XCTAssertEqual(error, NetworkError.Succeed)
+            let artists = AnyObjectHelper.parseWithDefault(result, name: "topalbums.album", defaultValue: NSArray())
+            XCTAssertGreaterThan(artists.count, 0)
+            dispatch_semaphore_signal(semaphore);
+        }
+        dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(60 * NSEC_PER_SEC)));
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

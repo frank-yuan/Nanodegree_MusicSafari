@@ -52,7 +52,6 @@
 		94DE4E4A1D69F58E005F11F4 /* BusyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E491D69F58E005F11F4 /* BusyView.swift */; };
 		94DE4E4C1D6AA54F005F11F4 /* AlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */; };
 		94DE4E4E1D6AA595005F11F4 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E4D1D6AA595005F11F4 /* AlbumView.swift */; };
-		94DE4E501D6B286B005F11F4 /* IndexedObjectDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E4F1D6B286B005F11F4 /* IndexedObjectDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +109,6 @@
 		94DE4E491D69F58E005F11F4 /* BusyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusyView.swift; sourceTree = "<group>"; };
 		94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumView.xib; sourceTree = "<group>"; };
 		94DE4E4D1D6AA595005F11F4 /* AlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
-		94DE4E4F1D6B286B005F11F4 /* IndexedObjectDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedObjectDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +213,6 @@
 				94559B3C1D64527900EC0742 /* CoreDataStack.swift */,
 				94559B571D646A8F00EC0742 /* Model.xcdatamodeld */,
 				94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */,
-				94DE4E4F1D6B286B005F11F4 /* IndexedObjectDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 				94559B711D64B7B000EC0742 /* Artist.swift in Sources */,
 				94559B481D64527900EC0742 /* HttpServiceHelper.swift in Sources */,
 				94559B6F1D64B7B000EC0742 /* Album.swift in Sources */,
-				94DE4E501D6B286B005F11F4 /* IndexedObjectDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
