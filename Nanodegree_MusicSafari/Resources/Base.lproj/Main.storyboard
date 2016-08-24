@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KGf-q6-bfq">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -149,6 +149,10 @@
                                                 </view>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="E3B-3U-0Lf" id="VJA-z0-2iF"/>
+                                            <outlet property="delegate" destination="E3B-3U-0Lf" id="XYI-kd-MvU"/>
+                                        </connections>
                                     </collectionView>
                                 </subviews>
                             </stackView>
@@ -215,6 +219,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="agK-du-sd1">
+            <objects>
+                <viewController id="KGf-q6-bfq" customClass="AuthViewController" customModule="Nanodegree_MusicSafari" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gta-Gu-uDA"/>
+                        <viewControllerLayoutGuide type="bottom" id="os8-4S-b99"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P3M-Zn-T73">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnh-MK-Ppg">
+                                <rect key="frame" x="200" y="277" width="200" height="46"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="CGV-Fr-Epx"/>
+                                    <constraint firstAttribute="width" constant="200" id="SPA-ie-K5c"/>
+                                </constraints>
+                                <state key="normal" title="Login Spotify"/>
+                                <connections>
+                                    <action selector="onLoginClicked:" destination="KGf-q6-bfq" eventType="touchUpInside" id="9W9-d2-mLI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myD-nD-zSd">
+                                <rect key="frame" x="200" y="363" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="DPH-Lc-4oT"/>
+                                    <constraint firstAttribute="height" constant="40" id="duC-yd-ebs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rnh-MK-Ppg" firstAttribute="centerY" secondItem="P3M-Zn-T73" secondAttribute="centerY" id="Ez7-rf-P1V"/>
+                            <constraint firstItem="myD-nD-zSd" firstAttribute="centerX" secondItem="rnh-MK-Ppg" secondAttribute="centerX" id="VHs-JK-LLm"/>
+                            <constraint firstItem="rnh-MK-Ppg" firstAttribute="centerX" secondItem="P3M-Zn-T73" secondAttribute="centerX" id="oUJ-0O-JbV"/>
+                            <constraint firstItem="myD-nD-zSd" firstAttribute="top" secondItem="rnh-MK-Ppg" secondAttribute="bottom" constant="40" id="t8h-dF-0O4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="rnh-MK-Ppg" id="Gpv-hf-Za2"/>
+                        <outlet property="statusLabel" destination="myD-nD-zSd" id="DyS-Cu-E4V"/>
+                        <segue destination="49e-Tb-3d3" kind="showDetail" identifier="showMainScreen" action="showViewController:sender:" id="ApD-y8-VeK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="49e-dd-OJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-967" y="23"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

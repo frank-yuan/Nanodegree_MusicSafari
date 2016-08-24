@@ -13,6 +13,14 @@ import CoreData
 class Album: NSManagedObject {
 
 
+    convenience init(context: NSManagedObjectContext) {
+        if let entity = NSEntityDescription.entityForName(String(Album.self), inManagedObjectContext: context) {
+            self.init(entity: entity, insertIntoManagedObjectContext: context)
+        } else {
+            fatalError("Unable to find entity Album")
+        }
+    }
+    
     convenience init(dictionary:AnyObject?, context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entityForName(String(Album.self), inManagedObjectContext: context) {
             self.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -29,8 +37,8 @@ class Album: NSManagedObject {
         let images = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Image, defaultValue: NSArray())
         for image in images {
             let size = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.Size, defaultValue: "")
-            if size == Constants.LastfmResponseValues.Medium {
-                self.imageURLMedium = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
+            if size == Constants.LastfmResponseValues.Large {
+                self.imageURLLarge = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
             } else if size == Constants.LastfmResponseValues.Small {
                 self.imageURLSmall = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
             }
@@ -39,7 +47,7 @@ class Album: NSManagedObject {
         let artistId = AnyObjectHelper.parseWithDefault(artist, name: Constants.LastfmResponseKeys.ID, defaultValue: "")
         if artistId.characters.count > 0 {
             let fr = NSFetchRequest(entityName: String(Artist.self))
-            fr.predicate = NSPredicate(format: "id = @%", argumentArray: [artistId])
+            fr.predicate = NSPredicate(format: "id = %@", argumentArray: [artistId])
             fr.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
             let artistResult = try! self.managedObjectContext?.executeFetchRequest(fr)
             if artistResult?.count > 0 {
@@ -48,6 +56,19 @@ class Album: NSManagedObject {
                 let artist = Artist(dictionary: artist, context: self.managedObjectContext!)
                 self.rArtist = artist
             }
+        }
+    }
+    
+    func updateWith(spotify album:AnyObject) {
+        do {
+            let spotifyAlbum = try SPTAlbum(decodedJSONObject: album)
+            id = spotifyAlbum.identifier
+            name = spotifyAlbum.name
+            releasedDate = spotifyAlbum.releaseDate
+            
+            
+        } catch {
+            
         }
     }
 }

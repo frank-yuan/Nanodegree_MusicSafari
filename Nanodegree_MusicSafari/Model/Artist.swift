@@ -13,7 +13,7 @@ import CoreData
 class Artist: NSManagedObject {
     enum ImageSize{
         case Small,
-        Medium
+        Large
     }
 
 // Insert code here to add functionality to your managed object subclass
@@ -26,6 +26,14 @@ class Artist: NSManagedObject {
         }
     }
     
+    convenience init(context: NSManagedObjectContext) {
+        if let entity = NSEntityDescription.entityForName(String(Artist.self), inManagedObjectContext: context) {
+            self.init(entity: entity, insertIntoManagedObjectContext: context)
+        } else {
+            fatalError("Unable to find entity Artist")
+        }
+    }
+    
     func update(dictionary:AnyObject?) {
         
         self.id = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.ID, defaultValue: "Invalid")
@@ -33,8 +41,8 @@ class Artist: NSManagedObject {
         let images = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Image, defaultValue: NSArray())
         for image in images {
             let size = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.Size, defaultValue: "")
-            if size == Constants.LastfmResponseValues.Medium {
-                self.imageURLMedium = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
+            if size == Constants.LastfmResponseValues.Large {
+                self.imageURLLarge = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
             } else if size == Constants.LastfmResponseValues.Small {
                 self.imageURLSmall = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
             }
@@ -43,8 +51,8 @@ class Artist: NSManagedObject {
     
     func getImageURLBySize(size:ImageSize) -> String? {
         switch size{
-        case .Medium:
-            return imageURLMedium
+        case .Large:
+            return imageURLLarge
         case .Small:
             return imageURLSmall
         }
@@ -52,8 +60,8 @@ class Artist: NSManagedObject {
     
     func setImageBySize(data:NSData, size:ImageSize) {
         switch size{
-        case .Medium:
-            imageMedium = data
+        case .Large:
+            imageLarge = data
         case .Small:
             imageSmall = data
         }
@@ -74,4 +82,30 @@ class Artist: NSManagedObject {
         }
     }
 
+}
+
+extension Artist{
+    func updateWith(spotifyArtist:SPTArtist) {
+        id = spotifyArtist.identifier
+        name = spotifyArtist.name
+        uri = spotifyArtist.uri.absoluteString
+        if spotifyArtist.smallestImage != nil {
+            imageURLSmall = spotifyArtist.smallestImage.imageURL.absoluteString
+        }
+        if spotifyArtist.largestImage != nil {
+            imageURLLarge = spotifyArtist.largestImage.imageURL.absoluteString
+        }
+    }
+    
+    static func getObjectInContext(workerContext:NSManagedObjectContext, byId:String) -> Artist? {
+        let fr = NSFetchRequest(entityName: String(Artist.self))
+        fr.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        let pred = NSPredicate(format: "id = %@", argumentArray: [byId])
+        fr.predicate = pred
+        let fetchResults = try! workerContext.executeFetchRequest(fr)
+        if let targetObject = fetchResults.first as? Artist {
+            return targetObject
+        }
+        return nil
+    }
 }

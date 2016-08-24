@@ -26,11 +26,6 @@ class FirstViewController: CoreDataTableViewController {
             busyView.removeFromSuperview()
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = tableView.dequeueReusableCellWithIdentifier("artistTableCell") as? ArtistTableViewCell
@@ -51,8 +46,8 @@ class FirstViewController: CoreDataTableViewController {
         if let vc = storyboard?.instantiateViewControllerWithIdentifier("ArtistDetailViewController") as? ArtistDetailViewController {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? ArtistTableViewCell
             vc.artist = cell?.artist
-            if vc.artist?.imageMedium == nil {
-                vc.artist?.downloadImage(Artist.ImageSize.Medium) {
+            if vc.artist?.imageLarge == nil {
+                vc.artist?.downloadImage(Artist.ImageSize.Large) {
                     performUIUpdatesOnMain{
                         self.navigationController?.pushViewController(vc, animated: true)
                     }

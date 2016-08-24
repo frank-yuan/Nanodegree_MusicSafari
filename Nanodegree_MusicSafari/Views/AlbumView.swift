@@ -15,7 +15,7 @@ class AlbumView: UIView {
     @IBOutlet weak var artistName : UILabel!
     
     func setAlbum(album:Album) {
-        if let imageData = album.imageMedium {
+        if let imageData = album.imageLarge {
             image.image = UIImage(data: imageData)
         }
         name.text = album.name

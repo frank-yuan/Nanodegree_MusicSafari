@@ -2,7 +2,7 @@
 //  Artist+CoreDataProperties.swift
 //  Nanodegree_MusicSafari
 //
-//  Created by Xuan Yuan (Frank) on 8/21/16.
+//  Created by Xuan Yuan (Frank) on 8/24/16.
 //  Copyright © 2016 frank-yuan. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,13 +15,15 @@ import CoreData
 extension Artist {
 
     @NSManaged var id: String?
-    @NSManaged var imageURLSmall: String?
-    @NSManaged var imageURLMedium: String?
-    @NSManaged var name: String?
+    @NSManaged var imageLarge: NSData?
     @NSManaged var imageSmall: NSData?
-    @NSManaged var imageMedium: NSData?
+    @NSManaged var imageURLLarge: String?
+    @NSManaged var imageURLSmall: String?
+    @NSManaged var name: String?
+    @NSManaged var popularity: NSNumber?
+    @NSManaged var uri: String?
     @NSManaged var rAlbums: NSSet?
-    @NSManaged var rTracks: NSSet?
     @NSManaged var rSimilarArtists: NSSet?
+    @NSManaged var rTracks: NSSet?
 
 }

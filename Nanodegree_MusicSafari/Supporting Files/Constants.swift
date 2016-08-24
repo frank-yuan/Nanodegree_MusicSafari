@@ -54,10 +54,16 @@ struct Constants {
     }
     
     struct LastfmResponseValues {
-        static let Medium = "large"
+        static let Large = "large"
         static let Small  = "medium"
     }
 
+    
+    struct SpotifyAuth{
+        static let ClientID = "a51a09dafb0f42d8a2c293afa7bc2981"
+        static let AuthCallback = "musicsafari://"
+        static let SessionDefaultKey = "SpotifySession"
+    }
     
     static let JSONPathDelimiter = NSCharacterSet(charactersInString: ".")
 //    // MARK: Flickr

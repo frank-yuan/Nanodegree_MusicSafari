@@ -63,7 +63,7 @@ struct CoreDataStack {
             return nil
         }
         
-        self.dbURL = docUrl.URLByAppendingPathComponent("/(modelName).sqlite")
+        self.dbURL = docUrl.URLByAppendingPathComponent("\(modelName).sqlite")
         
         
         do{
