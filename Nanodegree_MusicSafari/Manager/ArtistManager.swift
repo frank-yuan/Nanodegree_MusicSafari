@@ -59,37 +59,6 @@ class ArtistManager: NSObject {
             })
         }
         task.resume()
-        
-//        LastfmAPI.searchArtists(name) { (result, error) in
-//            let result = AnyObjectHelper.parseWithDefault(result, name: Constants.LastfmParameterArtist.SearchResultKey, defaultValue: NSArray())
-//            
-//            context.performBlock{
-//                let keys = parseIndexArrayFromResult(result, indexNameOfResponse: Constants.LastfmResponseKeys.ID)
-//                let managedResult = fetchManagedObject(String(Artist.self), indexNameOfManagedObject: "id", byIndexArray: keys, from: context)
-//                var dic = [String : AnyObject?]()
-//                
-//                for obj in managedResult  {
-//                    if let artist = obj as? Artist {
-//                        dic[artist.id!] = artist
-//                    }
-//                }
-//                
-//                for item in result {
-//                    let key = AnyObjectHelper.parseWithDefault(item, name: Constants.LastfmResponseKeys.ID, defaultValue: "")
-//                    if key.characters.count > 0{
-//                        if let artist = dic[key] as? Artist {
-//                            artist.update(item)
-//                        } else {
-//                            dic[key] = Artist(dictionary: item, context: context)
-//                        }
-//                    }
-//                }
-//                
-//                if let completionHandler = completionHandler{
-//                    completionHandler(dic)
-//                }
-//            }
-//        }
     }
     
     static func getArtistTopAlbums(artistId:String, context:NSManagedObjectContext, completionHandler: (([String : AnyObject?])->Void)?) {
@@ -113,8 +82,8 @@ class ArtistManager: NSObject {
                 var dic = [String : AnyObject?]()
                 
                 for obj in managedResult  {
-                    if let artist = obj as? Artist {
-                        dic[artist.id!] = artist
+                    if let album = obj as? Album {
+                        dic[album.id!] = album
                     }
                 }
                 
@@ -131,10 +100,6 @@ class ArtistManager: NSObject {
                     }
                 }
                 
-//            var spotifyArtists = [SPTArtist]()
-//            for artist in spotifyAlbum.artists {
-//                spotifyArtists.append(SPTArtist(decodedJSONObject: artist))
-//            }
                 if let completionHandler = completionHandler{
                     completionHandler(dic)
                 }
@@ -142,36 +107,6 @@ class ArtistManager: NSObject {
             })
         }
         task.resume()
-//        LastfmAPI.getAlbumsOfTheArtist(artistId) { (result, error) in
-//            let result = AnyObjectHelper.parseWithDefault(result, name: Constants.LastfmParameterArtist.GetTopAlbumsResultKey, defaultValue: NSArray())
-//            
-//            context.performBlock{
-//                let keys = parseIndexArrayFromResult(result, indexNameOfResponse: Constants.LastfmResponseKeys.ID)
-//                let managedResult = fetchManagedObject(String(Artist.self), indexNameOfManagedObject: "id", byIndexArray: keys, from: context)
-//                var dic = [String : AnyObject?]()
-//                
-//                for obj in managedResult  {
-//                    if let album = obj as? Album {
-//                        dic[album.id!] = album
-//                    }
-//                }
-//                
-//                for item in result {
-//                    let key = AnyObjectHelper.parseWithDefault(item, name: Constants.LastfmResponseKeys.ID, defaultValue: "")
-//                    if key.characters.count > 0{
-//                        if let album = dic[key] as? Album{
-//                            album.update(item)
-//                        } else {
-//                            dic[key] = Album(dictionary: item, context: context)
-//                        }
-//                    }
-//                }
-//                
-//                if let completionHandler = completionHandler{
-//                    completionHandler(dic)
-//                }
-//            }
-//        }
     }
     
     private static func parseIndexArrayFromResult(responseArray:NSArray, indexNameOfResponse:String) -> [String]{

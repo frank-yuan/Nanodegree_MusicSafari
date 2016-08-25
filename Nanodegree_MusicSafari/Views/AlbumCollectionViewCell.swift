@@ -8,25 +8,23 @@
 
 import UIKit
 
-class AlbumView: UIView {
+class AlbumCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var image : UIImageView!
     @IBOutlet weak var name : UILabel!
-    @IBOutlet weak var artistName : UILabel!
+    @IBOutlet weak var artistName : UILabel?
     
     func setAlbum(album:Album) {
         if let imageData = album.imageLarge {
             image.image = UIImage(data: imageData)
+        } else if (album.imageURLLarge) != nil {
+            album.downloadImage(.Large)
         }
         name.text = album.name
-        artistName.text = album.rArtist?.name
+        
+        if artistName != nil {
+            artistName!.text = album.rArtist?.name
+        }
     }
-    /*        
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }

@@ -12,6 +12,10 @@ import CoreData
 
 class Album: NSManagedObject {
 
+    enum ImageSize{
+        case Small,
+        Large
+    }
 
     convenience init(context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entityForName(String(Album.self), inManagedObjectContext: context) {
@@ -66,9 +70,48 @@ class Album: NSManagedObject {
             name = spotifyAlbum.name
             releasedDate = spotifyAlbum.releaseDate
             
+            let images = SpotifyDataHelper.parseImageArray(AnyObjectHelper.parseWithDefault(album, name: "images", defaultValue: NSArray()))
+            self.imageURLSmall = images.first?.imageURL.absoluteString
+            self.imageURLLarge = images.last?.imageURL.absoluteString
             
         } catch {
             
+        }
+    }
+    
+    func parseImage(hashtable:AnyObject) {
+        
+    }
+    func getImageURLBySize(size:ImageSize) -> String? {
+        switch size{
+        case .Large:
+            return imageURLLarge
+        case .Small:
+            return imageURLSmall
+        }
+    }
+    
+    func setImageBySize(data:NSData, size:ImageSize) {
+        switch size{
+        case .Large:
+            imageLarge = data
+        case .Small:
+            imageSmall = data
+        }
+    }
+    
+    func downloadImage(size:ImageSize, completionHandler:(()->Void)? = nil) {
+        if let imageURL = getImageURLBySize(size) {
+            performUpdatesUserInteractive{
+                if let data = NSData(contentsOfURL: NSURL(string: imageURL)!) {
+                    self.managedObjectContext?.performBlock{
+                        self.setImageBySize(data, size: size)
+                        if let handler = completionHandler {
+                            handler()
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -39,7 +39,9 @@
 		94559B711D64B7B000EC0742 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B6B1D64B7B000EC0742 /* Artist.swift */; };
 		94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */; };
 		9478A9EB1D65FE9300098CBA /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */; };
+		948A52691D6CA7E00047F564 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		94A9B2F91D67494400F4A38F /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
+		94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */; };
 		94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
 		94DE4E361D689099005F11F4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B671D64B7B000EC0742 /* Track.swift */; };
 		94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */; };
@@ -51,7 +53,8 @@
 		94DE4E481D69EB6A005F11F4 /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */; };
 		94DE4E4A1D69F58E005F11F4 /* BusyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E491D69F58E005F11F4 /* BusyView.swift */; };
 		94DE4E4C1D6AA54F005F11F4 /* AlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */; };
-		94DE4E4E1D6AA595005F11F4 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E4D1D6AA595005F11F4 /* AlbumView.swift */; };
+		94DE4E4E1D6AA595005F11F4 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */; };
+		94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,13 +105,17 @@
 		94559B6B1D64B7B000EC0742 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		94559B731D654F5200EC0742 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		948A52681D6CA7E00047F564 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		94A9B2F81D67494400F4A38F /* ArtistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistManager.swift; sourceTree = "<group>"; };
+		94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyDataHelper.swift; sourceTree = "<group>"; };
 		94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDetailViewController.swift; sourceTree = "<group>"; };
 		94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
 		94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		94DE4E491D69F58E005F11F4 /* BusyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusyView.swift; sourceTree = "<group>"; };
 		94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumView.xib; sourceTree = "<group>"; };
-		94DE4E4D1D6AA595005F11F4 /* AlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
+		94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		94DE4E551D6C44A3005F11F4 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				948A52691D6CA7E00047F564 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +147,7 @@
 		94559AFE1D6450A900EC0742 = {
 			isa = PBXGroup;
 			children = (
+				948A52681D6CA7E00047F564 /* Spotify.framework */,
 				94559B091D6450A900EC0742 /* Nanodegree_MusicSafari */,
 				94559B201D6450A900EC0742 /* Nanodegree_MusicSafariTests */,
 				94559B2B1D6450A900EC0742 /* Nanodegree_MusicSafariUITests */,
@@ -244,6 +253,8 @@
 				94559B421D64527900EC0742 /* Constants.swift */,
 				94559B431D64527900EC0742 /* GCDBlackBox.swift */,
 				94559B441D64527900EC0742 /* Utils.swift */,
+				94DE4E551D6C44A3005F11F4 /* BridgingHeader.h */,
+				94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -254,6 +265,7 @@
 				94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */,
 				94559B0C1D6450A900EC0742 /* FirstViewController.swift */,
 				9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */,
+				94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -278,7 +290,7 @@
 			children = (
 				94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */,
 				94DE4E491D69F58E005F11F4 /* BusyView.swift */,
-				94DE4E4D1D6AA595005F11F4 /* AlbumView.swift */,
+				94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,7 +433,7 @@
 				94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */,
 				94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */,
 				94559B0D1D6450A900EC0742 /* FirstViewController.swift in Sources */,
-				94DE4E4E1D6AA595005F11F4 /* AlbumView.swift in Sources */,
+				94DE4E4E1D6AA595005F11F4 /* AlbumCollectionViewCell.swift in Sources */,
 				94DE4E421D69BF70005F11F4 /* ArtistTableViewCell.swift in Sources */,
 				94559B6E1D64B7B000EC0742 /* Album+CoreDataProperties.swift in Sources */,
 				94DE4E481D69EB6A005F11F4 /* Track+CoreDataProperties.swift in Sources */,
@@ -432,12 +444,14 @@
 				94559B491D64527900EC0742 /* Constants.swift in Sources */,
 				94559B591D646A8F00EC0742 /* Model.xcdatamodeld in Sources */,
 				94A9B2F91D67494400F4A38F /* ArtistManager.swift in Sources */,
+				94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */,
 				94559B5B1D646E3B00EC0742 /* LastfmAPI.swift in Sources */,
 				94559B6D1D64B7B000EC0742 /* Track.swift in Sources */,
 				94559B701D64B7B000EC0742 /* Artist+CoreDataProperties.swift in Sources */,
 				94559B471D64527900EC0742 /* HttpService.swift in Sources */,
 				94559B711D64B7B000EC0742 /* Artist.swift in Sources */,
 				94559B481D64527900EC0742 /* HttpServiceHelper.swift in Sources */,
+				94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */,
 				94559B6F1D64B7B000EC0742 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +565,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Nanodegree_MusicSafari/Supporting Files/BridgingHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -590,6 +605,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Nanodegree_MusicSafari/Supporting Files/BridgingHeader.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -599,6 +615,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Nanodegree_MusicSafari/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-MusicSafari";
@@ -610,6 +631,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Nanodegree_MusicSafari/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-MusicSafari";

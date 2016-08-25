@@ -10,13 +10,15 @@ import UIKit
 import CoreData
 
 class ArtistDetailViewController: UIViewController{
-
+    
     var artist : Artist?
     @IBOutlet weak var nameLabel:UILabel!
     @IBOutlet weak var portrait:UIImageView!
     @IBOutlet weak var albumsCollection : UICollectionView!
+    @IBOutlet weak var albumsLayout : UICollectionViewFlowLayout!
     //@IBOutlet weak var similarArtistsCollection : UICollectionView!
     @IBOutlet weak var summaryLabel:UILabel!
+    let cellSpacing:CGFloat = 10.0
     
     private var contentCommandQueue = [ContentChangeCommand]()
     
@@ -37,10 +39,17 @@ class ArtistDetailViewController: UIViewController{
             portrait.image = UIImage(data:imageData)
         }
         
+        resizeCollectionLayout()
         let id = artist!.id!
         CoreDataHelper.getLibraryStack().performBackgroundBatchOperation { (workerContext) in
-            ArtistManager.getArtistTopAlbums(id, context: workerContext, completionHandler: nil)
+            ArtistManager.getArtistTopAlbums(id, context: workerContext){ result -> Void in
+                performUIUpdatesOnMain({ 
+                    self.executeSearch()
+                    self.albumsCollection.reloadData()
+                })
+            }
         }
+        
         let fr = NSFetchRequest(entityName: String(Album.self))
         fr.predicate = NSPredicate(format: "rArtist = %@", argumentArray: [artist!])
         fr.sortDescriptors = [NSSortDescriptor(key:"id", ascending: true)]
@@ -49,7 +58,16 @@ class ArtistDetailViewController: UIViewController{
     
     override func viewDidAppear(animated: Bool) {
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("")
+    }
+    func resizeCollectionLayout() {
+        let count:CGFloat = albumsCollection.frame.width > albumsCollection.frame.height ? 5.0 : 3.0
+        let size:CGFloat = (albumsCollection.frame.width - (count + 1) * cellSpacing) / count
+        albumsLayout.itemSize = CGSize(width: size, height: size + 20)
+    }
+    
 }
 
 extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionViewDelegate{
@@ -59,13 +77,11 @@ extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumCell", forIndexPath: indexPath)
-        if let albumView =  NSBundle.mainBundle().loadNibNamed("AlbumView", owner: self, options: nil).first as? AlbumView {
-            cell.contentView.addSubview(albumView)
-            albumView.setAlbum(fetchedResultController?.objectAtIndexPath(indexPath) as! Album)
-            albumView.autoresizingMask = cell.contentView.autoresizingMask
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumCell", forIndexPath: indexPath) as? AlbumCollectionViewCell
+        if let album = fetchedResultController?.objectAtIndexPath(indexPath) as? Album {
+            cell?.setAlbum(album)
         }
-        return cell
+        return cell!
     }
 }
 extension ArtistDetailViewController {
