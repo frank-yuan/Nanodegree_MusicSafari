@@ -15,10 +15,13 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var artistName : UILabel?
     
     func setAlbum(album:Album) {
-        if let imageData = album.imageLarge {
-            image.image = UIImage(data: imageData)
-        } else if (album.imageURLLarge) != nil {
-            album.downloadImage(.Large)
+        if let imageCollection = album.rImage {
+            if let imageData = imageCollection.dataLarge {
+                image.image = UIImage(data: imageData)
+            } else if imageCollection.urlLarge != nil{
+                // TODO
+                
+            }
         }
         name.text = album.name
         

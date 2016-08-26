@@ -35,9 +35,9 @@ class ArtistDetailViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = artist?.name
-        if let imageData = artist?.imageLarge {
-            portrait.image = UIImage(data:imageData)
-        }
+//        if let imageData = artist?.imageLarge {
+//            portrait.image = UIImage(data:imageData)
+//        }
         
         resizeCollectionLayout()
         let id = artist!.id!

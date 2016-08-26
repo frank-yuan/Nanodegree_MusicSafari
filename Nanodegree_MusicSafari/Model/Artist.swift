@@ -38,50 +38,9 @@ class Artist: NSManagedObject {
         
         self.id = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.ID, defaultValue: "Invalid")
         self.name = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Name, defaultValue: "")
-        let images = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Image, defaultValue: NSArray())
-        for image in images {
-            let size = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.Size, defaultValue: "")
-            if size == Constants.LastfmResponseValues.Large {
-                self.imageURLLarge = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
-            } else if size == Constants.LastfmResponseValues.Small {
-                self.imageURLSmall = AnyObjectHelper.parseWithDefault(image, name: Constants.LastfmResponseKeys.URLText, defaultValue: "")
-            }
-        }
     }
     
-    func getImageURLBySize(size:ImageSize) -> String? {
-        switch size{
-        case .Large:
-            return imageURLLarge
-        case .Small:
-            return imageURLSmall
-        }
-    }
     
-    func setImageBySize(data:NSData, size:ImageSize) {
-        switch size{
-        case .Large:
-            imageLarge = data
-        case .Small:
-            imageSmall = data
-        }
-    }
-    
-    func downloadImage(size:ImageSize, completionHandler:(()->Void)? = nil) {
-        if let imageURL = getImageURLBySize(size) {
-            performUpdatesUserInteractive{
-                if let data = NSData(contentsOfURL: NSURL(string: imageURL)!) {
-                    self.managedObjectContext?.performBlock{
-                        self.setImageBySize(data, size: size)
-                        if let handler = completionHandler {
-                            handler()
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 }
 
 extension Artist{
@@ -89,12 +48,6 @@ extension Artist{
         id = spotifyArtist.identifier
         name = spotifyArtist.name
         uri = spotifyArtist.uri.absoluteString
-        if spotifyArtist.smallestImage != nil {
-            imageURLSmall = spotifyArtist.smallestImage.imageURL.absoluteString
-        }
-        if spotifyArtist.largestImage != nil {
-            imageURLLarge = spotifyArtist.largestImage.imageURL.absoluteString
-        }
     }
     
     static func getObjectInContext(workerContext:NSManagedObjectContext, byId:String) -> Artist? {
@@ -109,3 +62,5 @@ extension Artist{
         return nil
     }
 }
+
+
