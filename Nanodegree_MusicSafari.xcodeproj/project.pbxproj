@@ -42,6 +42,8 @@
 		948A52691D6CA7E00047F564 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		94A9B2F91D67494400F4A38F /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
 		94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */; };
+		94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */; };
+		94C668351D6FE29C0054579A /* ImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C668301D6FE29C0054579A /* ImageCollection.swift */; };
 		94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
 		94DE4E361D689099005F11F4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B671D64B7B000EC0742 /* Track.swift */; };
 		94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */; };
@@ -108,6 +110,8 @@
 		948A52681D6CA7E00047F564 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		94A9B2F81D67494400F4A38F /* ArtistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistManager.swift; sourceTree = "<group>"; };
 		94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyDataHelper.swift; sourceTree = "<group>"; };
+		94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		94C668301D6FE29C0054579A /* ImageCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollection.swift; sourceTree = "<group>"; };
 		94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDetailViewController.swift; sourceTree = "<group>"; };
 		94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
 		94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -213,15 +217,17 @@
 		94559B3B1D64527900EC0742 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				94559B571D646A8F00EC0742 /* Model.xcdatamodeld */,
+				94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */,
+				94559B3C1D64527900EC0742 /* CoreDataStack.swift */,
 				94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */,
 				94559B671D64B7B000EC0742 /* Track.swift */,
 				94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */,
 				94559B691D64B7B000EC0742 /* Album.swift */,
 				94559B6A1D64B7B000EC0742 /* Artist+CoreDataProperties.swift */,
 				94559B6B1D64B7B000EC0742 /* Artist.swift */,
-				94559B3C1D64527900EC0742 /* CoreDataStack.swift */,
-				94559B571D646A8F00EC0742 /* Model.xcdatamodeld */,
-				94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */,
+				94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */,
+				94C668301D6FE29C0054579A /* ImageCollection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 			files = (
 				94559B4A1D64527900EC0742 /* GCDBlackBox.swift in Sources */,
 				94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */,
+				94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */,
 				94559B4B1D64527900EC0742 /* Utils.swift in Sources */,
 				94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */,
 				94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */,
@@ -438,6 +445,7 @@
 				94559B6E1D64B7B000EC0742 /* Album+CoreDataProperties.swift in Sources */,
 				94DE4E481D69EB6A005F11F4 /* Track+CoreDataProperties.swift in Sources */,
 				94559B461D64527900EC0742 /* CoreDataStack.swift in Sources */,
+				94C668351D6FE29C0054579A /* ImageCollection.swift in Sources */,
 				9478A9EB1D65FE9300098CBA /* CoreDataTableViewController.swift in Sources */,
 				94DE4E4A1D69F58E005F11F4 /* BusyView.swift in Sources */,
 				94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */,
