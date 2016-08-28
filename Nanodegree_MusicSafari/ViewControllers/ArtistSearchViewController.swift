@@ -1,31 +1,22 @@
 //
-//  FirstViewController.swift
+//  ArtistSearchViewController.swift
 //  Nanodegree_MusicSafari
 //
-//  Created by Xuan Yuan (Frank) on 8/17/16.
+//  Created by Xuan Yuan (Frank) on 8/28/16.
 //  Copyright © 2016 frank-yuan. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-class FirstViewController: CoreDataTableViewController {
+class ArtistSearchViewController: CoreDataTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fr = NSFetchRequest(entityName: "Artist")
-        fr.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        let busyView = BusyView(parent: view)
-        view.addSubview(busyView)
-        ArtistManager.searchArtist("Mayer", context: (fetchedResultsController?.managedObjectContext)!){ result -> Void in
-            busyView.removeFromSuperview()
-        }
-    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = tableView.dequeueReusableCellWithIdentifier("artistTableCell") as? ArtistTableViewCell
@@ -62,6 +53,27 @@ class FirstViewController: CoreDataTableViewController {
         }
         
     }
-
+    
+    func startSearch(name:String) {
+        
+        let busyView = BusyView(parent: view)
+        view.addSubview(busyView)
+        
+        let fr = NSFetchRequest(entityName: "Artist")
+        fr.predicate = NSPredicate(format: "name contains %@", argumentArray: [name])
+        fr.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        ArtistManager.searchArtist(name, context: (fetchedResultsController?.managedObjectContext)!){ result -> Void in
+            busyView.removeFromSuperview()
+        }
+    }
 }
 
+extension ArtistSearchViewController : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        startSearch(searchBar.text!)
+        
+    }
+    
+}

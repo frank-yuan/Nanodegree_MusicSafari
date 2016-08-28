@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0A1D6450A900EC0742 /* AppDelegate.swift */; };
-		94559B0D1D6450A900EC0742 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0C1D6450A900EC0742 /* FirstViewController.swift */; };
 		94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0E1D6450A900EC0742 /* SecondViewController.swift */; };
 		94559B221D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B211D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift */; };
 		94559B2D1D6450A900EC0742 /* Nanodegree_MusicSafariUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B2C1D6450A900EC0742 /* Nanodegree_MusicSafariUITests.swift */; };
@@ -44,6 +43,7 @@
 		94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */; };
 		94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */; };
 		94C668351D6FE29C0054579A /* ImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C668301D6FE29C0054579A /* ImageCollection.swift */; };
+		94CE64E61D733BD0005AD24F /* ArtistSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */; };
 		94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
 		94DE4E361D689099005F11F4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B671D64B7B000EC0742 /* Track.swift */; };
 		94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */; };
@@ -79,7 +79,6 @@
 /* Begin PBXFileReference section */
 		94559B071D6450A900EC0742 /* Nanodegree_MusicSafari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_MusicSafari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94559B0A1D6450A900EC0742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94559B0C1D6450A900EC0742 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirstViewController.swift; path = ../FirstViewController.swift; sourceTree = "<group>"; };
 		94559B0E1D6450A900EC0742 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		94559B181D6450A900EC0742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94559B1D1D6450A900EC0742 /* Nanodegree_MusicSafariTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Nanodegree_MusicSafariTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +111,7 @@
 		94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyDataHelper.swift; sourceTree = "<group>"; };
 		94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		94C668301D6FE29C0054579A /* ImageCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollection.swift; sourceTree = "<group>"; };
+		94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistSearchViewController.swift; sourceTree = "<group>"; };
 		94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDetailViewController.swift; sourceTree = "<group>"; };
 		94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
 		94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -269,9 +269,9 @@
 			isa = PBXGroup;
 			children = (
 				94DE4E3B1D68ABBA005F11F4 /* ArtistDetailViewController.swift */,
-				94559B0C1D6450A900EC0742 /* FirstViewController.swift */,
 				9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */,
 				94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */,
+				94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -439,7 +439,6 @@
 				94559B4B1D64527900EC0742 /* Utils.swift in Sources */,
 				94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */,
 				94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */,
-				94559B0D1D6450A900EC0742 /* FirstViewController.swift in Sources */,
 				94DE4E4E1D6AA595005F11F4 /* AlbumCollectionViewCell.swift in Sources */,
 				94DE4E421D69BF70005F11F4 /* ArtistTableViewCell.swift in Sources */,
 				94559B6E1D64B7B000EC0742 /* Album+CoreDataProperties.swift in Sources */,
@@ -455,6 +454,7 @@
 				94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */,
 				94559B5B1D646E3B00EC0742 /* LastfmAPI.swift in Sources */,
 				94559B6D1D64B7B000EC0742 /* Track.swift in Sources */,
+				94CE64E61D733BD0005AD24F /* ArtistSearchViewController.swift in Sources */,
 				94559B701D64B7B000EC0742 /* Artist+CoreDataProperties.swift in Sources */,
 				94559B471D64527900EC0742 /* HttpService.swift in Sources */,
 				94559B711D64B7B000EC0742 /* Artist.swift in Sources */,
