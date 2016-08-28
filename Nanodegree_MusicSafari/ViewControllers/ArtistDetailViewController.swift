@@ -35,9 +35,22 @@ class ArtistDetailViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = artist?.name
-//        if let imageData = artist?.imageLarge {
-//            portrait.image = UIImage(data:imageData)
-//        }
+        
+        if let imageCollection = artist?.rImage {
+            
+            if let imageData = imageCollection.dataLarge{
+                portrait.image = UIImage(data:imageData)
+            } else {
+                imageCollection.downloadImage(.Large) {
+                    performUIUpdatesOnMain({ 
+                        if let imageData = imageCollection.dataLarge{
+                            self.portrait.image = UIImage(data:imageData)
+                        }
+                    })
+                }
+            }
+            
+        }
         
         resizeCollectionLayout()
         let id = artist!.id!
@@ -62,6 +75,7 @@ class ArtistDetailViewController: UIViewController{
     override func viewWillDisappear(animated: Bool) {
         print("")
     }
+    
     func resizeCollectionLayout() {
         let count:CGFloat = albumsCollection.frame.width > albumsCollection.frame.height ? 5.0 : 3.0
         let size:CGFloat = (albumsCollection.frame.width - (count + 1) * cellSpacing) / count

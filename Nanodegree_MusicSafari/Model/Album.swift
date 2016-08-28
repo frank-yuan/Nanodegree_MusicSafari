@@ -12,10 +12,6 @@ import CoreData
 
 class Album: NSManagedObject {
 
-    enum ImageSize{
-        case Small,
-        Large
-    }
 
     convenience init(context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entityForName(String(Album.self), inManagedObjectContext: context) {

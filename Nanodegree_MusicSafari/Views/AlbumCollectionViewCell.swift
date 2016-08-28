@@ -16,11 +16,14 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     
     func setAlbum(album:Album) {
         if let imageCollection = album.rImage {
-            if let imageData = imageCollection.dataLarge {
+            if let imageData = imageCollection.dataMedium {
                 image.image = UIImage(data: imageData)
             } else if imageCollection.urlLarge != nil{
-                // TODO
-                
+                imageCollection.downloadImage(.Medium) {
+                    if let imageData = imageCollection.dataMedium {
+                        self.image.image = UIImage(data: imageData)
+                    }
+                }
             }
         }
         name.text = album.name

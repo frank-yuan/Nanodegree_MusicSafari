@@ -12,7 +12,11 @@ import CoreData
 
 class ImageCollection: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    enum ImageSize{
+        case Small,
+        Medium,
+        Large
+    }
 
     convenience init(context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entityForName(String(ImageCollection.self), inManagedObjectContext: context) {
@@ -21,4 +25,42 @@ class ImageCollection: NSManagedObject {
             fatalError("Unable to find entity Album")
         }
     }
+    
+    func getImageURLBySize(size:ImageSize) -> String? {
+        switch size{
+        case .Large:
+            return urlLarge
+        case .Medium:
+            return urlMedium
+        case .Small:
+            return urlSmall
+        }
+    }
+    
+    func setImageBySize(data:NSData, size:ImageSize) {
+        switch size{
+        case .Large:
+            dataLarge = data
+        case .Medium:
+            dataMedium = data
+        case .Small:
+            dataSmall = data
+        }
+    }
+    
+    func downloadImage(size:ImageSize, completionHandler:(()->Void)? = nil) {
+        if let imageURL = getImageURLBySize(size) {
+            performUpdatesUserInteractive{
+                if let data = NSData(contentsOfURL: NSURL(string: imageURL)!) {
+                    self.managedObjectContext?.performBlock{
+                        self.setImageBySize(data, size: size)
+                        if let handler = completionHandler {
+                            handler()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+

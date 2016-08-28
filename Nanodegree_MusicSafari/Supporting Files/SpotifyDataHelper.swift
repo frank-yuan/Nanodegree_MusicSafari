@@ -37,27 +37,85 @@ class SpotifyDataHelper: NSObject {
         }
     }
     
-    static func initImageCollectionById(id:String, withSpotifyData data:AnyObject, inContex: NSManagedObjectContext, completionHandler:((updated:Bool, image:ImageCollection)->Void)?) {
+    static func initImageCollectionFor(objectToImageJSONDataMap:[NSManagedObject:NSArray], within context: NSManagedObjectContext) {
+        var ownerDict = [String:ImageOwner]()
+        var ownerKeys = [String]()
+        for keyValue in objectToImageJSONDataMap {
+            if let owner = keyValue.0 as? ImageOwner {
+                ownerDict[owner.imageId] = owner
+                ownerKeys.append(owner.imageId)
+            }
+        }
+        
+        let fetchRequest = NSFetchRequest(entityName: String(ImageCollection.self))
+        fetchRequest.predicate = NSPredicate(format: "id in %@", argumentArray: [ownerKeys])
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        do {
+            let fetchedResult = try context.executeFetchRequest(fetchRequest)
+            // remove exist ones
+            for item in fetchedResult {
+                if let item = item as? ImageCollection {
+                    ownerDict.removeValueForKey(item.id!)
+                }
+            }
+            
+            // create new
+            for keyValue in ownerDict {
+                let image = ImageCollection(context: context)
+                let owner = keyValue.1 as! NSManagedObject
+                let imageData = objectToImageJSONDataMap[owner]
+                let spotifyImages = parseImageArray(imageData)
+                
+                image.id = keyValue.0
+                image.urlSmall = spotifyImages.first?.imageURL.absoluteString
+                image.urlLarge = spotifyImages.last?.imageURL.absoluteString
+                if (spotifyImages.count > 2) {
+                    image.urlMedium = spotifyImages[spotifyImages.count - 2].imageURL.absoluteString
+                } else {
+                    image.urlMedium = image.urlLarge
+                }
+                // set owner relationship
+                if var owner = owner as? ImageOwner {
+                    owner.SetImageCollection(image)
+                    owner.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)
+                }
+            }
+        } catch {
+            print("Error in initImageCollectionFor")
+        }
     }
-    
 }
 
-//public protocol DataWithTimeStamp {
-//    var lastUpdatedTimeStamp:NSDate? {get set}
-//}
-//
-//extension Artist : DataWithTimeStamp {
-//    var lastUpdatedTimeStamp : NSDate?
-//    {
-//        get{return updatedTimeStamp}
-//        set(v) {updatedTimeStamp = v}
-//    }
-//}
-//
-//extension Album : DataWithTimeStamp {
-//    var lastUpdatedTimeStamp : NSDate?
-//    {
-//        get{return updatedTimeStamp}
-//        set(v) {updatedTimeStamp = v}
-//    }
-//}
+protocol ImageOwner {
+    var imageId:String {get}
+    var lastUpdatedTimeStamp:NSDate? {get set}
+    func SetImageCollection(imageCollection:ImageCollection)
+}
+
+extension Artist : ImageOwner  {
+    var imageId : String {
+        get {return self.id!}
+    }
+    var lastUpdatedTimeStamp : NSDate?
+    {
+        get{return updatedTimeStamp}
+        set(v) {updatedTimeStamp = v}
+    }
+    func SetImageCollection(imageCollection: ImageCollection) {
+        rImage = imageCollection
+    }
+}
+
+extension Album : ImageOwner {
+    var imageId : String {
+        get {return self.id!}
+    }
+    var lastUpdatedTimeStamp : NSDate?
+    {
+        get{return updatedTimeStamp}
+        set(v) {updatedTimeStamp = v}
+    }
+    func SetImageCollection(imageCollection: ImageCollection) {
+        rImage = imageCollection
+    }
+}

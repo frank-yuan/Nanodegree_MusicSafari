@@ -11,12 +11,7 @@ import CoreData
 
 
 class Artist: NSManagedObject {
-    enum ImageSize{
-        case Small,
-        Large
-    }
 
-// Insert code here to add functionality to your managed object subclass
     convenience init(dictionary:AnyObject?, context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entityForName(String(Artist.self), inManagedObjectContext: context) {
             self.init(entity: entity, insertIntoManagedObjectContext: context)

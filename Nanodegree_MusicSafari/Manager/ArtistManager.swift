@@ -19,6 +19,7 @@ class ArtistManager: NSObject {
             HttpServiceHelper.parseJSONResponse(data, error: .Succeed, completeHandler: { (result, error) in
                 let items = AnyObjectHelper.parseWithDefault(result, name: "artists.items", defaultValue: NSArray())
                 var artists = [SPTArtist]()
+                var idToJSONObjectMap = [String : AnyObject?]()
                 var keys = [String]()
                 for item in items {
                     do {
@@ -28,34 +29,47 @@ class ArtistManager: NSObject {
                             keys.append(id)
                         }
                         artists.append(artist)
+                        idToJSONObjectMap[id] = AnyObjectHelper.parse(item, name: "images")
                     } catch {
                     }
                 }
-            context.performBlock{
-                let managedResult = fetchManagedObject(String(Artist.self), indexNameOfManagedObject: "id", byIndexArray: keys, from: context)
-                var dic = [String : AnyObject?]()
                 
-                for obj in managedResult  {
-                    if let artist = obj as? Artist {
-                        dic[artist.id!] = artist
+                context.performBlock{
+                    let managedResult = fetchManagedObject(String(Artist.self), indexNameOfManagedObject: "id", byIndexArray: keys, from: context)
+                    var existArtists = [String : Artist]()
+                    var dictForImageArray = [NSManagedObject : NSArray]()
+                    
+                    // map all exist artist with id
+                    for obj in managedResult  {
+                        if let artist = obj as? Artist {
+                            existArtists[artist.id!] = artist
+                        }
+                    }
+                    
+                    for item in artists {
+                        let key = item.identifier!
+                        var artist = existArtists[key]
+                        
+                        // update exist, or create new and put them into map
+                        if (artist == nil) {
+                            artist = Artist(context: context)
+                            existArtists[key] = artist
+                        }
+                        
+                        artist!.updateWith(item)
+                        
+                        // prepare for image array
+                        if let dataToParse = idToJSONObjectMap[key] as? NSArray {
+                            dictForImageArray[artist!] = dataToParse
+                        }
+                    }
+                    
+                    SpotifyDataHelper.initImageCollectionFor(dictForImageArray, within: context)
+                    
+                    if let completionHandler = completionHandler{
+                        completionHandler(existArtists)
                     }
                 }
-                
-                for item in artists {
-                    let key = item.identifier
-                    if let artist = dic[key] as? Artist {
-                        artist.updateWith(item)
-                    } else {
-                        let artist = Artist(context: context)
-                        artist.updateWith(item)
-                        dic[key] = artist
-                    }
-                }
-                
-                if let completionHandler = completionHandler{
-                    completionHandler(dic)
-                }
-            }
             })
         }
         task.resume()
@@ -71,39 +85,50 @@ class ArtistManager: NSObject {
             HttpServiceHelper.parseJSONResponse(data, error: .Succeed, completeHandler: { (result, error) in
                 let albums = AnyObjectHelper.parseWithDefault(result, name: "items", defaultValue: NSArray())
                 var keys = [String]()
+                var idToJSONObjectMap = [String : AnyObject?]()
                 for item in albums {
                     let id = AnyObjectHelper.parseWithDefault(item, name: "id", defaultValue: "")
                     if (id.characters.count > 0) {
                         keys.append(id)
-                    }
-                }
-            context.performBlock{
-                let managedResult = fetchManagedObject(String(Album.self), indexNameOfManagedObject: "id", byIndexArray: keys, from: context)
-                var dic = [String : AnyObject?]()
-                
-                for obj in managedResult  {
-                    if let album = obj as? Album {
-                        dic[album.id!] = album
+                        idToJSONObjectMap[id] = AnyObjectHelper.parse(item, name: "images")
                     }
                 }
                 
-                for item in albums {
-                    let key = AnyObjectHelper.parseWithDefault(item, name: "id", defaultValue: "")
-                    if key.characters.count > 0 {
-                        var album = dic[key] as? Album
-                        if album == nil {
-                            album = Album(context: context)
-                            dic[key] = album
+                context.performBlock{
+                    let managedResult = fetchManagedObject(String(Album.self), indexNameOfManagedObject: "id", byIndexArray: keys, from: context)
+                    var dic = [String : AnyObject?]()
+                    var dictForImageArray = [NSManagedObject : NSArray]()
+                    
+                    for obj in managedResult  {
+                        if let album = obj as? Album {
+                            dic[album.id!] = album
                         }
-                        album!.updateWith(spotify: item)
-                        album!.rArtist = artist
+                    }
+                    
+                    for item in albums {
+                        let key = AnyObjectHelper.parseWithDefault(item, name: "id", defaultValue: "")
+                        if key.characters.count > 0 {
+                            var album = dic[key] as? Album
+                            if album == nil {
+                                album = Album(context: context)
+                                dic[key] = album
+                            }
+                            album!.updateWith(spotify: item)
+                            album!.rArtist = artist
+                            
+                            // prepare for image array
+                            if let dataToParse = idToJSONObjectMap[key] as? NSArray {
+                                dictForImageArray[album!] = dataToParse
+                            }
+                        }
+                    }
+                    
+                    SpotifyDataHelper.initImageCollectionFor(dictForImageArray, within: context)
+                    
+                    if let completionHandler = completionHandler{
+                        completionHandler(dic)
                     }
                 }
-                
-                if let completionHandler = completionHandler{
-                    completionHandler(dic)
-                }
-            }
             })
         }
         task.resume()

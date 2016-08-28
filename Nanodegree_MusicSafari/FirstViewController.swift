@@ -32,12 +32,24 @@ class FirstViewController: CoreDataTableViewController {
         if let artist = fetchedResultsController?.objectAtIndexPath(indexPath) as? Artist {
             item!.artist = artist
             item!.textLabel!.text = item!.artist!.name
-//            if let image = artist.imageSmall {
-//                item!.imageView?.image = UIImage(data: image)
-//            } else {
-//                item!.imageView?.image = UIImage(named: "question")
-//                artist.downloadImage(Artist.ImageSize.Small)
-//            }
+            item!.imageView?.image = nil
+            
+            guard let imageCollection = artist.rImage else {
+                return item!
+            }
+            
+            if let imageData = imageCollection.dataSmall {
+                
+                item!.imageView?.image = UIImage(data: imageData)
+                
+            } else {
+                imageCollection.downloadImage(.Small) {
+                    self.fetchedResultsController?.managedObjectContext.performBlock({
+                        // set time to trigger update
+                        artist.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)
+                    })
+                }
+            }
         }
         return item!
     }
@@ -46,16 +58,7 @@ class FirstViewController: CoreDataTableViewController {
         if let vc = storyboard?.instantiateViewControllerWithIdentifier("ArtistDetailViewController") as? ArtistDetailViewController {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? ArtistTableViewCell
             vc.artist = cell?.artist
-//            if vc.artist?.imageLarge == nil {
-//                vc.artist?.downloadImage(Artist.ImageSize.Large) {
-//                    performUIUpdatesOnMain{
-//                        self.navigationController?.pushViewController(vc, animated: true)
-//                    }
-//                }
-//            } else {
-//                navigationController?.pushViewController(vc, animated: true)
-//            }
-            
+            navigationController?.pushViewController(vc, animated: true)
         }
         
     }
