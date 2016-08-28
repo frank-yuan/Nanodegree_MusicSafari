@@ -34,6 +34,8 @@ class ArtistDetailViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = artist?.name
         nameLabel.text = artist?.name
         
         if let imageCollection = artist?.rImage {
@@ -54,26 +56,23 @@ class ArtistDetailViewController: UIViewController{
         
         resizeCollectionLayout()
         let id = artist!.id!
-        CoreDataHelper.getLibraryStack().performBackgroundBatchOperation { (workerContext) in
-            ArtistManager.getArtistTopAlbums(id, context: workerContext){ result -> Void in
-                performUIUpdatesOnMain({ 
-                    self.executeSearch()
-                    self.albumsCollection.reloadData()
-                })
-            }
-        }
         
         let fr = NSFetchRequest(entityName: String(Album.self))
         fr.predicate = NSPredicate(format: "rArtist = %@", argumentArray: [artist!])
         fr.sortDescriptors = [NSSortDescriptor(key:"id", ascending: true)]
         fetchedResultController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        let workerContext = fetchedResultController?.managedObjectContext
+        ArtistManager.getArtistTopAlbums(id, context: workerContext!){ result -> Void in
+            performUIUpdatesOnMain({ 
+                self.executeSearch()
+                self.albumsCollection.reloadData()
+            })
+        }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        print("")
     }
     
     func resizeCollectionLayout() {

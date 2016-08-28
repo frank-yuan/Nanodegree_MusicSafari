@@ -32,7 +32,7 @@ class FirstViewController: CoreDataTableViewController {
         if let artist = fetchedResultsController?.objectAtIndexPath(indexPath) as? Artist {
             item!.artist = artist
             item!.textLabel!.text = item!.artist!.name
-            item!.imageView?.image = nil
+            item!.imageView?.image = UIImage(named: "question")
             
             guard let imageCollection = artist.rImage else {
                 return item!
