@@ -1,5 +1,5 @@
 //
-//  ImageCollection+CoreDataProperties.swift
+//  FavoriteArtists+CoreDataProperties.swift
 //  Nanodegree_MusicSafari
 //
 //  Created by Xuan Yuan (Frank) on 8/29/16.
@@ -12,14 +12,9 @@
 import Foundation
 import CoreData
 
-extension ImageCollection {
+extension FavoriteArtists {
 
-    @NSManaged var dataLarge: NSData?
-    @NSManaged var dataMedium: NSData?
-    @NSManaged var dataSmall: NSData?
     @NSManaged var id: String?
-    @NSManaged var urlLarge: String?
-    @NSManaged var urlMedium: String?
-    @NSManaged var urlSmall: String?
+    @NSManaged var createdDate: NSDate?
 
 }

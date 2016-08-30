@@ -63,7 +63,7 @@ class ArtistDetailViewController: UIViewController{
         fetchedResultController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
         
         let workerContext = fetchedResultController?.managedObjectContext
-        ArtistManager.getArtistTopAlbums(id, context: workerContext!){ result -> Void in
+        AlbumAPI.getArtistTopAlbums(id, context: workerContext!){ result -> Void in
             performUIUpdatesOnMain({ 
                 self.executeSearch()
                 self.albumsCollection.reloadData()
@@ -96,7 +96,14 @@ extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionV
         }
         return cell!
     }
+    
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        let vc = storyboard?.instantiateViewControllerWithIdentifier("AlbumDetailViewController") as! AlbumDetailViewController
+//        vc.album = fetchedResultController?.objectAtIndexPath(indexPath) as? Album
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
 }
+
 extension ArtistDetailViewController {
     
     func executeSearch(){

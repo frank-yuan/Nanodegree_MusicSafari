@@ -64,7 +64,7 @@ class ArtistSearchViewController: CoreDataTableViewController {
         fr.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
         
-        ArtistManager.searchArtist(name, context: (fetchedResultsController?.managedObjectContext)!){ result -> Void in
+        ArtistAPI.searchArtist(name, context: (fetchedResultsController?.managedObjectContext)!){ result -> Void in
             busyView.removeFromSuperview()
         }
     }

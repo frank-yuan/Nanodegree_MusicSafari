@@ -12,15 +12,6 @@ import CoreData
 
 class Artist: NSManagedObject {
 
-    convenience init(dictionary:AnyObject?, context: NSManagedObjectContext) {
-        if let entity = NSEntityDescription.entityForName(String(Artist.self), inManagedObjectContext: context) {
-            self.init(entity: entity, insertIntoManagedObjectContext: context)
-            update(dictionary)
-        } else {
-            fatalError("Unable to find entity Artist")
-        }
-    }
-    
     convenience init(context: NSManagedObjectContext) {
         if let entity = NSEntityDescription.entityForName(String(Artist.self), inManagedObjectContext: context) {
             self.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -28,34 +19,19 @@ class Artist: NSManagedObject {
             fatalError("Unable to find entity Artist")
         }
     }
-    
-    func update(dictionary:AnyObject?) {
-        
-        self.id = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.ID, defaultValue: "Invalid")
-        self.name = AnyObjectHelper.parseWithDefault(dictionary, name: Constants.LastfmResponseKeys.Name, defaultValue: "")
-    }
-    
-    
 }
 
 extension Artist{
-    func updateWith(spotifyArtist:SPTArtist) {
-        id = spotifyArtist.identifier
-        name = spotifyArtist.name
-        uri = spotifyArtist.uri.absoluteString
+    func updateWith(spotify artist:AnyObject) {
+        do {
+            let spotifyArtist = try SPTArtist(decodedJSONObject: artist)
+            id = spotifyArtist.identifier
+            name = spotifyArtist.name
+            uri = spotifyArtist.uri.absoluteString
+        } catch {
+        }
     }
     
-    static func getObjectInContext(workerContext:NSManagedObjectContext, byId:String) -> Artist? {
-        let fr = NSFetchRequest(entityName: String(Artist.self))
-        fr.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        let pred = NSPredicate(format: "id = %@", argumentArray: [byId])
-        fr.predicate = pred
-        let fetchResults = try! workerContext.executeFetchRequest(fr)
-        if let targetObject = fetchResults.first as? Artist {
-            return targetObject
-        }
-        return nil
-    }
 }
 
 

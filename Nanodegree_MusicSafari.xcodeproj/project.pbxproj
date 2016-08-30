@@ -21,9 +21,7 @@
 		94559B551D6467EB00EC0742 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94559B4E1D6452DA00EC0742 /* LaunchScreen.storyboard */; };
 		94559B561D6467EB00EC0742 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94559B501D6452DA00EC0742 /* Main.storyboard */; };
 		94559B591D646A8F00EC0742 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94559B571D646A8F00EC0742 /* Model.xcdatamodeld */; };
-		94559B5B1D646E3B00EC0742 /* LastfmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B5A1D646E3B00EC0742 /* LastfmAPI.swift */; };
 		94559B5D1D64751800EC0742 /* testLastfmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B5C1D64751800EC0742 /* testLastfmAPI.swift */; };
-		94559B5E1D6476CD00EC0742 /* LastfmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B5A1D646E3B00EC0742 /* LastfmAPI.swift */; };
 		94559B5F1D647AD600EC0742 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B3E1D64527900EC0742 /* HttpService.swift */; };
 		94559B601D647AD600EC0742 /* HttpServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B3F1D64527900EC0742 /* HttpServiceHelper.swift */; };
 		94559B611D647AD600EC0742 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B421D64527900EC0742 /* Constants.swift */; };
@@ -39,12 +37,21 @@
 		94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */; };
 		9478A9EB1D65FE9300098CBA /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */; };
 		948A52691D6CA7E00047F564 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
-		94A9B2F91D67494400F4A38F /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
+		949723211D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723171D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift */; };
+		949723221D742E8D00226D87 /* FavoriteTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723181D742E8D00226D87 /* FavoriteTracks.swift */; };
+		949723231D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723191D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift */; };
+		949723241D742E8D00226D87 /* FavoriteAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497231A1D742E8D00226D87 /* FavoriteAlbums.swift */; };
+		949723251D742E8D00226D87 /* FavoriteArtists+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497231B1D742E8D00226D87 /* FavoriteArtists+CoreDataProperties.swift */; };
+		949723261D742E8D00226D87 /* FavoriteArtists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497231C1D742E8D00226D87 /* FavoriteArtists.swift */; };
+		9497232A1D747A7700226D87 /* ArtistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723291D747A7700226D87 /* ArtistAPI.swift */; };
+		9497232C1D747AD800226D87 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497232B1D747AD800226D87 /* AlbumAPI.swift */; };
+		9497232E1D747B0600226D87 /* TrackAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497232D1D747B0600226D87 /* TrackAPI.swift */; };
+		949723301D7490A700226D87 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */; };
+		949723321D7577A600226D87 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723311D7577A600226D87 /* TrackTableViewCell.swift */; };
 		94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */; };
 		94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */; };
 		94C668351D6FE29C0054579A /* ImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C668301D6FE29C0054579A /* ImageCollection.swift */; };
 		94CE64E61D733BD0005AD24F /* ArtistSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */; };
-		94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A9B2F81D67494400F4A38F /* ArtistManager.swift */; };
 		94DE4E361D689099005F11F4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B671D64B7B000EC0742 /* Track.swift */; };
 		94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */; };
 		94DE4E381D689099005F11F4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B691D64B7B000EC0742 /* Album.swift */; };
@@ -97,7 +104,6 @@
 		94559B4F1D6452DA00EC0742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94559B511D6452DA00EC0742 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		94559B581D646A8F00EC0742 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		94559B5A1D646E3B00EC0742 /* LastfmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastfmAPI.swift; sourceTree = "<group>"; };
 		94559B5C1D64751800EC0742 /* testLastfmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testLastfmAPI.swift; sourceTree = "<group>"; };
 		94559B671D64B7B000EC0742 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		94559B681D64B7B000EC0742 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -107,7 +113,17 @@
 		94559B731D654F5200EC0742 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		948A52681D6CA7E00047F564 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
-		94A9B2F81D67494400F4A38F /* ArtistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistManager.swift; sourceTree = "<group>"; };
+		949723171D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteTracks+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		949723181D742E8D00226D87 /* FavoriteTracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTracks.swift; sourceTree = "<group>"; };
+		949723191D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteAlbums+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9497231A1D742E8D00226D87 /* FavoriteAlbums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteAlbums.swift; sourceTree = "<group>"; };
+		9497231B1D742E8D00226D87 /* FavoriteArtists+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteArtists+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9497231C1D742E8D00226D87 /* FavoriteArtists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteArtists.swift; sourceTree = "<group>"; };
+		949723291D747A7700226D87 /* ArtistAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistAPI.swift; sourceTree = "<group>"; };
+		9497232B1D747AD800226D87 /* AlbumAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		9497232D1D747B0600226D87 /* TrackAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackAPI.swift; sourceTree = "<group>"; };
+		9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
+		949723311D7577A600226D87 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyDataHelper.swift; sourceTree = "<group>"; };
 		94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		94C668301D6FE29C0054579A /* ImageCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollection.swift; sourceTree = "<group>"; };
@@ -173,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				94DE4E401D69BF70005F11F4 /* Views */,
-				94A9B2F71D67492E00F4A38F /* Manager */,
 				94559B3A1D64527900EC0742 /* API */,
 				94559B3B1D64527900EC0742 /* Model */,
 				94559B3D1D64527900EC0742 /* Network */,
@@ -209,7 +224,9 @@
 		94559B3A1D64527900EC0742 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				94559B5A1D646E3B00EC0742 /* LastfmAPI.swift */,
+				949723291D747A7700226D87 /* ArtistAPI.swift */,
+				9497232B1D747AD800226D87 /* AlbumAPI.swift */,
+				9497232D1D747B0600226D87 /* TrackAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -228,6 +245,12 @@
 				94559B6B1D64B7B000EC0742 /* Artist.swift */,
 				94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */,
 				94C668301D6FE29C0054579A /* ImageCollection.swift */,
+				949723171D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift */,
+				949723181D742E8D00226D87 /* FavoriteTracks.swift */,
+				949723191D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift */,
+				9497231A1D742E8D00226D87 /* FavoriteAlbums.swift */,
+				9497231B1D742E8D00226D87 /* FavoriteArtists+CoreDataProperties.swift */,
+				9497231C1D742E8D00226D87 /* FavoriteArtists.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +295,7 @@
 				9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */,
 				94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */,
 				94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */,
+				9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -283,20 +307,13 @@
 			path = Base.lproj;
 			sourceTree = "<group>";
 		};
-		94A9B2F71D67492E00F4A38F /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				94A9B2F81D67494400F4A38F /* ArtistManager.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
 		94DE4E401D69BF70005F11F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */,
 				94DE4E491D69F58E005F11F4 /* BusyView.swift */,
 				94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */,
+				949723311D7577A600226D87 /* TrackTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -434,8 +451,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				94559B4A1D64527900EC0742 /* GCDBlackBox.swift in Sources */,
+				949723251D742E8D00226D87 /* FavoriteArtists+CoreDataProperties.swift in Sources */,
 				94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */,
+				949723321D7577A600226D87 /* TrackTableViewCell.swift in Sources */,
 				94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */,
+				949723231D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift in Sources */,
+				949723301D7490A700226D87 /* AlbumDetailViewController.swift in Sources */,
 				94559B4B1D64527900EC0742 /* Utils.swift in Sources */,
 				94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */,
 				94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */,
@@ -450,13 +471,18 @@
 				94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */,
 				94559B491D64527900EC0742 /* Constants.swift in Sources */,
 				94559B591D646A8F00EC0742 /* Model.xcdatamodeld in Sources */,
-				94A9B2F91D67494400F4A38F /* ArtistManager.swift in Sources */,
+				949723211D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift in Sources */,
 				94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */,
-				94559B5B1D646E3B00EC0742 /* LastfmAPI.swift in Sources */,
+				949723241D742E8D00226D87 /* FavoriteAlbums.swift in Sources */,
 				94559B6D1D64B7B000EC0742 /* Track.swift in Sources */,
+				9497232E1D747B0600226D87 /* TrackAPI.swift in Sources */,
+				949723261D742E8D00226D87 /* FavoriteArtists.swift in Sources */,
+				9497232C1D747AD800226D87 /* AlbumAPI.swift in Sources */,
+				949723221D742E8D00226D87 /* FavoriteTracks.swift in Sources */,
 				94CE64E61D733BD0005AD24F /* ArtistSearchViewController.swift in Sources */,
 				94559B701D64B7B000EC0742 /* Artist+CoreDataProperties.swift in Sources */,
 				94559B471D64527900EC0742 /* HttpService.swift in Sources */,
+				9497232A1D747A7700226D87 /* ArtistAPI.swift in Sources */,
 				94559B711D64B7B000EC0742 /* Artist.swift in Sources */,
 				94559B481D64527900EC0742 /* HttpServiceHelper.swift in Sources */,
 				94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */,
@@ -468,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94DE4E341D689099005F11F4 /* ArtistManager.swift in Sources */,
 				94DE4E361D689099005F11F4 /* Track.swift in Sources */,
 				94DE4E371D689099005F11F4 /* Album+CoreDataProperties.swift in Sources */,
 				94DE4E381D689099005F11F4 /* Album.swift in Sources */,
@@ -481,7 +506,6 @@
 				94559B611D647AD600EC0742 /* Constants.swift in Sources */,
 				94559B621D647AD600EC0742 /* GCDBlackBox.swift in Sources */,
 				94559B631D647AD600EC0742 /* Utils.swift in Sources */,
-				94559B5E1D6476CD00EC0742 /* LastfmAPI.swift in Sources */,
 				94559B221D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift in Sources */,
 				94559B5D1D64751800EC0742 /* testLastfmAPI.swift in Sources */,
 			);

@@ -78,4 +78,18 @@ class CoreDataHelper : NSObject {
         return appDelegate.userStack
     }
     
+    static func fetchManagedObject(entityName:String, indexNameOfManagedObject:String, byIndexArray indexArray: [String], from context:NSManagedObjectContext) -> [AnyObject]{
+        
+        
+        let fetchRequest = NSFetchRequest(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "\(indexNameOfManagedObject) IN %@", argumentArray: [indexArray])
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: indexNameOfManagedObject, ascending: true)]
+        
+        do{
+            return try context.executeFetchRequest(fetchRequest)
+        } catch {
+            return [AnyObject]()
+        }
+    }
+    
 }

@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
-    <entity name="FavoriteArtists" syncable="YES">
-        <attribute name="artistId" attributeType="String" indexed="YES" syncable="YES"/>
+    <entity name="FavoriteAlbums" representedClassName=".FavoriteAlbums" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FavoriteArtists" representedClassName=".FavoriteArtists" syncable="YES">
         <attribute name="createdDate" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+    </entity>
+    <entity name="FavoriteTracks" representedClassName=".FavoriteTracks" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="FavoriteArtists" positionX="-36" positionY="9" width="128" height="75"/>
+        <element name="FavoriteAlbums" positionX="-36" positionY="27" width="128" height="75"/>
+        <element name="FavoriteTracks" positionX="-27" positionY="45" width="128" height="75"/>
     </elements>
 </model>
