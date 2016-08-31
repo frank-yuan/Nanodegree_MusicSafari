@@ -48,6 +48,7 @@
 		9497232E1D747B0600226D87 /* TrackAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497232D1D747B0600226D87 /* TrackAPI.swift */; };
 		949723301D7490A700226D87 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */; };
 		949723321D7577A600226D87 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723311D7577A600226D87 /* TrackTableViewCell.swift */; };
+		94AA448C1D77248F00CA0BE2 /* TabBarPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA448B1D77248F00CA0BE2 /* TabBarPlayerViewController.swift */; };
 		94C6682B1D6F2C9C0054579A /* SpotifyDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */; };
 		94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */; };
 		94C668351D6FE29C0054579A /* ImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C668301D6FE29C0054579A /* ImageCollection.swift */; };
@@ -124,6 +125,7 @@
 		9497232D1D747B0600226D87 /* TrackAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackAPI.swift; sourceTree = "<group>"; };
 		9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		949723311D7577A600226D87 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		94AA448B1D77248F00CA0BE2 /* TabBarPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarPlayerViewController.swift; sourceTree = "<group>"; };
 		94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyDataHelper.swift; sourceTree = "<group>"; };
 		94C6682F1D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageCollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		94C668301D6FE29C0054579A /* ImageCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollection.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */,
 				94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */,
 				9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */,
+				94AA448B1D77248F00CA0BE2 /* TabBarPlayerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				94559B491D64527900EC0742 /* Constants.swift in Sources */,
 				94559B591D646A8F00EC0742 /* Model.xcdatamodeld in Sources */,
 				949723211D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift in Sources */,
+				94AA448C1D77248F00CA0BE2 /* TabBarPlayerViewController.swift in Sources */,
 				94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */,
 				949723241D742E8D00226D87 /* FavoriteAlbums.swift in Sources */,
 				94559B6D1D64B7B000EC0742 /* Track.swift in Sources */,
@@ -653,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -669,6 +674,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
