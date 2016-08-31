@@ -22,10 +22,10 @@ class ArtistDetailViewController: UIViewController{
     
     private var contentCommandQueue = [ContentChangeCommand]()
     
-    var fetchedResultController : NSFetchedResultsController? {
+    var fetchedResultsController : NSFetchedResultsController? {
         didSet {
             
-            fetchedResultController?.delegate = self
+            fetchedResultsController?.delegate = self
             executeSearch()
             albumsCollection.reloadData()
         }
@@ -60,9 +60,9 @@ class ArtistDetailViewController: UIViewController{
         let fr = NSFetchRequest(entityName: String(Album.self))
         fr.predicate = NSPredicate(format: "rArtist = %@", argumentArray: [artist!])
         fr.sortDescriptors = [NSSortDescriptor(key:"id", ascending: true)]
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
         
-        let workerContext = fetchedResultController?.managedObjectContext
+        let workerContext = fetchedResultsController?.managedObjectContext
         AlbumAPI.getArtistTopAlbums(id, context: workerContext!){ result -> Void in
             performUIUpdatesOnMain({ 
                 self.executeSearch()
@@ -86,32 +86,32 @@ class ArtistDetailViewController: UIViewController{
 extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (fetchedResultController?.fetchedObjects?.count)!
+        return (fetchedResultsController?.fetchedObjects?.count)!
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumCell", forIndexPath: indexPath) as? AlbumCollectionViewCell
-        if let album = fetchedResultController?.objectAtIndexPath(indexPath) as? Album {
+        if let album = fetchedResultsController?.objectAtIndexPath(indexPath) as? Album {
             cell?.setAlbum(album)
         }
         return cell!
     }
     
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        let vc = storyboard?.instantiateViewControllerWithIdentifier("AlbumDetailViewController") as! AlbumDetailViewController
-//        vc.album = fetchedResultController?.objectAtIndexPath(indexPath) as? Album
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("AlbumDetailViewController") as! AlbumDetailViewController
+        vc.album = fetchedResultsController?.objectAtIndexPath(indexPath) as? Album
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ArtistDetailViewController {
     
     func executeSearch(){
-        if let fc = fetchedResultController{
+        if let fc = fetchedResultsController{
             do{
                 try fc.performFetch()
             }catch let e as NSError{
-                print("Error while trying to perform a search: \n\(e)\n\(fetchedResultController)")
+                print("Error while trying to perform a search: \n\(e)\n\(fetchedResultsController)")
             }
         }
     }

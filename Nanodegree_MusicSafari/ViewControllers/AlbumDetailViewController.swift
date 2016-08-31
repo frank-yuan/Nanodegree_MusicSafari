@@ -13,15 +13,6 @@ class AlbumDetailViewController: CoreDataTableViewController {
     @IBOutlet weak var portrait:UIImageView!
     var album : Album?
     
-    var fetchedResultController : NSFetchedResultsController? {
-        didSet {
-            
-            fetchedResultController?.delegate = self
-            executeSearch()
-            tableView.reloadData()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,9 +39,9 @@ class AlbumDetailViewController: CoreDataTableViewController {
         let fr = NSFetchRequest(entityName: String(Track.self))
         fr.predicate = NSPredicate(format: "rAlbum == %@", argumentArray: [album!])
         fr.sortDescriptors = [NSSortDescriptor(key:"discNum", ascending: true), NSSortDescriptor(key:"trackNum", ascending: true)]
-        fetchedResultController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
         
-        let workerContext = fetchedResultController?.managedObjectContext
+        let workerContext = fetchedResultsController?.managedObjectContext
         TrackAPI.getTracksByAlbum(id, context: workerContext!){ result -> Void in
             performUIUpdatesOnMain({ 
                 self.executeSearch()
@@ -62,8 +53,7 @@ class AlbumDetailViewController: CoreDataTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = tableView.dequeueReusableCellWithIdentifier("trackTableCell") as? TrackTableViewCell
         if let track = fetchedResultsController?.objectAtIndexPath(indexPath) as? Track {
-            item!.track = track
-            item!.textLabel!.text = item!.track!.name
+            item!.setTrack(track)
         }
         return item!
     }

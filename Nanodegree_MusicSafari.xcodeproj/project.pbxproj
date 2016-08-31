@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0A1D6450A900EC0742 /* AppDelegate.swift */; };
 		94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0E1D6450A900EC0742 /* SecondViewController.swift */; };
 		94559B221D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B211D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift */; };
@@ -36,7 +37,6 @@
 		94559B711D64B7B000EC0742 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B6B1D64B7B000EC0742 /* Artist.swift */; };
 		94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94559B721D654F5200EC0742 /* UserModel.xcdatamodeld */; };
 		9478A9EB1D65FE9300098CBA /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478A9EA1D65FE9300098CBA /* CoreDataTableViewController.swift */; };
-		948A52691D6CA7E00047F564 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		949723211D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723171D742E8D00226D87 /* FavoriteTracks+CoreDataProperties.swift */; };
 		949723221D742E8D00226D87 /* FavoriteTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723181D742E8D00226D87 /* FavoriteTracks.swift */; };
 		949723231D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949723191D742E8D00226D87 /* FavoriteAlbums+CoreDataProperties.swift */; };
@@ -143,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				948A52691D6CA7E00047F564 /* Spotify.framework in Frameworks */,
+				942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,9 +574,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -594,6 +596,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -621,9 +624,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -635,6 +640,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Nanodegree_MusicSafari/Supporting Files/BridgingHeader.h";
@@ -647,12 +653,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Nanodegree_MusicSafari/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-MusicSafari";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -663,12 +669,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Nanodegree_MusicSafari/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.frank-yuan.Nanodegree-MusicSafari";
 				PRODUCT_NAME = "$(TARGET_NAME)";
