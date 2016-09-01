@@ -6,11 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Fst-Fy-1Zx">
             <objects>
                 <navigationController storyboardIdentifier="SearchViewController" id="mzI-u4-NbO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3XN-4s-4eO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fVX-CB-MlT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -395,7 +394,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="mzI-u4-NbO" kind="relationship" relationship="viewControllers" id="Wc8-PH-aRq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

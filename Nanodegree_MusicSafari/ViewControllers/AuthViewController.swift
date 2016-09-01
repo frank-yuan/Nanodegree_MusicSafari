@@ -65,6 +65,7 @@ class AuthViewController: UIViewController {
         auth.requestedScopes = [SPTAuthStreamingScope]
         auth.redirectURL = NSURL(string: Constants.SpotifyAuth.AuthCallback)
         auth.sessionUserDefaultsKey = Constants.SpotifyAuth.SessionDefaultKey
+        auth.requestedScopes = [SPTAuthStreamingScope]
     }
 }
 
@@ -84,6 +85,8 @@ extension AuthViewController : SPTAuthViewDelegate {
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
         statusLabel.text = "Login succeed!"
+        let player = SpotifyMusicPlayer.defaultInstance
+        player.login()
         loggedIn = true
         print(SPTAuth.defaultInstance().session.accessToken)
         dismissViewControllerAnimated(true, completion: nil)

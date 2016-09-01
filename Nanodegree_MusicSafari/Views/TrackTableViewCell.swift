@@ -20,6 +20,12 @@ class TrackTableViewCell: UITableViewCell {
     @IBAction func onPlayButtonClicked() {
         playing = !playing
         updatePlayButton()
+        
+        if (playing) {
+            SpotifyMusicPlayer.defaultInstance.playPlayListFromFirst([_track!])
+        } else {
+            SpotifyMusicPlayer.defaultInstance.stop()
+        }
     }
     
     func setTrack(track:Track?) {

@@ -65,6 +65,10 @@
 		94DE4E4C1D6AA54F005F11F4 /* AlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */; };
 		94DE4E4E1D6AA595005F11F4 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */; };
 		94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */; };
+		94E5D5D41D77D8E000F66891 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5D5D31D77D8E000F66891 /* MusicPlayer.swift */; };
+		94E5D5D61D77FF7200F66891 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5D5D51D77FF7200F66891 /* AVFoundation.framework */; };
+		94E5D5D81D77FFB500F66891 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5D5D71D77FFB500F66891 /* Security.framework */; };
+		94E5D5DA1D7804D100F66891 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5D5D91D7804D100F66891 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +142,10 @@
 		94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		94DE4E551D6C44A3005F11F4 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		94E5D5D31D77D8E000F66891 /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		94E5D5D51D77FF7200F66891 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		94E5D5D71D77FFB500F66891 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		94E5D5D91D7804D100F66891 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +153,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E5D5DA1D7804D100F66891 /* SystemConfiguration.framework in Frameworks */,
+				94E5D5D81D77FFB500F66891 /* Security.framework in Frameworks */,
+				94E5D5D61D77FF7200F66891 /* AVFoundation.framework in Frameworks */,
 				942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +180,9 @@
 		94559AFE1D6450A900EC0742 = {
 			isa = PBXGroup;
 			children = (
+				94E5D5D91D7804D100F66891 /* SystemConfiguration.framework */,
+				94E5D5D71D77FFB500F66891 /* Security.framework */,
+				94E5D5D51D77FF7200F66891 /* AVFoundation.framework */,
 				948A52681D6CA7E00047F564 /* Spotify.framework */,
 				94559B091D6450A900EC0742 /* Nanodegree_MusicSafari */,
 				94559B201D6450A900EC0742 /* Nanodegree_MusicSafariTests */,
@@ -286,6 +300,7 @@
 				94559B441D64527900EC0742 /* Utils.swift */,
 				94DE4E551D6C44A3005F11F4 /* BridgingHeader.h */,
 				94C6682A1D6F2C9C0054579A /* SpotifyDataHelper.swift */,
+				94E5D5D31D77D8E000F66891 /* MusicPlayer.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -479,6 +494,7 @@
 				94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */,
 				949723241D742E8D00226D87 /* FavoriteAlbums.swift in Sources */,
 				94559B6D1D64B7B000EC0742 /* Track.swift in Sources */,
+				94E5D5D41D77D8E000F66891 /* MusicPlayer.swift in Sources */,
 				9497232E1D747B0600226D87 /* TrackAPI.swift in Sources */,
 				949723261D742E8D00226D87 /* FavoriteArtists.swift in Sources */,
 				9497232C1D747AD800226D87 /* AlbumAPI.swift in Sources */,

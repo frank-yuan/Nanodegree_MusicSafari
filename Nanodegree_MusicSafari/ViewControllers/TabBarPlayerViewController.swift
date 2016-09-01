@@ -12,6 +12,7 @@ class TabBarPlayerViewController: UIViewController {
     // I do not know how to make reference like TabBarController
     // so I have to parse identifiers and instantiate view controllers when the view loaded
     // TODO: use reference instead of string
+    
     @IBInspectable var controllerIdentifiers : String?
     @IBInspectable var initialIndex : Int = 0
     @IBOutlet weak var container : UIView!
@@ -33,6 +34,7 @@ class TabBarPlayerViewController: UIViewController {
         
         tabBar.selectedItem = tabBar.items![initialIndex]
         showViewWithIndex(initialIndex)
+        
         
     }
     
@@ -59,8 +61,7 @@ class TabBarPlayerViewController: UIViewController {
 
 extension TabBarPlayerViewController : UITabBarDelegate {
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        if let index = tabBar.items?.indexOf(item) {
-            showViewWithIndex(index)
-        }
+        let index = tabBar.items?.indexOf(item)
+        showViewWithIndex(index!)
     }
 }
