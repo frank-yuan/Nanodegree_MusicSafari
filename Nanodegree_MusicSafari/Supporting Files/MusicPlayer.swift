@@ -20,6 +20,8 @@ protocol MusicPlayerInterface {
     
     func removeDelegate(delegate : MusicPlayerDelegate)
     
+    func playAlbum(album:Album)
+    
     func playPlayList(tracks:[Track], startFrom index:Int)
     
     func playPlayListFromFirst(tracks:[Track])
@@ -91,10 +93,17 @@ class SpotifyMusicPlayer: NSObject, MusicPlayerInterface {
                 })
             }
             
-            streamController.playSpotifyURI(tracks[0].uri, startingWithIndex: 0, startingWithPosition: NSTimeInterval(0)) { (error) -> Void in
+            var track = tracks[0]
+            streamController.playSpotifyURI(track.uri, startingWithIndex: 0, startingWithPosition: NSTimeInterval(0)) { (error) -> Void in
                 guard error == nil else {
                     print("Playback error: \(error)")
                     return
+                }
+                
+                for del in self.delegates {
+                    if let callback = del.onTrackPlaying {
+                        callback(track)
+                    }
                 }
             }
         }
@@ -111,6 +120,10 @@ class SpotifyMusicPlayer: NSObject, MusicPlayerInterface {
             })
             
         }
+    }
+    
+    func playAlbum(album:Album) {
+        
     }
     
     func playNext() {

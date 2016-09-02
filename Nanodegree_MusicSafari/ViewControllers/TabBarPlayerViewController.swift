@@ -17,6 +17,13 @@ class TabBarPlayerViewController: UIViewController {
     @IBInspectable var initialIndex : Int = 0
     @IBOutlet weak var container : UIView!
     @IBOutlet weak var tabBar : UITabBar!
+    @IBOutlet weak var playerView : UIView!
+    
+    
+    @IBOutlet weak var playButton : UIButton!
+    @IBOutlet weak var previousButton : UIButton!
+    @IBOutlet weak var nextButton : UIButton!
+    @IBOutlet weak var musicName : UILabel!
     
     private var _viewControllers = [UIViewController?]()
     private var _currentIndex = -1
@@ -34,8 +41,12 @@ class TabBarPlayerViewController: UIViewController {
         
         tabBar.selectedItem = tabBar.items![initialIndex]
         showViewWithIndex(initialIndex)
-        
-        
+        setPlayerButtonsEnable(false)
+        SpotifyMusicPlayer.defaultInstance.registerDelegate(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        SpotifyMusicPlayer.defaultInstance.removeDelegate(self)
     }
     
     func showViewWithIndex(index:Int) {
@@ -57,6 +68,12 @@ class TabBarPlayerViewController: UIViewController {
         self.view.layoutIfNeeded()
         
     }
+    
+    func setPlayerButtonsEnable(enable:Bool) {
+        playButton.enabled = enable
+        previousButton.enabled = enable
+        nextButton.enabled = enable
+    }
 }
 
 extension TabBarPlayerViewController : UITabBarDelegate {
@@ -64,4 +81,13 @@ extension TabBarPlayerViewController : UITabBarDelegate {
         let index = tabBar.items?.indexOf(item)
         showViewWithIndex(index!)
     }
+}
+
+extension TabBarPlayerViewController : MusicPlayerDelegate {
+    
+    func onTrackPlaying(track: Track) {
+        setPlayerButtonsEnable(true)
+        musicName.text = track.name
+    }
+    
 }

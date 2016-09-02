@@ -32,5 +32,9 @@ class AlbumCollectionViewCell: UICollectionViewCell {
             artistName!.text = album.rArtist?.name
         }
     }
+    
+    @IBAction func onPlayButton() {
+    
+    }
 
 }
