@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		941D2D9A1D7C697B00235A31 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D991D7C697B00235A31 /* MusicPlayerView.swift */; };
 		942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0A1D6450A900EC0742 /* AppDelegate.swift */; };
 		94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0E1D6450A900EC0742 /* SecondViewController.swift */; };
@@ -89,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		941D2D991D7C697B00235A31 /* MusicPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerView.swift; sourceTree = "<group>"; };
 		94559B071D6450A900EC0742 /* Nanodegree_MusicSafari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_MusicSafari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94559B0A1D6450A900EC0742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94559B0E1D6450A900EC0742 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				94DE4E491D69F58E005F11F4 /* BusyView.swift */,
 				94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */,
 				949723311D7577A600226D87 /* TrackTableViewCell.swift */,
+				941D2D991D7C697B00235A31 /* MusicPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				94AA448C1D77248F00CA0BE2 /* TabBarPlayerViewController.swift in Sources */,
 				94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */,
 				949723241D742E8D00226D87 /* FavoriteAlbums.swift in Sources */,
+				941D2D9A1D7C697B00235A31 /* MusicPlayerView.swift in Sources */,
 				94559B6D1D64B7B000EC0742 /* Track.swift in Sources */,
 				94E5D5D41D77D8E000F66891 /* MusicPlayer.swift in Sources */,
 				9497232E1D747B0600226D87 /* TrackAPI.swift in Sources */,

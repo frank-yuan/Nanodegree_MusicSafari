@@ -432,32 +432,37 @@
                                     <segue destination="08H-zp-LOu" kind="embed" id="nAq-KJ-noH"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dn7-rQ-76c">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dn7-rQ-76c" customClass="MusicPlayerView" customModule="Nanodegree_MusicSafari" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="506" width="600" height="45"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ku4-aI-of3">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ku4-aI-of3">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdh-ml-uwl">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="45"/>
-                                                <state key="normal" title="&lt;&lt;"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdO-wo-eLk">
-                                                <rect key="frame" x="131" y="0.0" width="50" height="45"/>
-                                                <state key="normal" image="play"/>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pP-UG-l7l">
-                                                <rect key="frame" x="276" y="0.0" width="42" height="45"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8O5-oG-E0U">
-                                                <rect key="frame" x="423" y="0.0" width="30" height="45"/>
-                                                <state key="normal" title="&gt;&gt;"/>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RME-9R-J7K">
-                                                <rect key="frame" x="558" y="0.0" width="42" height="45"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6W0-sK-dQS">
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XdO-wo-eLk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                        <state key="normal" image="play"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdh-ml-uwl">
+                                                        <rect key="frame" x="45" y="0.0" width="45" height="45"/>
+                                                        <state key="normal" image="start"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8O5-oG-E0U">
+                                                        <rect key="frame" x="90" y="0.0" width="45" height="45"/>
+                                                        <state key="normal" image="end"/>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="kia-2t-mWx">
+                                                        <rect key="frame" x="135" y="0.0" width="45" height="45"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="IwV-nR-ef0"/>
+                                                </constraints>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RME-9R-J7K">
+                                                <rect key="frame" x="180" y="0.0" width="420" height="45"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -473,6 +478,13 @@
                                     <constraint firstItem="ku4-aI-of3" firstAttribute="centerX" secondItem="Dn7-rQ-76c" secondAttribute="centerX" id="a6v-AI-8Bd"/>
                                     <constraint firstItem="ku4-aI-of3" firstAttribute="width" secondItem="Dn7-rQ-76c" secondAttribute="width" id="tyx-Uv-0zz"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="backwardButton" destination="Fdh-ml-uwl" id="v4B-on-6JA"/>
+                                    <outlet property="forwardButton" destination="8O5-oG-E0U" id="gbH-a2-hyb"/>
+                                    <outlet property="playButton" destination="XdO-wo-eLk" id="bPc-5x-sbN"/>
+                                    <outlet property="trackImage" destination="kia-2t-mWx" id="uHR-yI-ajX"/>
+                                    <outlet property="trackLabel" destination="RME-9R-J7K" id="bDO-Kn-R8O"/>
+                                </connections>
                             </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMZ-3k-W9i">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
@@ -557,9 +569,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="end" width="50" height="50"/>
         <image name="first" width="30" height="30"/>
         <image name="play" width="50" height="50"/>
         <image name="question" width="50" height="50"/>
+        <image name="record" width="50" height="50"/>
         <image name="second" width="30" height="30"/>
+        <image name="start" width="50" height="50"/>
     </resources>
 </document>
