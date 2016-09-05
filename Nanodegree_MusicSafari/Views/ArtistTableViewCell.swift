@@ -10,6 +10,8 @@ import UIKit
 
 class ArtistTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var artistImage : UIImageView!
+    @IBOutlet weak var artistName : UILabel!
     var artist : Artist?
     override func awakeFromNib() {
         super.awakeFromNib()

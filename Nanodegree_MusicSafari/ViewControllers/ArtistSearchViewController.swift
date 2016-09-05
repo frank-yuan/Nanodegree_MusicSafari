@@ -22,8 +22,8 @@ class ArtistSearchViewController: CoreDataTableViewController {
         let item = tableView.dequeueReusableCellWithIdentifier("artistTableCell") as? ArtistTableViewCell
         if let artist = fetchedResultsController?.objectAtIndexPath(indexPath) as? Artist {
             item!.artist = artist
-            item!.textLabel!.text = item!.artist!.name
-            item!.imageView?.image = UIImage(named: "question")
+            item!.artistName!.text = item!.artist!.name
+            item!.artistImage!.image = UIImage(named: "question")
             
             guard let imageCollection = artist.rImage else {
                 return item!
@@ -31,7 +31,7 @@ class ArtistSearchViewController: CoreDataTableViewController {
             
             if let imageData = imageCollection.dataSmall {
                 
-                item!.imageView?.image = UIImage(data: imageData)
+                item!.artistImage!.image = UIImage(data: imageData)
                 
             } else {
                 imageCollection.downloadImage(.Small) { (data:NSData) -> Void in

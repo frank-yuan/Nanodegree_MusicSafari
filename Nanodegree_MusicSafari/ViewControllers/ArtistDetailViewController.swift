@@ -18,7 +18,7 @@ class ArtistDetailViewController: UIViewController{
     @IBOutlet weak var albumsLayout : UICollectionViewFlowLayout!
     //@IBOutlet weak var similarArtistsCollection : UICollectionView!
     @IBOutlet weak var summaryLabel:UILabel!
-    let cellSpacing:CGFloat = 10.0
+    let cellSpacing:CGFloat = 1.0
     
     private var contentCommandQueue = [ContentChangeCommand]()
     
@@ -52,7 +52,6 @@ class ArtistDetailViewController: UIViewController{
             
         }
         
-        resizeCollectionLayout()
         let id = artist!.id!
         
         let fr = NSFetchRequest(entityName: String(Album.self))
@@ -70,13 +69,17 @@ class ArtistDetailViewController: UIViewController{
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        resizeCollectionLayout()
     }
     
     func resizeCollectionLayout() {
-        let count:CGFloat = albumsCollection.frame.width > albumsCollection.frame.height ? 5.0 : 3.0
+        let count:CGFloat = 3.0
         let size:CGFloat = (albumsCollection.frame.width - (count + 1) * cellSpacing) / count
         albumsLayout.itemSize = CGSize(width: size, height: size + 20)
+        albumsLayout.minimumInteritemSpacing = cellSpacing
+        albumsLayout.minimumLineSpacing = cellSpacing
     }
     
 }
