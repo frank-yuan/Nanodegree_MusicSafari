@@ -8,53 +8,60 @@
 
 
 @objc protocol MusicPlayerDelegate {
-    optional func onTrackPlaying(track:Track)
-    optional func onTrackStopped(track:Track)
+    optional func didPlayerEnableChanged(enable:Bool)
+    optional func onTrackPlayStarted(track:Track)
+    optional func onTrackPaused(track:Track)
     optional func onPlayFailed(track:Track, error:NSError?)
 }
 
 protocol MusicPlayerInterface {
+    
     func login()
     
     func registerDelegate(delegate : MusicPlayerDelegate)
     
     func removeDelegate(delegate : MusicPlayerDelegate)
     
-    func playAlbum(album:Album)
+    func playTrack(track:Track?)
     
-    func playPlayList(tracks:[Track], startFrom index:Int)
+    func pause()
     
-    func playPlayListFromFirst(tracks:[Track])
+    var currentTrack : Track? {get}
     
-    func stop()
+    var enabled : Bool {get}
     
-    func playNext()
-        
-    func playPrevious()
-    
-    func currentTrack() -> Track?
 }
 
-class SpotifyMusicPlayer: NSObject, MusicPlayerInterface {
-    
+class MusicPlayerFactory : NSObject {
     
     static var defaultInstance : MusicPlayerInterface {
         struct Static {
             static var onceToken: dispatch_once_t = 0
-            static var instance: SpotifyMusicPlayer? = nil
+            static var instance: MusicPlayerInterface? = nil
         }
         dispatch_once(&Static.onceToken) {
             Static.instance = SpotifyMusicPlayer()
         }
         return Static.instance!
     }
+}
+
+class SpotifyMusicPlayer: NSObject{
     
     private var streamController = SPTAudioStreamingController.sharedInstance()
     
-//    private var audioController = SPTCoreAudioController()
-    
     private var delegates  = NSMutableSet()
     
+    var currentTrack : Track? = nil
+}
+
+extension SpotifyMusicPlayer : MusicPlayerInterface {
+    
+    var enabled : Bool {
+        get {
+            return streamController.loggedIn
+        }
+    }
     
     func login() {
         do {
@@ -77,76 +84,84 @@ class SpotifyMusicPlayer: NSObject, MusicPlayerInterface {
         delegates.removeObject(delegate)
     }
     
-    func playPlayListFromFirst(tracks: [Track]) {
-        playPlayList(tracks, startFrom: 0)
-    }
-    
-    func playPlayList(tracks:[Track], startFrom index:Int) {
+    func playTrack(track:Track?) {
         if streamController.loggedIn {
             
-            if let state = streamController.playbackState where state.isPlaying{
-                streamController.setIsPlaying(false, callback: { (error) -> Void in
-                    guard error == nil else {
-                        print("playback stop error")
-                        return
-                    }
-                })
-            }
-            
-            var track = tracks[0]
-            streamController.playSpotifyURI(track.uri, startingWithIndex: 0, startingWithPosition: NSTimeInterval(0)) { (error) -> Void in
-                guard error == nil else {
-                    print("Playback error: \(error)")
-                    return
+            if let track = track {
+                
+                if let state = streamController.playbackState where state.isPlaying{
+                    streamController.setIsPlaying(false, callback: { (error) -> Void in
+                        guard error == nil else {
+                            print("playback stop error")
+                            return
+                        }
+                        
+                    })
                 }
                 
-                for del in self.delegates {
-                    if let callback = del.onTrackPlaying {
-                        callback(track)
+                streamController.playSpotifyURI(track.uri, startingWithIndex: 0, startingWithPosition: NSTimeInterval(0)) { (error) -> Void in
+                    guard error == nil else {
+                        print("Playback error: \(error)")
+                        return
                     }
+                    
+                    self.currentTrack = track
+                    
+                    performUIUpdatesOnMain({ () -> Void in
+                        for del in self.delegates {
+                            if let callback = del.onTrackPlayStarted {
+                                callback(self.currentTrack!)
+                            }
+                        }
+                    })
                 }
             }
         }
         
     }
     
-    func stop() {
+    func pause() {
         if streamController.loggedIn {
             streamController.setIsPlaying(false, callback: { (error) -> Void in
                 guard error == nil else {
                     print("playback stop error")
                     return
                 }
+                performUIUpdatesOnMain({ () -> Void in
+                    for del in self.delegates {
+                        if let callback = del.onTrackPaused {
+                            callback(self.currentTrack!)
+                        }
+                    }
+                })
             })
             
         }
     }
     
-    func playAlbum(album:Album) {
-        
-    }
-    
-    func playNext() {
-        
-    }
-    
-    func playPrevious() {
-        
-    }
-    
-    func currentTrack() -> Track? {
-        return nil
-    }
 
 }
 
 extension SpotifyMusicPlayer : SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     
     func audioStreamingDidLogin(audioStreaming: SPTAudioStreamingController!) {
+        performUIUpdatesOnMain({ () -> Void in
+            for del in self.delegates {
+                if let callback = del.didPlayerEnableChanged {
+                    callback(true)
+                }
+            }
+        })
     }
     
     func audioStreamingDidLogout(audioStreaming: SPTAudioStreamingController!) {
-        print("log out")
+        performUIUpdatesOnMain({ () -> Void in
+            for del in self.delegates {
+                if let callback = del.didPlayerEnableChanged {
+                    callback(false)
+                }
+            }
+        })
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didEncounterError error: NSError!) {
@@ -158,7 +173,13 @@ extension SpotifyMusicPlayer : SPTAudioStreamingPlaybackDelegate, SPTAudioStream
     }
     
     func audioStreamingDidDisconnect(audioStreaming: SPTAudioStreamingController!) {
-        print ("disconnect")
+        performUIUpdatesOnMain({ () -> Void in
+            for del in self.delegates {
+                if let callback = del.didPlayerEnableChanged {
+                    callback(false)
+                }
+            }
+        })
     }
 
 }

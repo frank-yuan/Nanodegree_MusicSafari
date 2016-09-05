@@ -48,14 +48,14 @@ class ImageCollection: NSManagedObject {
         }
     }
     
-    func downloadImage(size:ImageSize, completionHandler:(()->Void)? = nil) {
+    func downloadImage(size:ImageSize, completionHandler:((data:NSData)->Void)? = nil) {
         if let imageURL = getImageURLBySize(size) {
             performUpdatesUserInteractive{
                 if let data = NSData(contentsOfURL: NSURL(string: imageURL)!) {
                     self.managedObjectContext?.performBlock{
                         self.setImageBySize(data, size: size)
                         if let handler = completionHandler {
-                            handler()
+                            handler(data: data)
                         }
                     }
                 }

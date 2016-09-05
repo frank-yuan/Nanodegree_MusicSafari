@@ -19,10 +19,8 @@ class AlbumCollectionViewCell: UICollectionViewCell {
             if let imageData = imageCollection.dataMedium {
                 image.image = UIImage(data: imageData)
             } else if imageCollection.urlLarge != nil{
-                imageCollection.downloadImage(.Medium) {
-                    if let imageData = imageCollection.dataMedium {
-                        self.image.image = UIImage(data: imageData)
-                    }
+                imageCollection.downloadImage(.Medium) { (data:NSData) -> Void in
+                    self.image.image = UIImage(data: data)
                 }
             }
         }
@@ -33,8 +31,5 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @IBAction func onPlayButton() {
-    
-    }
 
 }

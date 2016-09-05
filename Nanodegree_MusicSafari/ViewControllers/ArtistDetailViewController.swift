@@ -43,11 +43,9 @@ class ArtistDetailViewController: UIViewController{
             if let imageData = imageCollection.dataLarge{
                 portrait.image = UIImage(data:imageData)
             } else {
-                imageCollection.downloadImage(.Large) {
+                imageCollection.downloadImage(.Large) { (data:NSData) -> Void in
                     performUIUpdatesOnMain({ 
-                        if let imageData = imageCollection.dataLarge{
-                            self.portrait.image = UIImage(data:imageData)
-                        }
+                        self.portrait.image = UIImage(data:data)
                     })
                 }
             }

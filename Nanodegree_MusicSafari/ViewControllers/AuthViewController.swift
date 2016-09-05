@@ -85,7 +85,7 @@ extension AuthViewController : SPTAuthViewDelegate {
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
         statusLabel.text = "Login succeed!"
-        let player = SpotifyMusicPlayer.defaultInstance
+        let player = MusicPlayerFactory.defaultInstance
         player.login()
         loggedIn = true
         print(SPTAuth.defaultInstance().session.accessToken)

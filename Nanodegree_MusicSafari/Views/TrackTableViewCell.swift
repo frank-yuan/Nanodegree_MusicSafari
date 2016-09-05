@@ -22,9 +22,9 @@ class TrackTableViewCell: UITableViewCell {
         updatePlayButton()
         
         if (playing) {
-            SpotifyMusicPlayer.defaultInstance.playPlayListFromFirst([_track!])
+            MusicPlayerFactory.defaultInstance.playTrack(_track)
         } else {
-            SpotifyMusicPlayer.defaultInstance.stop()
+            MusicPlayerFactory.defaultInstance.pause()
         }
     }
     
@@ -33,6 +33,7 @@ class TrackTableViewCell: UITableViewCell {
             _track = track
             nameLabel.text = track.name
             stopPlaying()
+            playButton.enabled = MusicPlayerFactory.defaultInstance.enabled
         }
     }
     
@@ -44,8 +45,8 @@ class TrackTableViewCell: UITableViewCell {
     func updatePlayButton() {
         
         if (playing) {
-            playButton.setImage(UIImage(named: "stop"), forState: .Normal)
-            playButton.setImage(UIImage(named: "stop"), forState: .Highlighted)
+            playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+            playButton.setImage(UIImage(named: "pause"), forState: .Highlighted)
         } else {
             playButton.setImage(UIImage(named: "play"), forState: .Normal)
             playButton.setImage(UIImage(named: "play"), forState: .Highlighted)
