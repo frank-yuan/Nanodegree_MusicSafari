@@ -10,47 +10,38 @@ import UIKit
 class TrackTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel : UILabel!
-    @IBOutlet weak var playButton : UIButton!
-    private var playing : Bool = false
-    private var _track : Track?
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    @IBAction func onPlayButtonClicked() {
-        playing = !playing
-        updatePlayButton()
-        
-        if (playing) {
-            MusicPlayerFactory.defaultInstance.playTrack(_track)
-        } else {
-            MusicPlayerFactory.defaultInstance.pause()
+    @IBOutlet weak var playImage : UIImageView!
+    @IBOutlet weak var likeButton : UIButton!
+    
+    var track : Track?{
+        didSet {
+            nameLabel.text = track!.name
         }
     }
     
-    func setTrack(track:Track?) {
-        if let track = track {
-            _track = track
-            nameLabel.text = track.name
-            stopPlaying()
-            playButton.enabled = MusicPlayerFactory.defaultInstance.enabled
+    var playEnabled : Bool = true {
+        didSet {
+            playImage.hidden = !playEnabled
         }
     }
     
-    func stopPlaying() {
-        playing = false
-        updatePlayButton()
+    var playing : Bool = false {
+        didSet {
+            playImage.image = UIImage(named: playing ? "pause" : "play")
+        }
     }
     
-    func updatePlayButton() {
-        
-        if (playing) {
-            playButton.setImage(UIImage(named: "pause"), forState: .Normal)
-            playButton.setImage(UIImage(named: "pause"), forState: .Highlighted)
-        } else {
-            playButton.setImage(UIImage(named: "play"), forState: .Normal)
-            playButton.setImage(UIImage(named: "play"), forState: .Highlighted)
-            
+    var liked : Bool = false {
+        didSet {
+            likeButton.imageView!.image = UIImage(named: liked ? "liked" : "like")
+        }
+    }
+    
+    var likePressedCallback : ((TrackTableViewCell) -> Void)?
+    
+    @IBAction func onLikeButtonPressed () {
+        if let callback = likePressedCallback {
+            callback(self)
         }
     }
 }

@@ -12,6 +12,7 @@
     optional func onTrackPlayStarted(track:Track)
     optional func onTrackPaused(track:Track)
     optional func onPlayFailed(track:Track, error:NSError?)
+    optional func onPlaybackStatusChanged(playing:Bool)
 }
 
 protocol MusicPlayerInterface {
@@ -29,6 +30,8 @@ protocol MusicPlayerInterface {
     var currentTrack : Track? {get}
     
     var enabled : Bool {get}
+    
+    var isPlaying : Bool {get}
     
 }
 
@@ -60,6 +63,12 @@ extension SpotifyMusicPlayer : MusicPlayerInterface {
     var enabled : Bool {
         get {
             return streamController.loggedIn
+        }
+    }
+    
+    var isPlaying : Bool {
+        get {
+            return streamController.playbackState.isPlaying
         }
     }
     
@@ -181,5 +190,14 @@ extension SpotifyMusicPlayer : SPTAudioStreamingPlaybackDelegate, SPTAudioStream
             }
         })
     }
-
+    
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        performUIUpdatesOnMain({ () -> Void in
+            for del in self.delegates {
+                if let callback = del.onPlaybackStatusChanged {
+                    callback(isPlaying)
+                }
+            }
+        })
+    }
 }

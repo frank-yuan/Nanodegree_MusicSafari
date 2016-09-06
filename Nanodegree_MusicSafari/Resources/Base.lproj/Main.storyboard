@@ -223,12 +223,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="56p-Oe-fwc">
+                                            <rect key="frame" x="504.5" y="0.5" width="43.5" height="43.5"/>
+                                        </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2L-qT-trk">
                                             <rect key="frame" x="548" y="0.0" width="43.5" height="43.5"/>
-                                            <state key="normal" image="question"/>
+                                            <state key="normal" image="like"/>
                                             <state key="highlighted" image="question"/>
                                             <connections>
-                                                <action selector="onPlayButtonClicked" destination="9kd-3W-dFM" eventType="touchUpInside" id="xY5-1N-W3y"/>
+                                                <action selector="onLikeButtonPressed" destination="9kd-3W-dFM" eventType="touchDown" id="u3i-7p-muM"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWe-jq-rfC">
@@ -241,7 +244,11 @@
                                     <constraints>
                                         <constraint firstItem="xWe-jq-rfC" firstAttribute="height" secondItem="3en-qx-8le" secondAttribute="height" id="0ei-Tz-XYY"/>
                                         <constraint firstItem="O2L-qT-trk" firstAttribute="width" secondItem="3en-qx-8le" secondAttribute="height" multiplier="1:1" id="37t-Ft-Tek"/>
+                                        <constraint firstItem="56p-Oe-fwc" firstAttribute="height" secondItem="O2L-qT-trk" secondAttribute="height" id="4aT-eJ-Ele"/>
+                                        <constraint firstItem="56p-Oe-fwc" firstAttribute="width" secondItem="O2L-qT-trk" secondAttribute="width" id="CA7-zO-evY"/>
                                         <constraint firstItem="O2L-qT-trk" firstAttribute="centerY" secondItem="3en-qx-8le" secondAttribute="centerY" id="Gzg-Ea-NEP"/>
+                                        <constraint firstItem="56p-Oe-fwc" firstAttribute="centerY" secondItem="O2L-qT-trk" secondAttribute="centerY" id="QGR-kd-UT6"/>
+                                        <constraint firstItem="56p-Oe-fwc" firstAttribute="trailing" secondItem="O2L-qT-trk" secondAttribute="leading" id="VTg-EQ-OtL"/>
                                         <constraint firstItem="xWe-jq-rfC" firstAttribute="trailing" secondItem="O2L-qT-trk" secondAttribute="leading" id="Yyj-Cg-lgX"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="O2L-qT-trk" secondAttribute="trailing" id="dFH-TY-6eW"/>
                                         <constraint firstItem="xWe-jq-rfC" firstAttribute="leading" secondItem="3en-qx-8le" secondAttribute="leadingMargin" id="feJ-vj-3V7"/>
@@ -250,8 +257,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="likeButton" destination="O2L-qT-trk" id="KNE-d8-jaU"/>
                                     <outlet property="nameLabel" destination="xWe-jq-rfC" id="niG-gH-IUE"/>
-                                    <outlet property="playButton" destination="O2L-qT-trk" id="B4T-kM-WRt"/>
+                                    <outlet property="playImage" destination="56p-Oe-fwc" id="Ufs-RS-ivJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -521,6 +529,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="like" width="50" height="50"/>
         <image name="play" width="50" height="50"/>
         <image name="question" width="50" height="50"/>
         <image name="record" width="50" height="50"/>

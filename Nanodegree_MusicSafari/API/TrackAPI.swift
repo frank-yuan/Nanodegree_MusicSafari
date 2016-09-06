@@ -17,7 +17,7 @@ class TrackAPI: NSObject {
         let request = try! SPTRequest.createRequestForURL(NSURL(string:"https://api.spotify.com/v1/albums/\(albumId)/tracks"),
 					  withAccessToken:SPTAuth.defaultInstance().session.accessToken,
 						   httpMethod:"get",
-							   values:nil,//["limit":"2"],
+							   values:nil,
 					  valueBodyIsJSON:false,
 				sendDataAsQueryString:true)
         
@@ -38,7 +38,7 @@ class TrackAPI: NSObject {
                     
                     for obj in managedResult  {
                         if let track = obj as? Track {
-                            dic[track.id!] = album
+                            dic[track.id!] = track
                         }
                     }
                     

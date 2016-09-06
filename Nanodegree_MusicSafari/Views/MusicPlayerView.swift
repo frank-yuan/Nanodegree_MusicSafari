@@ -54,4 +54,10 @@ extension MusicPlayerView : MusicPlayerDelegate {
     func onPlayFailed(track:Track, error:NSError?) {
         print(error)
     }
+    
+    func onPlaybackStatusChanged(playing: Bool) {
+        if !playing {
+            playButton.imageView?.image = UIImage(named:"play")
+        }
+    }
 }

@@ -51,7 +51,6 @@ class ArtistSearchViewController: CoreDataTableViewController {
             vc.artist = cell?.artist
             navigationController?.pushViewController(vc, animated: true)
         }
-        
     }
     
     func startSearch(name:String) {

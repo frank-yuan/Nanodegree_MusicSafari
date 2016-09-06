@@ -1,8 +1,8 @@
 //
-//  FavoriteArtists+CoreDataProperties.swift
+//  LikedItem+CoreDataProperties.swift
 //  Nanodegree_MusicSafari
 //
-//  Created by Xuan Yuan (Frank) on 8/29/16.
+//  Created by Xuan Yuan (Frank) on 9/6/16.
 //  Copyright © 2016 frank-yuan. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,9 +12,10 @@
 import Foundation
 import CoreData
 
-extension FavoriteArtists {
+extension LikedItem {
 
-    @NSManaged var id: String?
     @NSManaged var createdDate: NSDate?
+    @NSManaged var id: String?
+    @NSManaged var type: NSNumber?
 
 }
