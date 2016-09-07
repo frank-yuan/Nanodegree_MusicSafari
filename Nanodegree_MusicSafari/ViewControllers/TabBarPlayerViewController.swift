@@ -11,9 +11,9 @@ import UIKit
 class TabBarPlayerViewController: UIViewController {
     // I do not know how to make reference like TabBarController
     // so I have to parse identifiers and instantiate view controllers when the view loaded
-    // TODO: use reference instead of string
-    
+    // HOWTO: refer to child viewcontrollers like TabBarController on story board
     @IBInspectable var controllerIdentifiers : String?
+    
     @IBInspectable var initialIndex : Int = 0
     @IBOutlet weak var container : UIView!
     @IBOutlet weak var tabBar : UITabBar!
@@ -30,7 +30,8 @@ class TabBarPlayerViewController: UIViewController {
         if let controllerId = controllerIdentifiers {
             let identifiers = controllerId.componentsSeparatedByString(",")
             for identifier in identifiers {
-                _viewControllers.append(storyboard?.instantiateViewControllerWithIdentifier(identifier))
+                let vc = storyboard?.instantiateViewControllerWithIdentifier(identifier)
+                _viewControllers.append(vc)
             }
         }
         

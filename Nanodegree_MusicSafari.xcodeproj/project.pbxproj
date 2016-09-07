@@ -11,6 +11,7 @@
 		941D2D9C1D7E9DE800235A31 /* LikedDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D9B1D7E9DE800235A31 /* LikedDataHelper.swift */; };
 		941D2DA11D7EA91900235A31 /* LikedItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D9F1D7EA91900235A31 /* LikedItem+CoreDataProperties.swift */; };
 		941D2DA21D7EA91900235A31 /* LikedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2DA01D7EA91900235A31 /* LikedItem.swift */; };
+		941D2DA41D7FBB7400235A31 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2DA31D7FBB7400235A31 /* SettingsTableViewController.swift */; };
 		942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0A1D6450A900EC0742 /* AppDelegate.swift */; };
 		94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0E1D6450A900EC0742 /* SecondViewController.swift */; };
@@ -91,6 +92,7 @@
 		941D2D9B1D7E9DE800235A31 /* LikedDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedDataHelper.swift; sourceTree = "<group>"; };
 		941D2D9F1D7EA91900235A31 /* LikedItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikedItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		941D2DA01D7EA91900235A31 /* LikedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedItem.swift; sourceTree = "<group>"; };
+		941D2DA31D7FBB7400235A31 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		94559B071D6450A900EC0742 /* Nanodegree_MusicSafari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_MusicSafari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94559B0A1D6450A900EC0742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94559B0E1D6450A900EC0742 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				94CE64E51D733BD0005AD24F /* ArtistSearchViewController.swift */,
 				9497232F1D7490A700226D87 /* AlbumDetailViewController.swift */,
 				94AA448B1D77248F00CA0BE2 /* TabBarPlayerViewController.swift */,
+				941D2DA31D7FBB7400235A31 /* SettingsTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				94559B461D64527900EC0742 /* CoreDataStack.swift in Sources */,
 				94C668351D6FE29C0054579A /* ImageCollection.swift in Sources */,
 				9478A9EB1D65FE9300098CBA /* CoreDataTableViewController.swift in Sources */,
+				941D2DA41D7FBB7400235A31 /* SettingsTableViewController.swift in Sources */,
 				941D2D9C1D7E9DE800235A31 /* LikedDataHelper.swift in Sources */,
 				94DE4E4A1D69F58E005F11F4 /* BusyView.swift in Sources */,
 				94559B741D654F5200EC0742 /* UserModel.xcdatamodeld in Sources */,
