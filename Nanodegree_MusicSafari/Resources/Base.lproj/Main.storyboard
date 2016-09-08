@@ -43,17 +43,17 @@
                                 <rect key="frame" x="0.0" y="136" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="44t-8h-uDE" id="k8W-Gm-48C">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YOA-7U-TgD">
-                                            <rect key="frame" x="8" y="8" width="84" height="84"/>
+                                            <rect key="frame" x="8" y="8" width="83.5" height="83.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="YOA-7U-TgD" secondAttribute="height" multiplier="1:1" id="Oxe-7o-xhg"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtv-iW-Mdg">
-                                            <rect key="frame" x="112" y="8" width="447" height="84"/>
+                                            <rect key="frame" x="111.5" y="8" width="447.5" height="83.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -220,14 +220,14 @@
                                 <rect key="frame" x="0.0" y="228" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9kd-3W-dFM" id="3en-qx-8le">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="56p-Oe-fwc">
-                                            <rect key="frame" x="505" y="1" width="43" height="43"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="56p-Oe-fwc">
+                                            <rect key="frame" x="504.5" y="0.5" width="43.5" height="43.5"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2L-qT-trk">
-                                            <rect key="frame" x="548" y="0.0" width="44" height="44"/>
+                                            <rect key="frame" x="548" y="0.0" width="43.5" height="43.5"/>
                                             <state key="normal" image="like"/>
                                             <state key="highlighted" image="question"/>
                                             <connections>
@@ -235,7 +235,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWe-jq-rfC">
-                                            <rect key="frame" x="8" y="0.0" width="540" height="44"/>
+                                            <rect key="frame" x="8" y="0.0" width="540" height="43.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -276,10 +276,93 @@
             </objects>
             <point key="canvasLocation" x="2259" y="-136"/>
         </scene>
+        <!--Favorite Tracks View Controller-->
+        <scene sceneID="W7S-bf-QH2">
+            <objects>
+                <tableViewController storyboardIdentifier="FavoriteTracksViewController" id="Y0Y-0P-x7T" customClass="FavoriteTracksViewController" customModule="Nanodegree_MusicSafari" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="G3E-07-dH0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="trackTableCell" id="mMm-dr-epG" customClass="TrackTableViewCell" customModule="Nanodegree_MusicSafari" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mMm-dr-epG" id="N03-jn-pnq">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="1Cy-oP-IA6">
+                                            <rect key="frame" x="504.5" y="0.5" width="43.5" height="43.5"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYS-aD-SrS">
+                                            <rect key="frame" x="548" y="0.0" width="43.5" height="43.5"/>
+                                            <state key="normal" image="like"/>
+                                            <state key="highlighted" image="question"/>
+                                            <connections>
+                                                <action selector="onLikeButtonPressed" destination="mMm-dr-epG" eventType="touchDown" id="Ldw-o5-U7A"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvo-6d-FBq">
+                                            <rect key="frame" x="8" y="0.0" width="540" height="43.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1Cy-oP-IA6" firstAttribute="centerY" secondItem="oYS-aD-SrS" secondAttribute="centerY" id="2i5-4z-fb5"/>
+                                        <constraint firstItem="1Cy-oP-IA6" firstAttribute="trailing" secondItem="oYS-aD-SrS" secondAttribute="leading" id="4Oq-Rh-kGl"/>
+                                        <constraint firstItem="xvo-6d-FBq" firstAttribute="leading" secondItem="N03-jn-pnq" secondAttribute="leadingMargin" id="4kR-zh-BWd"/>
+                                        <constraint firstItem="xvo-6d-FBq" firstAttribute="trailing" secondItem="oYS-aD-SrS" secondAttribute="leading" id="9Sm-WC-34J"/>
+                                        <constraint firstItem="oYS-aD-SrS" firstAttribute="width" secondItem="N03-jn-pnq" secondAttribute="height" multiplier="1:1" id="Cug-KO-cwh"/>
+                                        <constraint firstItem="oYS-aD-SrS" firstAttribute="centerY" secondItem="N03-jn-pnq" secondAttribute="centerY" id="HGz-5l-RLR"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="oYS-aD-SrS" secondAttribute="trailing" id="Pau-bV-NTz"/>
+                                        <constraint firstItem="xvo-6d-FBq" firstAttribute="centerY" secondItem="N03-jn-pnq" secondAttribute="centerY" id="dPh-Gm-k9b"/>
+                                        <constraint firstItem="1Cy-oP-IA6" firstAttribute="height" secondItem="oYS-aD-SrS" secondAttribute="height" id="da0-P6-i0J"/>
+                                        <constraint firstItem="xvo-6d-FBq" firstAttribute="height" secondItem="N03-jn-pnq" secondAttribute="height" id="e1M-Nx-l8v"/>
+                                        <constraint firstItem="oYS-aD-SrS" firstAttribute="height" secondItem="N03-jn-pnq" secondAttribute="height" id="fWB-M8-ftR"/>
+                                        <constraint firstItem="1Cy-oP-IA6" firstAttribute="width" secondItem="oYS-aD-SrS" secondAttribute="width" id="v7n-wC-YJ2"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="likeButton" destination="oYS-aD-SrS" id="jMP-kj-0rf"/>
+                                    <outlet property="nameLabel" destination="xvo-6d-FBq" id="xgO-qt-KkH"/>
+                                    <outlet property="playImage" destination="1Cy-oP-IA6" id="0MS-WG-vIa"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Y0Y-0P-x7T" id="gJW-5d-MwP"/>
+                            <outlet property="delegate" destination="Y0Y-0P-x7T" id="rif-1z-AsJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="YXK-C5-DZq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A3N-T3-GoF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="627"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Hxy-wF-BXd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z1E-a7-8RL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="FavoriteViewController" id="ov9-do-4Nq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HZF-og-4tX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Y0Y-0P-x7T" kind="relationship" relationship="rootViewController" id="2AC-Hy-zx3"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="171" y="746"/>
+        </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController storyboardIdentifier="FavoriteViewController" id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Nanodegree_MusicSafari" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Nanodegree_MusicSafari" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>

@@ -13,9 +13,11 @@ class TrackTableViewCell: UITableViewCell {
     @IBOutlet weak var playImage : UIImageView!
     @IBOutlet weak var likeButton : UIButton!
     
-    var track : Track?{
+    var data : AnyObject?
+    
+    var name : String? {
         didSet {
-            nameLabel.text = track!.name
+            nameLabel.text = name
         }
     }
     

@@ -66,23 +66,25 @@ class AlbumDetailViewController: CoreDataTableViewController {
         musicPlayerInstance.removeDelegate(self)
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TrackTableViewCell {
-            if (musicPlayerInstance.enabled) {
-                if (cell.track == musicPlayerInstance.currentTrack) {
-                    musicPlayerInstance.pause()
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TrackTableViewCell ,
+            let track = cell.data as? Track{
+                if (musicPlayerInstance.enabled) {
+                    if (track == musicPlayerInstance.currentTrack) {
+                        musicPlayerInstance.pause()
+                    } else {
+                        musicPlayerInstance.playTrack(track)
+                    }
                 } else {
-                    musicPlayerInstance.playTrack(cell.track)
+                    showAlert("Only Premium member of Spotify can play track.")
                 }
-            } else {
-                showAlert("Only Premium member of Spotify can play track.")
-            }
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = tableView.dequeueReusableCellWithIdentifier("trackTableCell") as? TrackTableViewCell
         if let track = fetchedResultsController?.objectAtIndexPath(indexPath) as? Track {
-            item!.track = track
+            item!.data = track
+            item!.name = track.name
             item!.playEnabled = musicPlayerInstance.enabled
             
             if item!.playEnabled {
@@ -97,7 +99,9 @@ class AlbumDetailViewController: CoreDataTableViewController {
     
     func likeCallback(cell: TrackTableViewCell) -> Void {
         cell.liked = !cell.liked
-        likedDataHelper!.setLiked((cell.track?.id)!, liked: cell.liked)
+        if let track = cell.data as? Track {
+            likedDataHelper!.setLiked((track.id)!, itemType:LikedItem.ItemType.Track, name:track.name, uri:track.uri, liked: cell.liked)
+        }
     }
     
     func onLikedDataChanged() -> Void {

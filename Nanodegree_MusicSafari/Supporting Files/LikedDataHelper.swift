@@ -19,13 +19,17 @@ class LikedDataHelper: NSObject {
     
     private var likedResultsMap = [String : LikedItem]()
     
-    func checkLiked(id:String) -> Bool{
-        return likedResultsMap.keys.contains(id)
+    var likedIds : [String] {
+        return [String](likedResultsMap.keys)
     }
     
     var didChangedCallback : (() -> Void)?
     
-    func setLiked(id:String, liked:Bool) {
+    func checkLiked(id:String) -> Bool{
+        return likedResultsMap.keys.contains(id)
+    }
+    
+    func setLiked(id:String, itemType:LikedItem.ItemType, name:String?, uri:String?, liked:Bool) {
         if let fetchedResultController = fetchedResultController {
             let context = fetchedResultController.managedObjectContext
             context.performBlock({ () -> Void in
@@ -33,8 +37,10 @@ class LikedDataHelper: NSObject {
                 if liked && !currentLiked{
                     let newRecord = LikedItem(context: context)
                     newRecord.id = id
-                    newRecord.type = LikedItem.ItemType.Track.rawValue
+                    newRecord.type = itemType.rawValue
                     newRecord.createdDate = NSDate(timeIntervalSinceNow: 0)
+                    newRecord.name = name
+                    newRecord.uri = uri
                 } else if !liked && currentLiked{
                     context.deleteObject(self.likedResultsMap[id]!)
                     self.likedResultsMap.removeValueForKey(id)
