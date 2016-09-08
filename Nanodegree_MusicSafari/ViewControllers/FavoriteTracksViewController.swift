@@ -72,6 +72,11 @@ class FavoriteTracksViewController: CoreDataTableViewController {
     }
     
     func playLikedItem(item:LikedItem) {
+        TrackAPI.getTracksById([item.id!], context:CoreDataHelper.getLibraryStack().context) { (result) -> Void in
+            if let track = result[item.id!] as? Track {
+                self.musicPlayerInstance.playTrack(track)
+            }
+        }
         
     }
 }

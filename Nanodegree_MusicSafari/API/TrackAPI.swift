@@ -9,6 +9,57 @@
 import CoreData
 
 class TrackAPI: NSObject {
+    
+    static func getTracksById(trackIds:[String], context:NSManagedObjectContext, completionHandler: (([String: AnyObject?])->Void)?) {
+        
+        var mutableTrackIds = trackIds
+        var result = [String:AnyObject?]()
+        
+        let fetchedResults = CoreDataHelper.fetchManagedObject(String(Track.self), indexNameOfManagedObject: "id", byIndexArray: mutableTrackIds, from: context)
+        
+        for item in fetchedResults {
+            if let track = item as? Track {
+                result[track.id!] = track
+            }
+        }
+        for i in (0 ... mutableTrackIds.count - 1).reverse(){
+            let id = mutableTrackIds[i]
+            if nil != result[id] {
+                mutableTrackIds.removeAtIndex(i)
+            }
+        }
+        if mutableTrackIds.count == 0 {
+            if let completionHandler = completionHandler {
+                completionHandler(result)
+            }
+        } else {
+            let request = try! SPTTrack.createRequestForTracks(mutableTrackIds, withAccessToken: SPTAuth.defaultInstance().session.accessToken, market: nil)
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+                HttpServiceHelper.parseJSONResponse(data, error: .Succeed, completeHandler: { (data, error) in
+                    let tracks = AnyObjectHelper.parseWithDefault(data, name: "tracks", defaultValue: NSArray())
+                    
+                    context.performBlock{
+                        
+                        for item in tracks {
+                            let key = AnyObjectHelper.parseWithDefault(item, name: "id", defaultValue: "")
+                            if key.characters.count > 0 {
+                                let track = Track(context: context)
+                                track.updateWith(spotify: item)
+                                result[key] = track
+                            }
+                        }
+                        
+                        CoreDataHelper.getLibraryStack().save()
+                        
+                        if let completionHandler = completionHandler{
+                            completionHandler(result)
+                        }
+                    }
+                })
+            }
+            task.resume()
+        }
+    }
 
     static func getTracksByAlbum(albumId:String, context:NSManagedObjectContext, completionHandler: (([String : AnyObject?])->Void)?) {
         guard let album = CoreDataHelper.fetchManagedObject(String(Album.self), indexNameOfManagedObject: "id", byIndexArray: [albumId], from: context).first as? Album else {
