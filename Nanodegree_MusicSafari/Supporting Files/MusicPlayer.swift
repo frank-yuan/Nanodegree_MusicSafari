@@ -19,6 +19,8 @@ protocol MusicPlayerInterface {
     
     func login()
     
+    func logout()
+    
     func registerDelegate(delegate : MusicPlayerDelegate)
     
     func removeDelegate(delegate : MusicPlayerDelegate)
@@ -75,7 +77,9 @@ extension SpotifyMusicPlayer : MusicPlayerInterface {
     func login() {
         do {
             streamController = SPTAudioStreamingController.sharedInstance()
-            try streamController.startWithClientId(Constants.SpotifyAuth.ClientID)
+            if !streamController.initialized {
+                try streamController.startWithClientId(Constants.SpotifyAuth.ClientID)
+            }
             streamController.delegate = self
             streamController.playbackDelegate = self
             streamController.diskCache = SPTDiskCache(capacity: 1024*1024*64)
@@ -85,6 +89,10 @@ extension SpotifyMusicPlayer : MusicPlayerInterface {
         }
     }
     
+    func logout() {
+        streamController = SPTAudioStreamingController.sharedInstance()
+        streamController.logout()
+    }
     func registerDelegate(delegate : MusicPlayerDelegate) {
         delegates.addObject(delegate)
     }
@@ -164,6 +172,13 @@ extension SpotifyMusicPlayer : SPTAudioStreamingPlaybackDelegate, SPTAudioStream
     }
     
     func audioStreamingDidLogout(audioStreaming: SPTAudioStreamingController!) {
+        let streamController = SPTAudioStreamingController.sharedInstance()
+        do {
+            try streamController.stop()
+        } catch {
+            print("Error in stop audio stream")
+        }
+        
         performUIUpdatesOnMain({ () -> Void in
             for del in self.delegates {
                 if let callback = del.didPlayerEnableChanged {
@@ -173,13 +188,6 @@ extension SpotifyMusicPlayer : SPTAudioStreamingPlaybackDelegate, SPTAudioStream
         })
     }
     
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didEncounterError error: NSError!) {
-        print(error)
-    }
-    
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didReceiveMessage message: String!) {
-        print(message)
-    }
     
     func audioStreamingDidDisconnect(audioStreaming: SPTAudioStreamingController!) {
         performUIUpdatesOnMain({ () -> Void in
@@ -199,5 +207,9 @@ extension SpotifyMusicPlayer : SPTAudioStreamingPlaybackDelegate, SPTAudioStream
                 }
             }
         })
+    }
+    
+    func audioStreamingdidLogout(audioStreaming : SPTAudioStreamingController) {
+        
     }
 }

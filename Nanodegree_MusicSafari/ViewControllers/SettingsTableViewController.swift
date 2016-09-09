@@ -38,8 +38,6 @@ class SettingsTableViewController: UITableViewController {
         let option = config[indexPath.row]
         actionHandler!.performSelector(Selector(option.selector))
     }
-    
-
 }
 
 class SettingsActionsHandler : NSObject {
@@ -52,9 +50,7 @@ class SettingsActionsHandler : NSObject {
     }
     
     func logout() {
-        // HOWTO: restore the app to initial status, pop to AuthViewController, which is rootViewController
-        viewController.parentViewController?.dismissViewControllerAnimated(false, completion: nil)
-        SPTAuthViewController.authenticationViewController().clearCookies(nil)
         
+        NSNotificationCenter.defaultCenter().postNotificationName("game_flow_logout", object: nil)
     }
 }

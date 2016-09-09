@@ -13,6 +13,8 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var loginButton : UIButton!
     @IBOutlet weak var statusLabel : UILabel!
     
+    private var mainController : UIViewController?
+    
     
     private var loggedIn : Bool {
         get {
@@ -27,7 +29,7 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onLogout:", name: "game_flow_logout", object: nil)
         initAuth()
         
     }
@@ -38,6 +40,10 @@ class AuthViewController: UIViewController {
         if (loggedIn) {
             doLogin()
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        mainController = segue.destinationViewController
     }
 
     
@@ -67,6 +73,20 @@ class AuthViewController: UIViewController {
         auth.sessionUserDefaultsKey = Constants.SpotifyAuth.SessionDefaultKey
         auth.requestedScopes = [SPTAuthStreamingScope]
     }
+    
+    func onLogout(notification:NSNotification) {
+        let player = MusicPlayerFactory.defaultInstance
+        statusLabel.text = "Logged out"
+        player.logout()
+        if let controller = mainController {
+            loggedIn = false
+            mainController = nil
+            SPTAuthViewController.authenticationViewController().clearCookies(nil)
+            controller.dismissViewControllerAnimated(true) { () -> Void in
+            }
+        }
+        
+    }
 }
 
 extension AuthViewController : SPTAuthViewDelegate {
@@ -74,22 +94,18 @@ extension AuthViewController : SPTAuthViewDelegate {
     func authenticationViewControllerDidCancelLogin(authenticationViewController: SPTAuthViewController!) {
         statusLabel.text = "Login cancelled."
         loggedIn = false
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didFailToLogin error: NSError!) {
         statusLabel.text = "Login failed."
         loggedIn = false
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func authenticationViewController(authenticationViewController: SPTAuthViewController!, didLoginWithSession session: SPTSession!) {
         statusLabel.text = "Login succeed!"
+        loggedIn = true
+        self.performSegueWithIdentifier("showMainScreen", sender: self)
         let player = MusicPlayerFactory.defaultInstance
         player.login()
-        loggedIn = true
-        print(SPTAuth.defaultInstance().session.accessToken)
-        dismissViewControllerAnimated(true, completion: nil)
-        self.performSegueWithIdentifier("showMainScreen", sender: self)
     }
 }
