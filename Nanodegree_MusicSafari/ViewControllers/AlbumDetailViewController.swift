@@ -98,9 +98,8 @@ class AlbumDetailViewController: CoreDataTableViewController {
     }
     
     func likeCallback(cell: TrackTableViewCell) -> Void {
-        cell.liked = !cell.liked
         if let track = cell.data as? Track {
-            likedDataHelper!.setLiked((track.id)!, itemType:LikedItem.ItemType.Track, name:track.name, uri:track.uri, liked: cell.liked)
+            likedDataHelper!.setLiked((track.id)!, itemType:LikedItem.ItemType.Track, name:track.name, uri:track.uri, liked: !cell.liked)
         }
     }
     

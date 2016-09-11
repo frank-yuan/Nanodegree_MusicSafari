@@ -27,7 +27,7 @@
             <objects>
                 <tableViewController id="N0p-mn-0hP" customClass="ArtistSearchViewController" customModule="Nanodegree_MusicSafari" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DJM-av-ETY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="531"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="8Af-90-2he">
@@ -281,7 +281,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FavoriteTracksViewController" id="Y0Y-0P-x7T" customClass="FavoriteTracksViewController" customModule="Nanodegree_MusicSafari" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="G3E-07-dH0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="531"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -590,7 +590,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btf-Mv-Eg7">
-                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="486"/>
                                 <connections>
                                     <segue destination="mzI-u4-NbO" kind="embed" id="i8S-61-mJY"/>
                                 </connections>
@@ -634,7 +634,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Btf-Mv-Eg7" firstAttribute="bottom" secondItem="peo-3J-syh" secondAttribute="bottom" id="8Hd-EO-Num"/>
+                            <constraint firstItem="Btf-Mv-Eg7" firstAttribute="bottom" secondItem="peo-3J-syh" secondAttribute="top" id="8Hd-EO-Num"/>
                             <constraint firstItem="Btf-Mv-Eg7" firstAttribute="centerX" secondItem="IOL-Fi-Bob" secondAttribute="centerX" id="Arg-5K-9tI"/>
                             <constraint firstItem="peo-3J-syh" firstAttribute="centerX" secondItem="IOL-Fi-Bob" secondAttribute="centerX" id="DcI-3k-6to"/>
                             <constraint firstItem="Oll-FI-j0c" firstAttribute="top" secondItem="peo-3J-syh" secondAttribute="bottom" id="Gpw-Xg-bWb"/>
@@ -665,7 +665,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbD-YO-EnK">
-                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="486"/>
                                 <connections>
                                     <segue destination="ov9-do-4Nq" kind="embed" id="UlH-v7-VkJ"/>
                                 </connections>
@@ -713,7 +713,7 @@
                             <constraint firstItem="ZxN-zZ-HxK" firstAttribute="top" secondItem="Xvy-F9-LIc" secondAttribute="bottom" id="Qcj-Ei-YVV"/>
                             <constraint firstItem="DbD-YO-EnK" firstAttribute="top" secondItem="QGy-QN-WVU" secondAttribute="bottom" id="Ugq-oi-6V9"/>
                             <constraint firstItem="DbD-YO-EnK" firstAttribute="centerX" secondItem="nkP-a4-ndO" secondAttribute="centerX" id="VB4-Wo-L8Y"/>
-                            <constraint firstItem="DbD-YO-EnK" firstAttribute="bottom" secondItem="Xvy-F9-LIc" secondAttribute="bottom" id="Xkb-p3-Sp1"/>
+                            <constraint firstItem="DbD-YO-EnK" firstAttribute="bottom" secondItem="Xvy-F9-LIc" secondAttribute="top" id="Xkb-p3-Sp1"/>
                             <constraint firstItem="DbD-YO-EnK" firstAttribute="width" secondItem="nkP-a4-ndO" secondAttribute="width" id="mWe-EL-4nH"/>
                             <constraint firstItem="Xvy-F9-LIc" firstAttribute="centerX" secondItem="nkP-a4-ndO" secondAttribute="centerX" id="ute-If-fxv"/>
                         </constraints>
