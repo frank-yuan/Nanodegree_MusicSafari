@@ -15,18 +15,50 @@ class MusicPlayerViewController: UIViewController {
     
     @IBOutlet weak var playerView : MusicPlayerView!
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        playerView.enabled = MusicPlayerFactory.defaultInstance.enabled
-    }
-    
     override func viewWillAppear(animated: Bool) {
-        MusicPlayerFactory.defaultInstance.registerDelegate(playerView)
+        super.viewWillAppear(animated)
+        let musicPlayer = MusicPlayerFactory.defaultInstance
+        musicPlayer.registerDelegate(self)
+        
+        playerView.enabled = MusicPlayerFactory.defaultInstance.enabled
+        if playerView.enabled {
+            playerView.isPlaying = musicPlayer.isPlaying
+            playerView.playingTrack = musicPlayer.currentTrack
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
-        MusicPlayerFactory.defaultInstance.removeDelegate(playerView)
+        super.viewWillDisappear(animated)
+        MusicPlayerFactory.defaultInstance.removeDelegate(self)
+    }
+    
+    @IBAction func onPlayButtonTouched(sender:AnyObject?) {
+        let musicPlayerInstance = MusicPlayerFactory.defaultInstance
+        if (musicPlayerInstance.isPlaying) {
+            musicPlayerInstance.pause()
+        } else {
+            musicPlayerInstance.resume()
+        }
+    }
+}
+
+extension MusicPlayerViewController : MusicPlayerDelegate {
+    
+    func didPlayerEnableChanged(enable:Bool) {
+        playerView.enabled = enable
+        
+    }
+    
+    func onTrackPlayStarted(track:Track) {
+        playerView.isPlaying = true
+        playerView.playingTrack = track
+    }
+    
+    func onPlayFailed(track:Track, error:NSError?) {
+        print(error)
+    }
+    
+    func onPlaybackStatusChanged(playing: Bool) {
+        playerView.isPlaying = playing
     }
 }

@@ -17,7 +17,6 @@ class AlbumDetailViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        musicPlayerInstance.registerDelegate(self)
         // init like data helper
         let lfr = NSFetchRequest(entityName: String(LikedItem.self))
         lfr.predicate = NSPredicate(format: "type == %@", argumentArray: [LikedItem.ItemType.Track.rawValue])
@@ -61,6 +60,11 @@ class AlbumDetailViewController: CoreDataTableViewController {
         }
         
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        musicPlayerInstance.registerDelegate(self)
+        tableView.reloadData()
+    }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         musicPlayerInstance.removeDelegate(self)
@@ -69,11 +73,15 @@ class AlbumDetailViewController: CoreDataTableViewController {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TrackTableViewCell ,
             let track = cell.data as? Track{
                 if (musicPlayerInstance.enabled) {
+                    var playing = false
                     if (track == musicPlayerInstance.currentTrack) {
-                        musicPlayerInstance.pause()
+                        playing = !musicPlayerInstance.isPlaying
+                        musicPlayerInstance.isPlaying ? musicPlayerInstance.pause() : musicPlayerInstance.resume()
                     } else {
+                        playing = true
                         musicPlayerInstance.playTrack(track)
                     }
+                    cell.playing = playing
                 } else {
                     showAlert("Only Premium member of Spotify can play track.")
                 }
@@ -84,7 +92,12 @@ class AlbumDetailViewController: CoreDataTableViewController {
         let item = tableView.dequeueReusableCellWithIdentifier("trackTableCell") as? TrackTableViewCell
         if let track = fetchedResultsController?.objectAtIndexPath(indexPath) as? Track {
             item!.data = track
-            item!.name = track.name
+            if let trackNum = track.trackNum {
+                item!.name = "\(trackNum) \(track.name!)"
+            } else {
+                item!.name = track.name
+            }
+            
             item!.playEnabled = musicPlayerInstance.enabled
             
             if item!.playEnabled {
@@ -110,10 +123,6 @@ class AlbumDetailViewController: CoreDataTableViewController {
 
 extension AlbumDetailViewController : MusicPlayerDelegate {
     func onTrackPlayStarted(track: Track) {
-        tableView.reloadData()
-    }
-    
-    func onTrackPaused(track: Track) {
         tableView.reloadData()
     }
     

@@ -43,17 +43,17 @@
                                 <rect key="frame" x="0.0" y="116" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="44t-8h-uDE" id="k8W-Gm-48C">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YOA-7U-TgD">
-                                            <rect key="frame" x="8" y="8" width="83.5" height="83.5"/>
+                                            <rect key="frame" x="8" y="8" width="84" height="84"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="YOA-7U-TgD" secondAttribute="height" multiplier="1:1" id="Oxe-7o-xhg"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtv-iW-Mdg">
-                                            <rect key="frame" x="111.5" y="8" width="447.5" height="83.5"/>
+                                            <rect key="frame" x="112" y="8" width="447" height="84"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -224,10 +224,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="56p-Oe-fwc">
-                                            <rect key="frame" x="504.5" y="0.5" width="43.5" height="43.5"/>
+                                            <rect key="frame" x="504" y="0.0" width="44" height="44"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2L-qT-trk">
-                                            <rect key="frame" x="548" y="0.0" width="43.5" height="43.5"/>
+                                            <rect key="frame" x="548" y="0.0" width="44" height="44"/>
                                             <state key="normal" image="like"/>
                                             <state key="highlighted" image="question"/>
                                             <connections>
@@ -235,7 +235,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWe-jq-rfC">
-                                            <rect key="frame" x="8" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="8" y="0.0" width="496" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -249,10 +249,10 @@
                                         <constraint firstItem="O2L-qT-trk" firstAttribute="centerY" secondItem="3en-qx-8le" secondAttribute="centerY" id="Gzg-Ea-NEP"/>
                                         <constraint firstItem="56p-Oe-fwc" firstAttribute="centerY" secondItem="O2L-qT-trk" secondAttribute="centerY" id="QGR-kd-UT6"/>
                                         <constraint firstItem="56p-Oe-fwc" firstAttribute="trailing" secondItem="O2L-qT-trk" secondAttribute="leading" id="VTg-EQ-OtL"/>
-                                        <constraint firstItem="xWe-jq-rfC" firstAttribute="trailing" secondItem="O2L-qT-trk" secondAttribute="leading" id="Yyj-Cg-lgX"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="O2L-qT-trk" secondAttribute="trailing" id="dFH-TY-6eW"/>
                                         <constraint firstItem="xWe-jq-rfC" firstAttribute="leading" secondItem="3en-qx-8le" secondAttribute="leadingMargin" id="feJ-vj-3V7"/>
                                         <constraint firstItem="xWe-jq-rfC" firstAttribute="centerY" secondItem="3en-qx-8le" secondAttribute="centerY" id="gfd-Tu-4Qq"/>
+                                        <constraint firstItem="xWe-jq-rfC" firstAttribute="trailing" secondItem="56p-Oe-fwc" secondAttribute="leading" id="je6-tJ-j8F"/>
                                         <constraint firstItem="O2L-qT-trk" firstAttribute="height" secondItem="3en-qx-8le" secondAttribute="height" id="zMb-Pi-YIE"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -289,14 +289,14 @@
                                 <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mMm-dr-epG" id="N03-jn-pnq">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="1Cy-oP-IA6">
-                                            <rect key="frame" x="504.5" y="0.5" width="43.5" height="43.5"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="1Cy-oP-IA6">
+                                            <rect key="frame" x="505" y="1" width="43" height="43"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYS-aD-SrS">
-                                            <rect key="frame" x="548" y="0.0" width="43.5" height="43.5"/>
+                                            <rect key="frame" x="548" y="0.0" width="44" height="44"/>
                                             <state key="normal" image="like"/>
                                             <state key="highlighted" image="question"/>
                                             <connections>
@@ -304,7 +304,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvo-6d-FBq">
-                                            <rect key="frame" x="8" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="8" y="0.0" width="540" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -372,7 +372,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="195" y="280" width="209.5" height="41.5"/>
+                                <rect key="frame" x="195" y="280" width="210" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -604,6 +604,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e5-Ym-zT0">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
                                                 <state key="normal" image="play"/>
+                                                <connections>
+                                                    <action selector="onPlayButtonTouched:" destination="2g5-Yv-hAB" eventType="touchUpInside" id="9lM-4c-hfw"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="XOx-rv-F8j">
                                                 <rect key="frame" x="50" y="0.0" width="50" height="45"/>
@@ -646,6 +649,7 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="paw-9l-AtK"/>
                     <connections>
                         <outlet property="playerView" destination="peo-3J-syh" id="JQn-jv-84z"/>
+                        <outlet property="view" destination="IOL-Fi-Bob" id="34s-Ja-Bnw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a09-2i-O8k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -679,6 +683,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h6-8P-BWD">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
                                                 <state key="normal" image="play"/>
+                                                <connections>
+                                                    <action selector="onPlayButtonTouched:" destination="ppn-Kr-XZr" eventType="touchUpInside" id="S8A-AF-Qbp"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="gLd-xb-kcj">
                                                 <rect key="frame" x="50" y="0.0" width="50" height="45"/>
@@ -754,6 +761,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAR-6e-ML4">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="45"/>
                                                 <state key="normal" image="play"/>
+                                                <connections>
+                                                    <action selector="onPlayButtonTouched:" destination="phJ-en-fdk" eventType="touchUpInside" id="8JY-hF-pWP"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="h7H-kl-Tow">
                                                 <rect key="frame" x="50" y="0.0" width="50" height="45"/>

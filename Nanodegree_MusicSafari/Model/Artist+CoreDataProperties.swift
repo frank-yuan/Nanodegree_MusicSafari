@@ -2,7 +2,7 @@
 //  Artist+CoreDataProperties.swift
 //  Nanodegree_MusicSafari
 //
-//  Created by Xuan Yuan (Frank) on 8/30/16.
+//  Created by Xuan Yuan (Frank) on 9/12/16.
 //  Copyright © 2016 frank-yuan. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,6 +22,5 @@ extension Artist {
     @NSManaged var rAlbums: NSSet?
     @NSManaged var rImage: ImageCollection?
     @NSManaged var rSimilarArtists: NSSet?
-    @NSManaged var rTracks: NSSet?
 
 }

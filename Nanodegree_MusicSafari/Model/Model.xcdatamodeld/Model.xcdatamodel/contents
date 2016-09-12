@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="Album" representedClassName=".Album" syncable="YES">
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -19,7 +19,6 @@
         <relationship name="rAlbums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" inverseName="rArtist" inverseEntity="Album" syncable="YES"/>
         <relationship name="rImage" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ImageCollection" syncable="YES"/>
         <relationship name="rSimilarArtists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Artist" inverseName="rSimilarArtists" inverseEntity="Artist" syncable="YES"/>
-        <relationship name="rTracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="rArtist" inverseEntity="Track" syncable="YES"/>
     </entity>
     <entity name="ImageCollection" representedClassName=".ImageCollection" syncable="YES">
         <attribute name="dataLarge" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -38,12 +37,11 @@
         <attribute name="trackNum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="rAlbum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="rTracks" inverseEntity="Album" syncable="YES"/>
-        <relationship name="rArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="rTracks" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <elements>
         <element name="Album" positionX="-54" positionY="18" width="128" height="165"/>
-        <element name="Artist" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Artist" positionX="-63" positionY="-18" width="128" height="165"/>
         <element name="ImageCollection" positionX="-54" positionY="117" width="128" height="150"/>
-        <element name="Track" positionX="-36" positionY="63" width="128" height="165"/>
+        <element name="Track" positionX="-36" positionY="63" width="128" height="150"/>
     </elements>
 </model>

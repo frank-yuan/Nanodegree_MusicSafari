@@ -10,7 +10,6 @@
 @objc protocol MusicPlayerDelegate {
     optional func didPlayerEnableChanged(enable:Bool)
     optional func onTrackPlayStarted(track:Track)
-    optional func onTrackPaused(track:Track)
     optional func onPlayFailed(track:Track, error:NSError?)
     optional func onPlaybackStatusChanged(playing:Bool)
 }
@@ -28,6 +27,8 @@ protocol MusicPlayerInterface {
     func playTrack(track:Track?)
     
     func pause()
+    
+    func resume()
     
     var currentTrack : Track? {get}
     
@@ -70,7 +71,9 @@ extension SpotifyMusicPlayer : MusicPlayerInterface {
     
     var isPlaying : Bool {
         get {
-            return streamController.playbackState.isPlaying
+            return streamController.loggedIn
+                && streamController.playbackState != nil
+                && streamController.playbackState.isPlaying
         }
     }
     
@@ -139,20 +142,25 @@ extension SpotifyMusicPlayer : MusicPlayerInterface {
     
     func pause() {
         if streamController.loggedIn {
-            streamController.setIsPlaying(false, callback: { (error) -> Void in
+            streamController.setIsPlaying(false) { (error) -> Void in
                 guard error == nil else {
                     print("playback stop error")
                     return
                 }
-                performUIUpdatesOnMain({ () -> Void in
-                    for del in self.delegates {
-                        if let callback = del.onTrackPaused {
-                            callback(self.currentTrack!)
-                        }
-                    }
-                })
-            })
-            
+                
+            }
+        }
+    }
+    
+    func resume() {
+        if streamController.loggedIn {
+            streamController.setIsPlaying(true) { (error) -> Void in
+                guard error == nil else {
+                    print("playback stop error")
+                    return
+                }
+                
+            }
         }
     }
     

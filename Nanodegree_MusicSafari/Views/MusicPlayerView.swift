@@ -20,44 +20,39 @@ class MusicPlayerView: UIView {
             trackLabel.enabled = enabled
         }
     }
-}
-
-extension MusicPlayerView : MusicPlayerDelegate {
     
-    func didPlayerEnableChanged(enable:Bool) {
-        enabled = enable
-        
-    }
-    func onTrackPlayStarted(track:Track) {
-        playButton.imageView?.image = UIImage(named:"pause")
-        if let artist = track.rArtist {
-            trackLabel.text = "\(track.name) - \(artist.name)"
-        } else {
-            trackLabel.text = track.name
-        }
-        
-        if let album = track.rAlbum,
-            let imageCollection = album.rImage {
-                if let data = imageCollection.dataSmall {
-                    trackImage.image = UIImage(data: data)
-                } else {
-                    imageCollection.downloadImage(ImageCollection.ImageSize.Small, completionHandler: { (data:NSData) -> Void in
-                        self.trackImage.image = UIImage(data: data)
-                    })
-                }
+    weak var playingTrack : Track? = nil {
+        didSet {
+            trackLabel.text = ""
+            trackImage.image = UIImage(named: "record")
+            if let track = playingTrack {
                 
+                trackLabel.text = track.name!
+                
+                if let album = track.rAlbum{
+                    if let artist = album.rArtist,
+                        artistName = artist.name{
+                            trackLabel.text = "\(track.name!) - \(artistName)"
+                    }
+                    if let imageCollection = album.rImage {
+                        if let data = imageCollection.dataSmall {
+                            trackImage.image = UIImage(data: data)
+                        } else {
+                            imageCollection.downloadImage(ImageCollection.ImageSize.Small, completionHandler: { (data:NSData) -> Void in
+                                self.trackImage.image = UIImage(data: data)
+                            })
+                        }
+                        
+                    }
+                }
+            }
         }
-    }
-    func onTrackPaused(track:Track) {
-        playButton.imageView?.image = UIImage(named:"play")
-    }
-    func onPlayFailed(track:Track, error:NSError?) {
-        print(error)
     }
     
-    func onPlaybackStatusChanged(playing: Bool) {
-        if !playing {
-            playButton.imageView?.image = UIImage(named:"play")
+    var isPlaying : Bool = false {
+        didSet{
+            playButton.imageView?.image = UIImage(named:isPlaying ? "pause" : "play")
         }
     }
+    
 }

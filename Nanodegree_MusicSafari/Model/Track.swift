@@ -29,8 +29,8 @@ extension Track{
             id = spotifyTrack.identifier
             name = spotifyTrack.name
             uri = spotifyTrack.uri.absoluteString
-            trackNum = AnyObjectHelper.parseWithDefault(artist, name: "track_number", defaultValue: 0)
-            discNum = AnyObjectHelper.parseWithDefault(artist, name: "disc_number", defaultValue: 1)
+            trackNum = NSNumber(integer: AnyObjectHelper.parseWithDefault(artist, name: "track_number", defaultValue: 0))
+            discNum = NSNumber(integer: AnyObjectHelper.parseWithDefault(artist, name: "disc_number", defaultValue: 1))
         } catch {
         }
     }

@@ -15,26 +15,30 @@ class FavoriteTracksViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        musicPlayerInstance.registerDelegate(self)
-        
         
         let fr = NSFetchRequest(entityName: String(LikedItem.self))
         fr.predicate = NSPredicate(format: "type == %@", argumentArray: [LikedItem.ItemType.Track.rawValue])
         fr.sortDescriptors = [NSSortDescriptor(key:"createdDate", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getUserStack().context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        musicPlayerInstance.registerDelegate(self)
+        tableView.reloadData()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         musicPlayerInstance.removeDelegate(self)
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TrackTableViewCell ,
             let likedItem = cell.data as? LikedItem{
                 if (musicPlayerInstance.enabled) {
                     if (likedItem.id == musicPlayerInstance.currentTrack?.id) {
-                        musicPlayerInstance.pause()
+                        musicPlayerInstance.isPlaying ? musicPlayerInstance.pause() : musicPlayerInstance.resume()
                     } else {
                         playLikedItem(likedItem)
                     }
@@ -83,10 +87,6 @@ class FavoriteTracksViewController: CoreDataTableViewController {
 
 extension FavoriteTracksViewController : MusicPlayerDelegate {
     func onTrackPlayStarted(track: Track) {
-        tableView.reloadData()
-    }
-    
-    func onTrackPaused(track: Track) {
         tableView.reloadData()
     }
     
