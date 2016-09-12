@@ -93,7 +93,7 @@ class AlbumDetailViewController: CoreDataTableViewController {
         if let track = fetchedResultsController?.objectAtIndexPath(indexPath) as? Track {
             item!.data = track
             if let trackNum = track.trackNum {
-                item!.name = "\(trackNum) \(track.name!)"
+                item!.name = "\(trackNum)\t\(track.name!)"
             } else {
                 item!.name = track.name
             }
