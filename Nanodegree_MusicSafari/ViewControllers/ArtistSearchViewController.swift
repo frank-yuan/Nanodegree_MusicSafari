@@ -29,15 +29,23 @@ class ArtistSearchViewController: CoreDataTableViewController {
                 return item!
             }
             
+            // clean up busy views
+//            for subviews in item!.artistImage.subviews {
+//                subviews.removeFromSuperview()
+//            }
+            
             if let imageData = imageCollection.dataSmall {
                 
                 item!.artistImage!.image = UIImage(data: imageData)
                 
             } else {
+//                let busyView = BusyView(parent: item!.artistImage)
+//                item!.artistImage.addSubview(busyView)
                 imageCollection.downloadImage(.Small) { (data:NSData) -> Void in
                     self.fetchedResultsController?.managedObjectContext.performBlock({
                         // set time to trigger update
                         artist.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)
+//                        busyView.removeFromSuperview()
                     })
                 }
             }
@@ -55,8 +63,9 @@ class ArtistSearchViewController: CoreDataTableViewController {
     
     func startSearch(name:String) {
         
-        let busyView = BusyView(parent: view)
-        view.addSubview(busyView)
+        let rootView = parentViewController?.parentViewController?.parentViewController?.view
+        let busyView = BusyView(parent: rootView!)
+        rootView!.addSubview(busyView)
         
         let fr = NSFetchRequest(entityName: "Artist")
         fr.predicate = NSPredicate(format: "name contains %@", argumentArray: [name])

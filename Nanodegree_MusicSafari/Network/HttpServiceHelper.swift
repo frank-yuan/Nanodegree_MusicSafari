@@ -44,7 +44,7 @@ struct HttpServiceHelper {
     
     static func parseJSONResponse(data:NSData?, error:NetworkError, completeHandler:(AnyObject?, NetworkError) -> Void) -> Void {
         
-        if (error == NetworkError.Succeed) {
+        if (error == NetworkError.Succeed && data != nil) {
             /* Parse the data */
             let parsedResult: AnyObject!
             do {
