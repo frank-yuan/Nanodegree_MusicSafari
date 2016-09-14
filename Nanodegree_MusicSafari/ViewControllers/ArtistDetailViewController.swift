@@ -100,8 +100,35 @@ extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionV
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let vc = storyboard?.instantiateViewControllerWithIdentifier("AlbumDetailViewController") as! AlbumDetailViewController
-        vc.album = fetchedResultsController?.objectAtIndexPath(indexPath) as? Album
-        navigationController?.pushViewController(vc, animated: true)
+        if let album = fetchedResultsController?.objectAtIndexPath(indexPath) as? Album {
+            vc.album = album
+            let id = album.id!
+            
+            let fr = NSFetchRequest(entityName: String(Track.self))
+            fr.predicate = NSPredicate(format: "rAlbum == %@", argumentArray: [album])
+            fr.sortDescriptors = [NSSortDescriptor(key:"discNum", ascending: true), NSSortDescriptor(key:"trackNum", ascending: true)]
+            vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+            
+            if vc.fetchedResultsController?.fetchedObjects?.count == 0 {
+                
+                let rootView = UIHelper.getRootViewController(from:self).view
+                let busyView = BusyView(parent: rootView!)
+                rootView!.addSubview(busyView)
+                
+                let workerContext = vc.fetchedResultsController?.managedObjectContext
+                TrackAPI.getTracksByAlbum(id, context: workerContext!){ result -> Void in
+                    performUIUpdatesOnMain({
+                        busyView.removeFromSuperview()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    })
+                }
+            } else {
+                self.navigationController?.pushViewController(vc, animated: true)
+                let workerContext = vc.fetchedResultsController?.managedObjectContext
+                TrackAPI.getTracksByAlbum(id, context: workerContext!, completionHandler: nil)
+                
+            }
+        }
     }
 }
 

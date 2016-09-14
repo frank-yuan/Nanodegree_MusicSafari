@@ -44,20 +44,6 @@ class AlbumDetailViewController: CoreDataTableViewController {
             
         }
         
-        let id = album!.id!
-        
-        let fr = NSFetchRequest(entityName: String(Track.self))
-        fr.predicate = NSPredicate(format: "rAlbum == %@", argumentArray: [album!])
-        fr.sortDescriptors = [NSSortDescriptor(key:"discNum", ascending: true), NSSortDescriptor(key:"trackNum", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        let workerContext = fetchedResultsController?.managedObjectContext
-        TrackAPI.getTracksByAlbum(id, context: workerContext!){ result -> Void in
-            performUIUpdatesOnMain({ 
-                self.executeSearch()
-                self.tableView.reloadData()
-            })
-        }
         
     }
     override func viewWillAppear(animated: Bool) {

@@ -9,10 +9,11 @@
 import UIKit
 
 class UIHelper: NSObject {
-    static var rootViewController : UIViewController {
-        get {
-            let delegate = UIApplication.sharedApplication().delegate as? AppDelegate
-            return (delegate!.window?.rootViewController)!
+    static func getRootViewController(from viewController:UIViewController) -> UIViewController {
+        var vc = viewController
+        while vc.parentViewController != nil {
+            vc = vc.parentViewController!
         }
+        return vc
     }
 }
