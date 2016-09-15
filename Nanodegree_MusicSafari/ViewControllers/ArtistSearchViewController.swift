@@ -29,23 +29,16 @@ class ArtistSearchViewController: CoreDataTableViewController {
                 return item!
             }
             
-            // clean up busy views
-//            for subviews in item!.artistImage.subviews {
-//                subviews.removeFromSuperview()
-//            }
             
             if let imageData = imageCollection.dataSmall {
                 
                 item!.artistImage!.image = UIImage(data: imageData)
                 
             } else {
-//                let busyView = BusyView(parent: item!.artistImage)
-//                item!.artistImage.addSubview(busyView)
                 imageCollection.downloadImage(.Small) { (data:NSData) -> Void in
                     self.fetchedResultsController?.managedObjectContext.performBlock({
                         // set time to trigger update
                         artist.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)
-//                        busyView.removeFromSuperview()
                     })
                 }
             }
@@ -55,9 +48,38 @@ class ArtistSearchViewController: CoreDataTableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let vc = storyboard?.instantiateViewControllerWithIdentifier("ArtistDetailViewController") as? ArtistDetailViewController {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as? ArtistTableViewCell
-            vc.artist = cell?.artist
-            navigationController?.pushViewController(vc, animated: true)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ArtistTableViewCell {
+                let artist = cell.artist
+                vc.artist = artist
+                let id = artist!.id!
+                
+                let fr = NSFetchRequest(entityName: String(Album.self))
+                fr.predicate = NSPredicate(format: "rArtist = %@", argumentArray: [artist!])
+                fr.sortDescriptors = [NSSortDescriptor(key:"releasedDate", ascending: true)]
+                
+                if vc.fetchedResultsController?.fetchedObjects?.count > 0 {
+                    let workerContext = fetchedResultsController?.managedObjectContext
+                    AlbumAPI.getArtistTopAlbums(id, context: workerContext!, completionHandler: nil)
+                    vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+                    navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let rootView = UIHelper.getRootViewController(from: self).view
+                    let busyView = BusyView(parent: rootView)
+                    view.addSubview(busyView)
+                    
+                    let workerContext = fetchedResultsController?.managedObjectContext
+                    AlbumAPI.getArtistTopAlbums(id, context: workerContext!) { result in
+                        performUIUpdatesOnMain({ 
+                            busyView.removeFromSuperview()
+                            vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        })
+                        
+                    }
+                    
+                }
+                
+            }
         }
     }
     
@@ -80,8 +102,8 @@ class ArtistSearchViewController: CoreDataTableViewController {
 
 extension ArtistSearchViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         startSearch(searchBar.text!)
-        
     }
     
 }

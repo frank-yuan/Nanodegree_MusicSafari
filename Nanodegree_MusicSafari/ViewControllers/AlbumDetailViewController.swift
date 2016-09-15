@@ -58,7 +58,7 @@ class AlbumDetailViewController: CoreDataTableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TrackTableViewCell ,
             let track = cell.data as? Track{
-                if (musicPlayerInstance.enabled) {
+                if (cell.playEnabled) {
                     var playing = false
                     if (track == musicPlayerInstance.currentTrack) {
                         playing = !musicPlayerInstance.isPlaying
@@ -84,7 +84,7 @@ class AlbumDetailViewController: CoreDataTableViewController {
                 item!.name = track.name
             }
             
-            item!.playEnabled = musicPlayerInstance.enabled
+            item!.playEnabled = musicPlayerInstance.enabled && track.playable != false
             
             if item!.playEnabled {
                 item!.playing = musicPlayerInstance.currentTrack == track && musicPlayerInstance.isPlaying

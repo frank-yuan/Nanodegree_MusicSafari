@@ -31,6 +31,7 @@ extension Track{
             uri = spotifyTrack.uri.absoluteString
             trackNum = NSNumber(integer: AnyObjectHelper.parseWithDefault(artist, name: "track_number", defaultValue: 0))
             discNum = NSNumber(integer: AnyObjectHelper.parseWithDefault(artist, name: "disc_number", defaultValue: 1))
+            playable = true
         } catch {
         }
     }

@@ -1,9 +1,9 @@
 //
 //  Track+CoreDataProperties.swift
-//  Nanodegree_MusicSafari
+//  
 //
-//  Created by Xuan Yuan (Frank) on 9/12/16.
-//  Copyright © 2016 frank-yuan. All rights reserved.
+//  Created by Xuan Yuan on 2016-09-15.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -20,6 +20,7 @@ extension Track {
     @NSManaged var name: String?
     @NSManaged var trackNum: NSNumber?
     @NSManaged var uri: String?
+    @NSManaged var playable: NSNumber?
     @NSManaged var rAlbum: Album?
 
 }

@@ -16,8 +16,6 @@ class ArtistDetailViewController: UIViewController{
     @IBOutlet weak var portrait:UIImageView!
     @IBOutlet weak var albumsCollection : UICollectionView!
     @IBOutlet weak var albumsLayout : UICollectionViewFlowLayout!
-    //@IBOutlet weak var similarArtistsCollection : UICollectionView!
-    @IBOutlet weak var summaryLabel:UILabel!
     let cellSpacing:CGFloat = 1.0
     
     private var contentCommandQueue = [ContentChangeCommand]()
@@ -25,15 +23,15 @@ class ArtistDetailViewController: UIViewController{
     var fetchedResultsController : NSFetchedResultsController? {
         didSet {
             
-            fetchedResultsController?.delegate = self
             executeSearch()
-            albumsCollection.reloadData()
         }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchedResultsController?.delegate = self
         
         navigationItem.title = artist?.name
         nameLabel.text = artist?.name
@@ -52,20 +50,7 @@ class ArtistDetailViewController: UIViewController{
             
         }
         
-        let id = artist!.id!
-        
-        let fr = NSFetchRequest(entityName: String(Album.self))
-        fr.predicate = NSPredicate(format: "rArtist = %@", argumentArray: [artist!])
-        fr.sortDescriptors = [NSSortDescriptor(key:"id", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        let workerContext = fetchedResultsController?.managedObjectContext
-        AlbumAPI.getArtistTopAlbums(id, context: workerContext!){ result -> Void in
-            performUIUpdatesOnMain({ 
-                self.executeSearch()
-                self.albumsCollection.reloadData()
-            })
-        }
+        albumsCollection.reloadData()
         
     }
     
