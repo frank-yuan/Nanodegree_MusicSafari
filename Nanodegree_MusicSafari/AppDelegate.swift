@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     let libraryStack = CoreDataStack(modelName: "Model", persistingDirectory: .LibraryDirectory)!
-    let userStack = CoreDataStack(modelName: "UserModel")!
+    var userStack : CoreDataStack? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -47,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func saveCoreData() {
         libraryStack.save()
-        userStack.save()
+        if let userStack = userStack {
+            userStack.save()
+        }
         
     }
 

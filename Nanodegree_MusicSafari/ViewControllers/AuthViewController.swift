@@ -29,7 +29,7 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onLogout:", name: "game_flow_logout", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AuthViewController.onLogout(_:)), name: "game_flow_logout", object: nil)
         initAuth()
         
     }
@@ -107,5 +107,10 @@ extension AuthViewController : SPTAuthViewDelegate {
         self.performSegueWithIdentifier("showMainScreen", sender: self)
         let player = MusicPlayerFactory.defaultInstance
         player.login()
+        
+        // init user core data stack
+        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            appDelegate.userStack = CoreDataStack(modelName: "UserModel", persistingDirectory: .DocumentDirectory, dbURLSuffix: "\(session.canonicalUsername)")
+        }
     }
 }

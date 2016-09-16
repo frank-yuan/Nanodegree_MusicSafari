@@ -75,7 +75,7 @@ class CoreDataHelper : NSObject {
     
     static func getUserStack() -> CoreDataStack {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.userStack
+        return appDelegate.userStack!
     }
     
     static func fetchManagedObject(entityName:String, indexNameOfManagedObject:String, byIndexArray indexArray: [String], from context:NSManagedObjectContext) -> [AnyObject]{

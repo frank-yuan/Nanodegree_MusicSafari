@@ -11,12 +11,6 @@ import UIKit
 
 class ArtistSearchViewController: CoreDataTableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let item = tableView.dequeueReusableCellWithIdentifier("artistTableCell") as? ArtistTableViewCell
@@ -83,6 +77,10 @@ class ArtistSearchViewController: CoreDataTableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UIConstants.ArtistSearch.CellHeight
+    }
+    
     func startSearch(name:String) {
         
         let rootView = parentViewController?.parentViewController?.parentViewController?.view
@@ -94,8 +92,9 @@ class ArtistSearchViewController: CoreDataTableViewController {
         fr.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
         
-        ArtistAPI.searchArtist(name, context: (fetchedResultsController?.managedObjectContext)!){ result -> Void in
+        ArtistAPI.searchArtist(name, context: (fetchedResultsController?.managedObjectContext)!){ error, result -> Void in
             busyView.removeFromSuperview()
+            HttpServiceHelper.showErrorAlert(error, forViewController: self)
         }
     }
 }

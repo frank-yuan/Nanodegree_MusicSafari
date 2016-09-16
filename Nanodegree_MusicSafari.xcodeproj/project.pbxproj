@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94134F451D8C437C000ECDB6 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94134F441D8C437C000ECDB6 /* UIConstants.swift */; };
 		941D2D9A1D7C697B00235A31 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D991D7C697B00235A31 /* MusicPlayerView.swift */; };
 		941D2D9C1D7E9DE800235A31 /* LikedDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D9B1D7E9DE800235A31 /* LikedDataHelper.swift */; };
 		941D2DA11D7EA91900235A31 /* LikedItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D9F1D7EA91900235A31 /* LikedItem+CoreDataProperties.swift */; };
@@ -16,7 +17,6 @@
 		941D2DAA1D82A78700235A31 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2DA91D82A78600235A31 /* MusicPlayerViewController.swift */; };
 		942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 948A52681D6CA7E00047F564 /* Spotify.framework */; };
 		94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0A1D6450A900EC0742 /* AppDelegate.swift */; };
-		94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B0E1D6450A900EC0742 /* SecondViewController.swift */; };
 		94559B221D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B211D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift */; };
 		94559B2D1D6450A900EC0742 /* Nanodegree_MusicSafariUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B2C1D6450A900EC0742 /* Nanodegree_MusicSafariUITests.swift */; };
 		94559B461D64527900EC0742 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559B3C1D64527900EC0742 /* CoreDataStack.swift */; };
@@ -63,7 +63,6 @@
 		94DE4E421D69BF70005F11F4 /* ArtistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */; };
 		94DE4E481D69EB6A005F11F4 /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */; };
 		94DE4E4A1D69F58E005F11F4 /* BusyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E491D69F58E005F11F4 /* BusyView.swift */; };
-		94DE4E4C1D6AA54F005F11F4 /* AlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */; };
 		94DE4E4E1D6AA595005F11F4 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */; };
 		94DE4E541D6C40EC005F11F4 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */; };
 		94E5D5D41D77D8E000F66891 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E5D5D31D77D8E000F66891 /* MusicPlayer.swift */; };
@@ -92,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		6DCE042524EB72E53916ADB5 /* Pods-Nanodegree_MusicSafari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanodegree_MusicSafari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nanodegree_MusicSafari/Pods-Nanodegree_MusicSafari.release.xcconfig"; sourceTree = "<group>"; };
+		94134F441D8C437C000ECDB6 /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		941D2D991D7C697B00235A31 /* MusicPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerView.swift; sourceTree = "<group>"; };
 		941D2D9B1D7E9DE800235A31 /* LikedDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedDataHelper.swift; sourceTree = "<group>"; };
 		941D2D9F1D7EA91900235A31 /* LikedItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikedItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -101,7 +101,6 @@
 		941D2DA91D82A78600235A31 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		94559B071D6450A900EC0742 /* Nanodegree_MusicSafari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nanodegree_MusicSafari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94559B0A1D6450A900EC0742 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94559B0E1D6450A900EC0742 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		94559B181D6450A900EC0742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94559B1D1D6450A900EC0742 /* Nanodegree_MusicSafariTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Nanodegree_MusicSafariTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94559B211D6450A900EC0742 /* Nanodegree_MusicSafariTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nanodegree_MusicSafariTests.swift; sourceTree = "<group>"; };
@@ -142,7 +141,6 @@
 		94DE4E411D69BF70005F11F4 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
 		94DE4E451D69EB6A005F11F4 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		94DE4E491D69F58E005F11F4 /* BusyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusyView.swift; sourceTree = "<group>"; };
-		94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumView.xib; sourceTree = "<group>"; };
 		94DE4E4D1D6AA595005F11F4 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		94DE4E531D6C40EC005F11F4 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		94DE4E551D6C44A3005F11F4 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				94559B411D64527900EC0742 /* Supporting Files */,
 				94559B451D64527900EC0742 /* ViewControllers */,
 				94559B0A1D6450A900EC0742 /* AppDelegate.swift */,
-				94559B0E1D6450A900EC0742 /* SecondViewController.swift */,
 				94559B181D6450A900EC0742 /* Info.plist */,
 			);
 			path = Nanodegree_MusicSafari;
@@ -300,7 +297,6 @@
 				94559B4E1D6452DA00EC0742 /* LaunchScreen.storyboard */,
 				94559B501D6452DA00EC0742 /* Main.storyboard */,
 				94559B4D1D6452DA00EC0742 /* Base.lproj */,
-				94DE4E4B1D6AA54F005F11F4 /* AlbumView.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -316,6 +312,7 @@
 				94E5D5D31D77D8E000F66891 /* MusicPlayer.swift */,
 				941D2D9B1D7E9DE800235A31 /* LikedDataHelper.swift */,
 				94D57A621D8847FA00F7C545 /* UIHelper.swift */,
+				94134F441D8C437C000ECDB6 /* UIConstants.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -472,7 +469,6 @@
 			files = (
 				94559B551D6467EB00EC0742 /* LaunchScreen.storyboard in Resources */,
 				94559B561D6467EB00EC0742 /* Main.storyboard in Resources */,
-				94DE4E4C1D6AA54F005F11F4 /* AlbumView.xib in Resources */,
 				94559B521D6452DA00EC0742 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,13 +543,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				94559B4A1D64527900EC0742 /* GCDBlackBox.swift in Sources */,
-				94559B0F1D6450A900EC0742 /* SecondViewController.swift in Sources */,
 				949723321D7577A600226D87 /* TrackTableViewCell.swift in Sources */,
 				941D2DA61D812AC900235A31 /* FavoriteTracksViewController.swift in Sources */,
 				94C668341D6FE29C0054579A /* ImageCollection+CoreDataProperties.swift in Sources */,
 				949723301D7490A700226D87 /* AlbumDetailViewController.swift in Sources */,
 				94559B4B1D64527900EC0742 /* Utils.swift in Sources */,
 				94559B0B1D6450A900EC0742 /* AppDelegate.swift in Sources */,
+				94134F451D8C437C000ECDB6 /* UIConstants.swift in Sources */,
 				94DE4E3C1D68ABBA005F11F4 /* ArtistDetailViewController.swift in Sources */,
 				941D2DAA1D82A78700235A31 /* MusicPlayerViewController.swift in Sources */,
 				94DE4E4E1D6AA595005F11F4 /* AlbumCollectionViewCell.swift in Sources */,

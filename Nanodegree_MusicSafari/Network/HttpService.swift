@@ -14,8 +14,7 @@ enum NetworkError : Int {
     RequestError,
     ResponseWrongStatus,
     NoData,
-    ParseJSONError,
-    ParseHttpBodyError
+    ParseJSONError
 }
 
 protocol EndPointConfig {
@@ -79,8 +78,12 @@ private extension HttpRequest {
 class HttpService : NSObject {
 
     static func service(request:HttpRequest, completeHandler:(NSData?, NetworkError) -> Void) -> Void {
+        service(request.toNSURLReuqest(), completeHandler: completeHandler)
+    }
+    
+    static func service(request:NSURLRequest, completeHandler:(NSData?, NetworkError) -> Void) -> Void {
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request.toNSURLReuqest()) { (data, response, error) in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {

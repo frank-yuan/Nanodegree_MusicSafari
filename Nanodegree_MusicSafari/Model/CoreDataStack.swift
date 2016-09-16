@@ -21,7 +21,7 @@ struct CoreDataStack {
     
     
     // MARK:  - Initializers
-    init?(modelName: String, persistingDirectory:NSSearchPathDirectory = .DocumentDirectory){
+    init?(modelName: String, persistingDirectory:NSSearchPathDirectory = .DocumentDirectory, dbURLSuffix: String? = nil){
         
         // Assumes the model is in the main bundle
         guard let modelURL = NSBundle.mainBundle().URLForResource(modelName, withExtension: "momd") else {
@@ -63,8 +63,11 @@ struct CoreDataStack {
             return nil
         }
         
-        self.dbURL = docUrl.URLByAppendingPathComponent("\(modelName).sqlite")
-        
+        if let urlSuffix = dbURLSuffix {
+            self.dbURL = docUrl.URLByAppendingPathComponent("\(modelName)_\(urlSuffix).sqlite")
+        } else {
+            self.dbURL = docUrl.URLByAppendingPathComponent("\(modelName).sqlite")
+        }
         
         do{
             try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: nil)
@@ -72,11 +75,6 @@ struct CoreDataStack {
         }catch{
             print("unable to add store at \(dbURL)")
         }
-        
-        
-        
-        
-        
     }
     
     // MARK:  - Utils

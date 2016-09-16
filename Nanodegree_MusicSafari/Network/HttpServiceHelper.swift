@@ -62,4 +62,25 @@ struct HttpServiceHelper {
             completeHandler(data, error)
         }
     }
+    
+    static func showErrorAlert(error: NetworkError, forViewController viewController:UIViewController) {
+        var errorText = ""
+        switch error {
+        case .Succeed:
+            return
+        case .RequestError:
+            errorText = "Network request Error!"
+            break
+        case .ResponseWrongStatus:
+            errorText = "Network response does not have expected status!"
+            break
+        case .NoData:
+            errorText = "No data responsed from server!"
+            break
+        case .ParseJSONError:
+            errorText = "Data cannot be parsed!"
+            break
+        }
+        viewController.showAlert(errorText)
+    }
 }
