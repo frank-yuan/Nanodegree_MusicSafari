@@ -10,7 +10,7 @@ import CoreData
 
 class TrackAPI: NSObject {
     
-    static func getTracksById(trackIds:[String], context:NSManagedObjectContext, completionHandler: (([String: AnyObject?])->Void)?) {
+    static func getTracksById(trackIds:[String], context:NSManagedObjectContext, completionHandler: ((NetworkError, [String: AnyObject?]?)->Void)?) {
         
         var mutableTrackIds = trackIds
         var result = [String:AnyObject?]()
@@ -30,12 +30,21 @@ class TrackAPI: NSObject {
         }
         if mutableTrackIds.count == 0 {
             if let completionHandler = completionHandler {
-                completionHandler(result)
+                completionHandler(.Succeed, result)
             }
         } else {
             let request = try! SPTTrack.createRequestForTracks(mutableTrackIds, withAccessToken: SPTAuth.defaultInstance().session.accessToken, market: nil)
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
-                HttpServiceHelper.parseJSONResponse(data, error: .Succeed, completeHandler: { (data, error) in
+            
+            HttpService.service(request) { (data, error) in
+                
+                guard error == .Succeed else {
+                    if let completionHandler = completionHandler {
+                        completionHandler(error, nil)
+                    }
+                    return
+                }
+                
+                HttpServiceHelper.parseJSONResponse(data, error: error) { (data, error) in
                     let tracks = AnyObjectHelper.parseWithDefault(data, name: "tracks", defaultValue: NSArray())
                     
                     context.performBlock{
@@ -52,28 +61,35 @@ class TrackAPI: NSObject {
                         CoreDataHelper.getLibraryStack().save()
                         
                         if let completionHandler = completionHandler{
-                            completionHandler(result)
+                            completionHandler(error, result)
                         }
                     }
-                })
+                }
             }
-            task.resume()
         }
     }
 
-    static func getTracksByAlbum(albumId:String, context:NSManagedObjectContext, completionHandler: (([String : AnyObject?])->Void)?) {
+    static func getTracksByAlbum(albumId:String, context:NSManagedObjectContext, completionHandler: ((NetworkError, [String : AnyObject?]?)->Void)?) {
         guard let album = CoreDataHelper.fetchManagedObject(String(Album.self), indexNameOfManagedObject: "id", byIndexArray: [albumId], from: context).first as? Album else {
             return
         }
         let request = try! SPTRequest.createRequestForURL(NSURL(string:"https://api.spotify.com/v1/albums/\(albumId)/tracks"),
-					  withAccessToken:SPTAuth.defaultInstance().session.accessToken,
-						   httpMethod:"get",
-							   values:nil,
-					  valueBodyIsJSON:false,
-				sendDataAsQueryString:true)
+                                                          withAccessToken:SPTAuth.defaultInstance().session.accessToken,
+                                                          httpMethod:"get",
+                                                          values:nil,
+                                                          valueBodyIsJSON:false,
+                                                          sendDataAsQueryString:true)
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+        HttpService.service(request)  { (data, error) in
+            guard error == .Succeed else {
+                if let completionHandler = completionHandler{
+                    completionHandler(error, nil)
+                }
+                return
+            }
+            
             HttpServiceHelper.parseJSONResponse(data, error: .Succeed, completeHandler: { (result, error) in
+                
                 let tracks = AnyObjectHelper.parseWithDefault(result, name: "items", defaultValue: NSArray())
                 var keys = [String]()
                 for item in tracks {
@@ -115,11 +131,10 @@ class TrackAPI: NSObject {
                     CoreDataHelper.getLibraryStack().save()
                     
                     if let completionHandler = completionHandler{
-                        completionHandler(dic)
+                        completionHandler(error, dic)
                     }
                 }
             })
         }
-        task.resume()
     }
 }

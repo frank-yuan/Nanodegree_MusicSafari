@@ -101,9 +101,13 @@ extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionV
                 rootView!.addSubview(busyView)
                 
                 let workerContext = vc.fetchedResultsController?.managedObjectContext
-                TrackAPI.getTracksByAlbum(id, context: workerContext!){ result -> Void in
+                TrackAPI.getTracksByAlbum(id, context: workerContext!){ error, result -> Void in
                     performUIUpdatesOnMain({
                         busyView.removeFromSuperview()
+                        guard error == .Succeed else {
+                            HttpServiceHelper.showErrorAlert(error, forViewController: self)
+                            return
+                        }
                         self.navigationController?.pushViewController(vc, animated: true)
                     })
                 }

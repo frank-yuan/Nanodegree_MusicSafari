@@ -23,7 +23,6 @@ class ArtistSearchViewController: CoreDataTableViewController {
                 return item!
             }
             
-            
             if let imageData = imageCollection.dataSmall {
                 
                 item!.artistImage!.image = UIImage(data: imageData)
@@ -62,11 +61,15 @@ class ArtistSearchViewController: CoreDataTableViewController {
                     view.addSubview(busyView)
                     
                     let workerContext = fetchedResultsController?.managedObjectContext
-                    AlbumAPI.getArtistTopAlbums(id, context: workerContext!) { result in
+                    AlbumAPI.getArtistTopAlbums(id, context: workerContext!) { error, result in
                         performUIUpdatesOnMain({ 
                             busyView.removeFromSuperview()
-                            vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            if error != .Succeed {
+                                HttpServiceHelper.showErrorAlert(error, forViewController: self)
+                            } else {
+                                vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         })
                         
                     }
