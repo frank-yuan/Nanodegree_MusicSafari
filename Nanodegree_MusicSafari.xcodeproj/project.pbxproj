@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		026F01DDD6D7655914B64564 /* Pods_Nanodegree_MusicSafari.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D7A3E0CD796531D0AAC03F /* Pods_Nanodegree_MusicSafari.framework */; };
 		94134F451D8C437C000ECDB6 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94134F441D8C437C000ECDB6 /* UIConstants.swift */; };
 		941D2D9A1D7C697B00235A31 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D991D7C697B00235A31 /* MusicPlayerView.swift */; };
 		941D2D9C1D7E9DE800235A31 /* LikedDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941D2D9B1D7E9DE800235A31 /* LikedDataHelper.swift */; };
@@ -69,7 +70,6 @@
 		94E5D5D61D77FF7200F66891 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5D5D51D77FF7200F66891 /* AVFoundation.framework */; };
 		94E5D5D81D77FFB500F66891 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5D5D71D77FFB500F66891 /* Security.framework */; };
 		94E5D5DA1D7804D100F66891 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5D5D91D7804D100F66891 /* SystemConfiguration.framework */; };
-		9AF7A32D3D573ADDAF185533 /* libPods-Nanodegree_MusicSafari.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3EC433575A825163A43F10 /* libPods-Nanodegree_MusicSafari.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +149,7 @@
 		94E5D5D71D77FFB500F66891 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		94E5D5D91D7804D100F66891 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A5C5C3C90E5D916FC49F4586 /* Pods-Nanodegree_MusicSafari.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nanodegree_MusicSafari.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nanodegree_MusicSafari/Pods-Nanodegree_MusicSafari.debug.xcconfig"; sourceTree = "<group>"; };
-		FD3EC433575A825163A43F10 /* libPods-Nanodegree_MusicSafari.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Nanodegree_MusicSafari.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1D7A3E0CD796531D0AAC03F /* Pods_Nanodegree_MusicSafari.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nanodegree_MusicSafari.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +161,7 @@
 				94E5D5D81D77FFB500F66891 /* Security.framework in Frameworks */,
 				94E5D5D61D77FF7200F66891 /* AVFoundation.framework in Frameworks */,
 				942B1F9D1D76A98D002B0216 /* Spotify.framework in Frameworks */,
-				9AF7A32D3D573ADDAF185533 /* libPods-Nanodegree_MusicSafari.a in Frameworks */,
+				026F01DDD6D7655914B64564 /* Pods_Nanodegree_MusicSafari.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +185,7 @@
 		4E6BE7728D73A6A5ACC4D769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FD3EC433575A825163A43F10 /* libPods-Nanodegree_MusicSafari.a */,
+				C1D7A3E0CD796531D0AAC03F /* Pods_Nanodegree_MusicSafari.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -749,7 +749,7 @@
 			baseConfigurationReference = A5C5C3C90E5D916FC49F4586 /* Pods-Nanodegree_MusicSafari.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -767,7 +767,7 @@
 			baseConfigurationReference = 6DCE042524EB72E53916ADB5 /* Pods-Nanodegree_MusicSafari.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
