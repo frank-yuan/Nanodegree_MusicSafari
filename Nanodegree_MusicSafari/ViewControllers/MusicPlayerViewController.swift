@@ -15,6 +15,11 @@ class MusicPlayerViewController: UIViewController {
     
     @IBOutlet weak var playerView : MusicPlayerView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        playerView.volumnActionHandler = onVolumnChanged
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let musicPlayer = MusicPlayerFactory.defaultInstance
@@ -39,6 +44,10 @@ class MusicPlayerViewController: UIViewController {
         } else {
             musicPlayerInstance.resume()
         }
+    }
+    
+    func onVolumnChanged(value : Float) {
+        
     }
 }
 
