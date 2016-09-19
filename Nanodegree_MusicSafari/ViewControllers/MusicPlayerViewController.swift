@@ -17,7 +17,7 @@ class MusicPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playerView.volumnActionHandler = onVolumnChanged
+        playerView.volumeActionHandler = onvolumeChanged
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,6 +29,7 @@ class MusicPlayerViewController: UIViewController {
         if playerView.enabled {
             playerView.isPlaying = musicPlayer.isPlaying
             playerView.playingTrack = musicPlayer.currentTrack
+            playerView.volume = MusicPlayerFactory.defaultInstance.normalizedVolume
         }
     }
     
@@ -46,8 +47,8 @@ class MusicPlayerViewController: UIViewController {
         }
     }
     
-    func onVolumnChanged(value : Float) {
-        
+    func onvolumeChanged(value : Float) {
+        MusicPlayerFactory.defaultInstance.setVolume(value)
     }
 }
 

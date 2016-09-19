@@ -78,7 +78,11 @@ extension ArtistDetailViewController : UICollectionViewDataSource, UICollectionV
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumCell", forIndexPath: indexPath) as? AlbumCollectionViewCell
         if let album = fetchedResultsController?.objectAtIndexPath(indexPath) as? Album {
-            cell?.setAlbum(album)
+            cell?.setAlbum(album) { [weak self] in
+                performUIUpdatesOnMain({ [weak self] in
+                    self?.albumsCollection.reloadData()
+                })
+            }
         }
         return cell!
     }

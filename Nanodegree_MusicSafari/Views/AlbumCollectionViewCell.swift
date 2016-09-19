@@ -9,27 +9,33 @@
 import UIKit
 
 class AlbumCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var image : UIImageView!
     @IBOutlet weak var name : UILabel!
     @IBOutlet weak var artistName : UILabel?
     
-    func setAlbum(album:Album) {
-        if let imageCollection = album.rImage {
-            if let imageData = imageCollection.dataMedium {
-                image.image = UIImage(data: imageData)
-            } else if imageCollection.urlLarge != nil{
-                imageCollection.downloadImage(.Medium) { (data:NSData) -> Void in
-                    self.image.image = UIImage(data: data)
-                }
-            }
-        }
+    
+    func setAlbum(album:Album, completionHandler:(()->Void)?) {
         name.text = album.name
+        image.image = UIImage(named: "record")
         
         if artistName != nil {
             artistName!.text = album.rArtist?.name
         }
+        
+        if let imageCollection = album.rImage {
+            if let imageData = imageCollection.dataMedium {
+                image.image = UIImage(data: imageData)
+                completionHandler?()
+                
+            } else if imageCollection.urlLarge != nil{
+                imageCollection.downloadImage(.Medium) { (data:NSData) -> Void in
+                    
+                    completionHandler?()
+                }
+            }
+        } else {
+            completionHandler?()
+        }
     }
-    
-
 }

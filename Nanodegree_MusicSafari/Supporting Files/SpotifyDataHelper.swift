@@ -75,9 +75,8 @@ class SpotifyDataHelper: NSObject {
                     image.urlMedium = image.urlLarge
                 }
                 // set owner relationship
-                if var owner = owner as? ImageOwner {
+                if let owner = owner as? ImageOwner {
                     owner.SetImageCollection(image)
-                    owner.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)
                 }
             }
         } catch {
@@ -88,18 +87,12 @@ class SpotifyDataHelper: NSObject {
 
 protocol ImageOwner {
     var imageId:String {get}
-    var lastUpdatedTimeStamp:NSDate? {get set}
     func SetImageCollection(imageCollection:ImageCollection)
 }
 
 extension Artist : ImageOwner  {
     var imageId : String {
         get {return self.id!}
-    }
-    var lastUpdatedTimeStamp : NSDate?
-    {
-        get{return updatedTimeStamp}
-        set(v) {updatedTimeStamp = v}
     }
     func SetImageCollection(imageCollection: ImageCollection) {
         rImage = imageCollection
@@ -109,11 +102,6 @@ extension Artist : ImageOwner  {
 extension Album : ImageOwner {
     var imageId : String {
         get {return self.id!}
-    }
-    var lastUpdatedTimeStamp : NSDate?
-    {
-        get{return updatedTimeStamp}
-        set(v) {updatedTimeStamp = v}
     }
     func SetImageCollection(imageCollection: ImageCollection) {
         rImage = imageCollection

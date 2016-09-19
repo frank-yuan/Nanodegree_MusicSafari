@@ -13,15 +13,15 @@ class MusicPlayerView: UIView {
     @IBOutlet weak var playButton : UIButton!
     @IBOutlet weak var trackImage : UIImageView!
     @IBOutlet weak var trackLabel : UILabel!
-    @IBOutlet weak var volumnSlider : UISlider!
+    @IBOutlet weak var volumeSlider : UISlider!
     
-    var volumnActionHandler : ((Float)->Void)?
+    var volumeActionHandler : ((Float)->Void)?
     
     var enabled : Bool = false{
         didSet{
             playButton.enabled = enabled
             trackLabel.enabled = enabled
-            volumnSlider.enabled = enabled
+            volumeSlider.enabled = enabled
         }
     }
     
@@ -59,13 +59,13 @@ class MusicPlayerView: UIView {
         }
     }
     
-    var volumn : Float = 0{
+    var volume : Float = 0{
         didSet {
-            volumnSlider.value = volumn
+            volumeSlider.value = volume
         }
     }
     
-    @IBAction func onVolumnValueChanged(sender:UISlider) {
-        self.volumnActionHandler?(sender.value)
+    @IBAction func onvolumeValueChanged(sender:UISlider) {
+        self.volumeActionHandler?(sender.value)
     }
 }

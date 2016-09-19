@@ -31,7 +31,7 @@ class ArtistSearchViewController: CoreDataTableViewController {
                 imageCollection.downloadImage(.Small) { (data:NSData) -> Void in
                     self.fetchedResultsController?.managedObjectContext.performBlock({
                         // set time to trigger update
-                        artist.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)
+                        tableView.reloadData()
                     })
                 }
             }
@@ -49,11 +49,11 @@ class ArtistSearchViewController: CoreDataTableViewController {
                 let fr = NSFetchRequest(entityName: String(Album.self))
                 fr.predicate = NSPredicate(format: "rArtist = %@", argumentArray: [artist!])
                 fr.sortDescriptors = [NSSortDescriptor(key:"releasedDate", ascending: true)]
+                vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
                 
                 if vc.fetchedResultsController?.fetchedObjects?.count > 0 {
                     let workerContext = fetchedResultsController?.managedObjectContext
                     AlbumAPI.getArtistTopAlbums(id, context: workerContext!, completionHandler: nil)
-                    vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
                     navigationController?.pushViewController(vc, animated: true)
                 } else {
                     let rootView = UIHelper.getRootViewController(from: self).view
@@ -67,7 +67,7 @@ class ArtistSearchViewController: CoreDataTableViewController {
                             if error != .Succeed {
                                 HttpServiceHelper.showErrorAlert(error, forViewController: self)
                             } else {
-                                vc.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: CoreDataHelper.getLibraryStack().context, sectionNameKeyPath: nil, cacheName: nil)
+                                vc.executeSearch()
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }
                         })

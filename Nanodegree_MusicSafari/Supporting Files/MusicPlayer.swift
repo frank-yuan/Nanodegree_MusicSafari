@@ -26,6 +26,8 @@ protocol MusicPlayerInterface {
     
     func playTrack(track:Track?)
     
+    func setVolume(volume:Float)
+    
     func pause()
     
     func resume()
@@ -36,6 +38,7 @@ protocol MusicPlayerInterface {
     
     var isPlaying : Bool {get}
     
+    var normalizedVolume : Float {get}
 }
 
 class MusicPlayerFactory : NSObject {
@@ -75,6 +78,20 @@ extension SpotifyMusicPlayer : MusicPlayerInterface {
                 && streamController.playbackState != nil
                 && streamController.playbackState.isPlaying
         }
+    }
+    
+    var normalizedVolume : Float {
+        get {
+            return Float(streamController.volume)
+        }
+    }
+    
+    func setVolume(volume: Float) {
+        streamController.setVolume(SPTVolume(volume), callback: { (error) in
+            if error != nil {
+                print("Error in set volume")
+            }
+        })
     }
     
     func login() {
