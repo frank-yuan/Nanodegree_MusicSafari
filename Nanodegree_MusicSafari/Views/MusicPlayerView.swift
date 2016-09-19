@@ -67,7 +67,7 @@ class MusicPlayerView: UIView {
         }
     }
     
-    @IBAction func onvolumeValueChanged(sender:UISlider) {
+    @IBAction func onVolumeValueChanged(sender:UISlider) {
         self.volumeActionHandler?(sender.value)
     }
 }
