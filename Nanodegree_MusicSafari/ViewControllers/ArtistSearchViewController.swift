@@ -28,7 +28,7 @@ class ArtistSearchViewController: CoreDataTableViewController {
                 item!.artistImage!.image = UIImage(data: imageData)
                 
             } else {
-                imageCollection.downloadImage(.Small) { (data:NSData) -> Void in
+                imageCollection.downloadImage(.Small) { (data:NSData?) -> Void in
                     self.fetchedResultsController?.managedObjectContext.performBlock({
                         // set time to trigger update
                         artist.lastUpdatedTimeStamp = NSDate(timeIntervalSinceNow: 0)

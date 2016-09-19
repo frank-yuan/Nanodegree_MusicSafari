@@ -39,15 +39,26 @@ class ArtistDetailViewController: UIViewController{
         if let imageCollection = artist?.rImage {
             
             if let imageData = imageCollection.dataLarge{
+                
                 portrait.image = UIImage(data:imageData)
+                
             } else {
-                imageCollection.downloadImage(.Large) { (data:NSData) -> Void in
-                    performUIUpdatesOnMain({ 
-                        self.portrait.image = UIImage(data:data)
+                
+                let busyView = BusyView(parent: portrait)
+                portrait.addSubview(busyView)
+                
+                imageCollection.downloadImage(.Large) { (data:NSData?) -> Void in
+                    performUIUpdatesOnMain({
+                        
+                        busyView.removeFromSuperview()
+                        if let data = data {
+                            self.portrait.image = UIImage(data:data)
+                        } else {
+                            self.showAlert("Cannot download portrait image. Check your network!")
+                        }
                     })
                 }
             }
-            
         }
         
         albumsCollection.reloadData()

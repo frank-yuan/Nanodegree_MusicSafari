@@ -17,8 +17,9 @@ class BusyView: UIView {
         activityView = UIActivityIndicatorView(frame: parent.frame)
         activityView?.startAnimating()
         activityView?.center = self.center
+        activityView?.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
         self.addSubview(activityView!)
-        self.autoresizingMask = parent.autoresizingMask
+        self.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
     }
     
 }

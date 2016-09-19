@@ -42,8 +42,10 @@ class MusicPlayerView: UIView {
                         if let data = imageCollection.dataSmall {
                             trackImage.image = UIImage(data: data)
                         } else {
-                            imageCollection.downloadImage(ImageCollection.ImageSize.Small, completionHandler: { (data:NSData) -> Void in
-                                self.trackImage.image = UIImage(data: data)
+                            imageCollection.downloadImage(ImageCollection.ImageSize.Small, completionHandler: { (data:NSData?) -> Void in
+                                if let data = data {
+                                    self.trackImage.image = UIImage(data: data)
+                                }
                             })
                         }
                         

@@ -33,28 +33,43 @@ class AlbumDetailViewController: CoreDataTableViewController {
         if let imageCollection = album?.rImage {
             
             if let imageData = imageCollection.dataLarge{
+                
                 portrait.image = UIImage(data:imageData)
+                
             } else {
-                imageCollection.downloadImage(.Large) { (data:NSData) -> Void in
-                    performUIUpdatesOnMain({ 
+                
+                let busyView = BusyView(parent: portrait)
+                portrait.addSubview(busyView)
+                
+                imageCollection.downloadImage(.Large) { (data:NSData?) -> Void in
+                    
+                    performUIUpdatesOnMain({
+                        
+                        busyView.removeFromSuperview()
+                        if let data = data {
                             self.portrait.image = UIImage(data:data)
+                        } else {
+                            self.showAlert("Cannot download portrait image. Check your network!")
+                        }
                     })
+                    
                 }
             }
             
         }
-        
-        
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         musicPlayerInstance.registerDelegate(self)
         tableView.reloadData()
     }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         musicPlayerInstance.removeDelegate(self)
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TrackTableViewCell ,
             let track = cell.data as? Track{
