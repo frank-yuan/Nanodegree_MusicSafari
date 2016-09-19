@@ -45,6 +45,9 @@ class LikedDataHelper: NSObject {
                     context.deleteObject(self.likedResultsMap[id]!)
                     self.likedResultsMap.removeValueForKey(id)
                 }
+                
+                CoreDataHelper.getUserStack().save()
+                
             })
         }
     }

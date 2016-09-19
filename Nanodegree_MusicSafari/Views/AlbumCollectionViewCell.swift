@@ -13,11 +13,14 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image : UIImageView!
     @IBOutlet weak var name : UILabel!
     @IBOutlet weak var artistName : UILabel?
+    @IBOutlet weak var busyView : UIActivityIndicatorView!
     
     
     func setAlbum(album:Album, completionHandler:(()->Void)?) {
         name.text = album.name
         image.image = UIImage(named: "record")
+        busyView.stopAnimating()
+        busyView.hidden = true
         
         if artistName != nil {
             artistName!.text = album.rArtist?.name
@@ -29,8 +32,15 @@ class AlbumCollectionViewCell: UICollectionViewCell {
                 completionHandler?()
                 
             } else if imageCollection.urlLarge != nil{
-                imageCollection.downloadImage(.Medium) { (data:NSData) -> Void in
-                    
+                
+                busyView.hidden = false
+                busyView.startAnimating()
+                
+                imageCollection.downloadImage(.Medium) { (data:NSData?) -> Void in
+                    self.busyView.stopAnimating()
+                    if let data = data {
+                        self.image.image = UIImage(data: data)
+                    }
                     completionHandler?()
                 }
             }

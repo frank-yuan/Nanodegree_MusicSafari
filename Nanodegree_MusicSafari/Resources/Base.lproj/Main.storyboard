@@ -144,10 +144,13 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SdR-Za-YEo">
-                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="197"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                                         </imageView>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uG5-DL-iAm">
+                                                            <rect key="frame" x="90" y="90" width="20" height="20"/>
+                                                        </activityIndicatorView>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4A-fh-Q2A">
-                                                            <rect key="frame" x="0.0" y="197" width="200" height="20"/>
+                                                            <rect key="frame" x="0.0" y="200" width="200" height="20"/>
                                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="R4m-wu-Lyd"/>
@@ -159,9 +162,12 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="SdR-Za-YEo" firstAttribute="bottom" secondItem="H4A-fh-Q2A" secondAttribute="top" id="5MR-Am-2ZK"/>
-                                                    <constraint firstAttribute="bottomMargin" secondItem="H4A-fh-Q2A" secondAttribute="bottom" constant="-5" id="RkH-UT-flx"/>
+                                                    <constraint firstItem="uG5-DL-iAm" firstAttribute="centerY" secondItem="SdR-Za-YEo" secondAttribute="centerY" id="8QP-bI-Tps"/>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="H4A-fh-Q2A" secondAttribute="bottom" constant="-8" id="RkH-UT-flx"/>
+                                                    <constraint firstItem="uG5-DL-iAm" firstAttribute="centerX" secondItem="SdR-Za-YEo" secondAttribute="centerX" id="UHy-A7-qd3"/>
                                                     <constraint firstItem="H4A-fh-Q2A" firstAttribute="width" secondItem="5iA-so-RTV" secondAttribute="width" id="eXK-Q1-4cV"/>
                                                     <constraint firstItem="SdR-Za-YEo" firstAttribute="width" secondItem="5iA-so-RTV" secondAttribute="width" id="fQM-4u-nuq"/>
                                                     <constraint firstItem="SdR-Za-YEo" firstAttribute="top" secondItem="5iA-so-RTV" secondAttribute="topMargin" constant="-8" id="h6a-6P-FCf"/>
@@ -169,6 +175,7 @@
                                                     <constraint firstItem="H4A-fh-Q2A" firstAttribute="centerX" secondItem="5iA-so-RTV" secondAttribute="centerX" id="oGl-Le-FC1"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="busyView" destination="uG5-DL-iAm" id="Hqb-HD-vvo"/>
                                                     <outlet property="image" destination="SdR-Za-YEo" id="n0p-Ls-Lhe"/>
                                                     <outlet property="name" destination="H4A-fh-Q2A" id="e6H-rr-Ewn"/>
                                                 </connections>
@@ -635,13 +642,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-LI-vG0">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-LI-vG0">
                                 <rect key="frame" x="0.0" y="20" width="600" height="535"/>
                                 <connections>
                                     <segue destination="ov9-do-4Nq" kind="embed" id="dgy-Ws-KuY"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-Kg-rxU" customClass="MusicPlayerView" customModule="Nanodegree_MusicSafari" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-Kg-rxU" customClass="MusicPlayerView" customModule="Nanodegree_MusicSafari" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="555" width="600" height="45"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdU-75-mTe">
@@ -750,13 +757,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8SL-e0-gzi">
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8SL-e0-gzi">
                                 <rect key="frame" x="0.0" y="20" width="600" height="535"/>
                                 <connections>
                                     <segue destination="30Y-bx-ZH3" kind="embed" id="5gh-rr-Lfl"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-FH-eiX" customClass="MusicPlayerView" customModule="Nanodegree_MusicSafari" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-FH-eiX" customClass="MusicPlayerView" customModule="Nanodegree_MusicSafari" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="555" width="600" height="45"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q8x-K6-I7e">
