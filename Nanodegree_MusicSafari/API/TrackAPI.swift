@@ -73,9 +73,9 @@ class TrackAPI: NSObject {
         guard let album = CoreDataHelper.fetchManagedObject(String(Album.self), indexNameOfManagedObject: "id", byIndexArray: [albumId], from: context).first as? Album else {
             return
         }
-        let request = try! SPTRequest.createRequestForURL(NSURL(string:"https://api.spotify.com/v1/albums/\(albumId)/tracks"),
+        let request = try! SPTRequest.createRequestForURL(NSURL(string:String(format: Constants.APIURL.AlbumTrackURL, albumId)),
                                                           withAccessToken:SPTAuth.defaultInstance().session.accessToken,
-                                                          httpMethod:"get",
+                                                          httpMethod:HttpRequest.HttpMethod.GET.rawValue.lowercaseString,
                                                           values:nil,
                                                           valueBodyIsJSON:false,
                                                           sendDataAsQueryString:true)

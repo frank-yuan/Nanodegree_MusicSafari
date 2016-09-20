@@ -9,4 +9,7 @@ struct Constants {
     static let JSONPathDelimiter = NSCharacterSet(charactersInString: ".")
     static let SpotifyLoggedInPrefKey = "SPOTIFY_LOGGED_IN"
     
+    struct APIURL {
+        static let AlbumTrackURL = "https://api.spotify.com/v1/albums/%@/tracks"
+    }
 }

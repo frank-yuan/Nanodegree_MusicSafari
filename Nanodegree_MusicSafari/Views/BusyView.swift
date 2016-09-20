@@ -15,11 +15,13 @@ class BusyView: UIView {
         self.backgroundColor = UIColor.darkGrayColor()
         self.alpha = 0.3
         activityView = UIActivityIndicatorView(frame: parent.frame)
-        activityView?.startAnimating()
         activityView?.center = self.center
         activityView?.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
         self.addSubview(activityView!)
         self.autoresizingMask = [.FlexibleWidth , .FlexibleHeight]
+        performUIUpdatesOnMain { 
+            self.activityView?.startAnimating()
+        }
     }
     
 }
