@@ -1,12 +1,3 @@
-PODS:
-  - ARNTransitionAnimator (1.1.0)
-
-DEPENDENCIES:
-  - ARNTransitionAnimator
-
-SPEC CHECKSUMS:
-  ARNTransitionAnimator: b8b35ce733d08f137eadb0e0c6e53011ea3fb28d
-
-PODFILE CHECKSUM: cd0f611daf8113c36302bf86466de12d4cf323a8
+PODFILE CHECKSUM: a73e71c13ce426bd6ec0694b1d5da71adcf27e6b
 
 COCOAPODS: 1.0.1

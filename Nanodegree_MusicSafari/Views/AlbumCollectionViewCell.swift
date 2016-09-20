@@ -16,7 +16,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var busyView : UIActivityIndicatorView!
     
     
-    func setAlbum(album:Album, completionHandler:(()->Void)?) {
+    func setAlbum(album:Album, imageDownloadCompletionHandler:(()->Void)?) {
         name.text = album.name
         image.image = UIImage(named: "record")
         busyView.stopAnimating()
@@ -29,7 +29,6 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         if let imageCollection = album.rImage {
             if let imageData = imageCollection.dataMedium {
                 image.image = UIImage(data: imageData)
-                completionHandler?()
                 
             } else if imageCollection.urlLarge != nil{
                 
@@ -38,14 +37,9 @@ class AlbumCollectionViewCell: UICollectionViewCell {
                 
                 imageCollection.downloadImage(.Medium) { (data:NSData?) -> Void in
                     self.busyView.stopAnimating()
-                    if let data = data {
-                        self.image.image = UIImage(data: data)
-                    }
-                    completionHandler?()
+                    imageDownloadCompletionHandler?()
                 }
             }
-        } else {
-            completionHandler?()
         }
     }
 }
