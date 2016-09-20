@@ -13,6 +13,7 @@ class MusicPlayerView: UIView {
     @IBOutlet weak var playButton : UIButton!
     @IBOutlet weak var trackImage : UIImageView!
     @IBOutlet weak var trackLabel : UILabel!
+    @IBOutlet weak var artistLabel : UILabel!
     @IBOutlet weak var volumeSlider : UISlider!
     
     var volumeActionHandler : ((Float)->Void)?
@@ -27,6 +28,7 @@ class MusicPlayerView: UIView {
     
     weak var playingTrack : Track? = nil {
         didSet {
+            artistLabel.text = ""
             trackLabel.text = ""
             trackImage.image = UIImage(named: "record")
             if let track = playingTrack {
@@ -36,7 +38,7 @@ class MusicPlayerView: UIView {
                 if let album = track.rAlbum{
                     if let artist = album.rArtist,
                         artistName = artist.name{
-                            trackLabel.text = "\(track.name!) - \(artistName)"
+                            artistLabel.text = artistName
                     }
                     if let imageCollection = album.rImage {
                         if let data = imageCollection.dataSmall {
@@ -48,7 +50,6 @@ class MusicPlayerView: UIView {
                                 }
                             })
                         }
-                        
                     }
                 }
             }

@@ -59,11 +59,14 @@ class ArtistSearchViewController: CoreDataTableViewController {
                     let rootView = UIHelper.getRootViewController(from: self).view
                     let busyView = BusyView(parent: rootView)
                     view.addSubview(busyView)
+                    busyView.frame.origin.y = tableView.contentOffset.y + busyView.frame.origin.y
+                    tableView.scrollEnabled = false
                     
                     let workerContext = fetchedResultsController?.managedObjectContext
                     AlbumAPI.getArtistTopAlbums(id, context: workerContext!) { error, result in
                         performUIUpdatesOnMain({ 
                             busyView.removeFromSuperview()
+                            self.tableView.scrollEnabled = true
                             if error != .Succeed {
                                 HttpServiceHelper.showErrorAlert(error, forViewController: self)
                             } else {
@@ -86,8 +89,9 @@ class ArtistSearchViewController: CoreDataTableViewController {
     
     func startSearch(name:String) {
         
-        let rootView = parentViewController?.parentViewController?.parentViewController?.view
+        let rootView = UIHelper.getRootViewController(from: self).view
         let busyView = BusyView(parent: rootView!)
+        busyView.frame = UIScreen.mainScreen().bounds
         rootView!.addSubview(busyView)
         
         let fr = NSFetchRequest(entityName: "Artist")
